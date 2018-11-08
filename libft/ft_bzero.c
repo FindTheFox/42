@@ -6,18 +6,17 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:51:02 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/07 17:59:38 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/08 16:39:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-    size_t a;
+	size_t	a;
 
-    a = 0;
-    while (a < n)
-        ((unsigned char *)s)[a++] = '\0';
-    return (a);
+	a = 0;
+	while (a < n)
+		((unsigned char *)s)[a++] = '\0';
 }

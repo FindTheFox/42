@@ -6,16 +6,18 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:52:49 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/07 17:59:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/08 17:19:19 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int i;
+
+	i = 0;
 	while (str[i])
 		i++;
-	return (0);
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:52:45 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/07 17:59:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/08 17:17:51 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strdup(char *src)
 {
-	int i;
-	char *dest;
-	
+	int		i;
+	char	*dest;
+
 	i = 0;
 	while (src[i])
 		i++;

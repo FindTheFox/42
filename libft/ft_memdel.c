@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:52:04 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/07 17:59:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/08 16:29:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	*ft_memdel(void **ap)
 {
 	free(*ap);
 	*ap = NULL;
+	return (ap);
 }

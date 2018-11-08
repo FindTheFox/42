@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:51:35 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/07 17:59:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/08 16:29:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_memalloc(size_t size)
 	void *a;
 
 	a = NULL;
-	if (!(a = (void *)malloc(sizeof(size_t) * size)));
+	if (!(a = (void *)malloc(sizeof(size_t) * size)))
 		return (NULL);
 	return (a);
 }

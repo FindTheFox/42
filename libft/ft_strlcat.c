@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/01 22:18:55 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/08 16:29:38 by saneveu          ###   ########.fr       */
+/*   Created: 2018/09/04 20:06:46 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/08 18:06:34 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strcmp(char *s1, char *s2)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	int i;
+	unsigned int i;
+	unsigned int srclen;
+	unsigned int destlen;
 
+	destlen = ft_strlen(dest);
+	srclen = ft_strlen(src);
 	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i])
+	while (src[i] && (destlen + i + 1) < size)
+	{
+		dest[destlen + i] = src[i];
 		i++;
-	return (s1[i] - s2[i]);
+	}
+	if (size < destlen)
+		return (size + srclen);
+	dest[destlen + i] = '\0';
+	return (destlen + srclen);
 }
