@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 16:23:14 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/08 17:21:19 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/08 20:12:17 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strstr(char *str, char *to_find)
 	int j;
 
 	i = 0;
+	if (to_find[0] == '\0')
+		return (str);
 	while (str[i])
 	{
 		j = 0;
