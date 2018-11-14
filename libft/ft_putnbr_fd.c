@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 07:58:55 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/12 08:07:38 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:49:40 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	long nbr;
+	long	nbr;
 
 	nbr = (long)nb;
 	if (nbr < 0)

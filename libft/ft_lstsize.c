@@ -6,16 +6,16 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 00:27:09 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/14 00:49:33 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:35:03 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t     ft_lstsize(t_list *lst)
+size_t		ft_lstsize(t_list *lst)
 {
-    if (!lst)
-        return (0);
-    else
-        return (1 + ft_lstsize(lst->next));
+	if (!lst)
+		return (0);
+	else
+		return (1 + ft_lstsize(lst->next));
 }

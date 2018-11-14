@@ -6,25 +6,25 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 21:27:31 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/12 01:58:55 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:53:06 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int     ft_strequ(const char *s1, const char *s2)
+int		ft_strequ(const char *s1, const char *s2)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if ((!s1[i] && s2[i]) || (!s2[i] && s1[i]))
-        return (0);
-    while (s1[i] && s2[i])
-    {
-        if (ft_strcmp(&(s1[i]), &(s2[i])) == 0)
-            i++;
-        else
-            return (0);
-    }
-    return (1);
+	i = 0;
+	if (!(s1 && s2))
+		return (0);
+	while (s1[i] && s2[i])
+	{
+		if (ft_strcmp(&(s1[i]), &(s2[i])) == 0)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }

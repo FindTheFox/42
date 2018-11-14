@@ -6,14 +6,14 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 07:56:04 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/14 02:11:33 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:49:01 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putstr_fd(const char *s, int fd)
+void	ft_putstr_fd(const char *s, int fd)
 {
-    while (*s)
-        ft_putchar_fd(*s++, fd);
+	while (*s)
+		ft_putchar_fd(*s++, fd);
 }

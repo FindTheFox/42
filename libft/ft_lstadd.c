@@ -6,16 +6,15 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 23:20:56 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/14 00:11:19 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:32:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_lstadd(t_list **link, t_list *new)
+void	ft_lstadd(t_list **link, t_list *new)
 {
-    if (link)
-        new->next = *link;
-    *link = new;
-    
+	if (link)
+		new->next = *link;
+	*link = new;
 }

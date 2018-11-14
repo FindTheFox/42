@@ -6,23 +6,19 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 02:28:05 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/12 03:03:52 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:53:47 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-    char    *dest;
-    int     ss1;
-    int     ss2;
+	char	*dest;
 
-    ss1 = ft_strlen((char *)s1);
-    ss2 = ft_strlen((char *)s2);
-    if (!(dest = (char *)malloc(sizeof(char) * (ss1 + ss2))))
-        return (0);
-    dest = ft_strcpy(dest, (char *)s1);
-    dest = ft_strcat(dest, (char *)s2);
-    return (dest);
+	if (!(s1 && s2) || !(dest = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
+		return (NULL);
+	dest = ft_strcpy(dest, (char *)s1);
+	dest = ft_strcat(dest, (char *)s2);
+	return (dest);
 }

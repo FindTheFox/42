@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:52:15 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/08 17:16:24 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:46:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *s, int i, size_t n)
 {
-	size_t a;
+	size_t	a;
 
 	a = 0;
 	while (a < n)

@@ -6,15 +6,15 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 07:45:40 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/12 07:51:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/14 21:47:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void        ft_putendl(const char *s)
+void	ft_putendl(const char *s)
 {
-    while (*s)
-        ft_putchar(*s++);
-    ft_putchar('\n');
+	while (*s)
+		ft_putchar(*s++);
+	ft_putchar('\n');
 }

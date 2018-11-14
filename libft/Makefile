@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:33:13 by saneveu           #+#    #+#              #
-#    Updated: 2018/11/14 02:03:41 by saneveu          ###   ########.fr        #
+#    Updated: 2018/11/14 21:11:41 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,6 @@ SRC =	ft_atoi.c \
 		ft_putstr.c \
 		ft_strcmp.c \
 		ft_striter.c \
-		ft_strlen_split.c \
 		ft_strncpy.c \
 		ft_strsplit.c \
 		ft_toupper.c \
@@ -73,6 +72,7 @@ SRC =	ft_atoi.c \
 		ft_lstiter.c \
 		ft_lstsize.c \
 		ft_lstdel.c \
+		ft_lstmap.c \
 
 OBJS = $(SRC:.c=.o)
 
