@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strsplit_count.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/03 16:23:14 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/08 20:21:56 by saneveu          ###   ########.fr       */
+/*   Created: 2018/11/12 04:22:17 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/12 04:22:17 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strnstr(const char *src, const char *find, size_t n)
+int      ft_strsplit_lenword(const char *s, char c)
 {
-    size_t i;
-    size_t j;
-    
+    int     len;
+
+    len = 0;
+    while (s[len] && s[len] != c)
+        len++;
+    return (len);
+}
+
+int     ft_strsplit_ctword(const char *s, char c)
+{
+    int     len;
+    int     i;
+
+    len = 0;
     i = 0;
-    if (!find[i])
-        return ((char *)src);
-    while (i < n && src[i])
+    while (s[i])
     {
-        j = 0;
-        while (i + j < n && src[i + j] && find[j] && src[i + j] == find[j]) 
-            j++;
-        if (!find[j])
-            return ((char *)src + i);
-        i++;
+        while (s[i] == c)
+            i++;
+        if (s[i] && s[i] != c)
+            len++;
+        while (s[i] && s[i] != c)
+            i++;
     }
-    return (NULL);
+    return (len);
 }

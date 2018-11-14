@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 17:51:30 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/08 17:13:36 by saneveu          ###   ########.fr       */
+/*   Created: 2018/11/14 00:27:09 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 00:49:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+size_t     ft_lstsize(t_list *lst)
 {
-	return (c >= 32 && c <= 126);
+    if (!lst)
+        return (0);
+    else
+        return (1 + ft_lstsize(lst->next));
 }

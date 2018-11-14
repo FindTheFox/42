@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_putendl.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 17:51:30 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/08 17:13:36 by saneveu          ###   ########.fr       */
+/*   Created: 2018/11/12 07:45:40 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/12 07:51:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+void        ft_putendl(const char *s)
 {
-	return (c >= 32 && c <= 126);
+    while (*s)
+        ft_putchar(*s++);
+    ft_putchar('\n');
 }

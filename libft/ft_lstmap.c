@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/03 16:23:14 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/08 20:21:56 by saneveu          ###   ########.fr       */
+/*   Created: 2018/11/14 00:16:57 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 01:51:42 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char    *ft_strnstr(const char *src, const char *find, size_t n)
+t_list  *ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-    size_t i;
-    size_t j;
-    
-    i = 0;
-    if (!find[i])
-        return ((char *)src);
-    while (i < n && src[i])
+    t_list  *new;
+    t_list  *begin;
+
+    if (!(new = ft_lstnew((f(lst))->content, (f(lst))->content_size)))
+        return NULL;
+    begin = new;
+    lst = lst->next;
+    while (lst)
     {
-        j = 0;
-        while (i + j < n && src[i + j] && find[j] && src[i + j] == find[j]) 
-            j++;
-        if (!find[j])
-            return ((char *)src + i);
-        i++;
+        if (!(new->next = ft_lstnew((f(lst))->content, (f(lst))->content_size)))
+            return NULL;
+        new = new->next;
+        lst = lst->next;
     }
-    return (NULL);
+    return (begin);
 }
