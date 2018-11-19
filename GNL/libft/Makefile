@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 18:33:13 by saneveu           #+#    #+#              #
-#    Updated: 2018/11/19 23:04:59 by saneveu          ###   ########.fr        #
+#    Updated: 2018/11/15 18:05:55 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,16 +78,17 @@ SRC =	ft_atoi.c \
 		
 OBJS = $(SRC:.c=.o)
 
-CFLAG = -Wall -Werror -Wextra
+FLAG = -Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	@gcc $(FLAG) -c $(SRC) 
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
 $(OBJS): $(SRC)
-	@gcc $(CFLAG) $(SRC)
+	@gcc $(FLAG) -c $(SRC)
 clean:
 	@/bin/rm -f $(OBJS)
 

@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/04 20:06:46 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/16 16:00:48 by saneveu          ###   ########.fr       */
+/*   Created: 2018/11/09 21:19:59 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 21:55:55 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strmapi(char const *s1, char (*f)(unsigned int, char))
 {
-	size_t i;
-	size_t srclen;
-	size_t destlen;
+	int		i;
+	char	*s2;
 
-	destlen = ft_strlen(dest);
-	srclen = ft_strlen(src);
+	if (!(s1 && f)
+		|| !(s2 = (char *)malloc(sizeof(char) * (ft_strlen((char *)s1) + 1))))
+		return (0);
 	i = 0;
-	while (src[i] && (destlen + i + 1) < size)
+	while (s1[i])
 	{
-		dest[destlen + i] = src[i];
+		s2[i] = (*f)(i, s1[i]);
 		i++;
 	}
-	if (size < destlen)
-		return (size + srclen);
-	dest[destlen + i] = '\0';
-	return (destlen + srclen);
+	s2[i] = '\0';
+	return (s2);
 }

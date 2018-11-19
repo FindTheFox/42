@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/04 20:06:46 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/16 16:00:48 by saneveu          ###   ########.fr       */
+/*   Created: 2018/11/14 01:52:41 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 21:33:29 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlcat(char *dest, const char *src, size_t size)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	size_t i;
-	size_t srclen;
-	size_t destlen;
+	t_list	*next;
 
-	destlen = ft_strlen(dest);
-	srclen = ft_strlen(src);
-	i = 0;
-	while (src[i] && (destlen + i + 1) < size)
+	while (*alst)
 	{
-		dest[destlen + i] = src[i];
-		i++;
+		next = (*alst)->next;
+		ft_lstdelone(&(*alst), del);
+		*alst = next;
 	}
-	if (size < destlen)
-		return (size + srclen);
-	dest[destlen + i] = '\0';
-	return (destlen + srclen);
 }

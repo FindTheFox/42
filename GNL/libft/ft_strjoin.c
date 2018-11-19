@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/04 20:06:46 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/16 16:00:48 by saneveu          ###   ########.fr       */
+/*   Created: 2018/11/12 02:28:05 by saneveu           #+#    #+#             */
+/*   Updated: 2018/11/14 21:53:47 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	size_t i;
-	size_t srclen;
-	size_t destlen;
+	char	*dest;
 
-	destlen = ft_strlen(dest);
-	srclen = ft_strlen(src);
-	i = 0;
-	while (src[i] && (destlen + i + 1) < size)
-	{
-		dest[destlen + i] = src[i];
-		i++;
-	}
-	if (size < destlen)
-		return (size + srclen);
-	dest[destlen + i] = '\0';
-	return (destlen + srclen);
+	if (!(s1 && s2) || !(dest = ft_strnew(ft_strlen(s1) + ft_strlen(s2))))
+		return (NULL);
+	dest = ft_strcpy(dest, (char *)s1);
+	dest = ft_strcat(dest, (char *)s2);
+	return (dest);
 }
