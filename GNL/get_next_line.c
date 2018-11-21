@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 17:57:21 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/20 20:36:24 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/11/21 12:55:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int		ft_chrandsub(char **save, char **line, int fd, int res)
 	if (save[fd][len] == '\n')
 	{
 		*line = ft_strsub(save[fd], 0, len);
-		tmp = ft_strdup(save[fd] + len);
+		tmp = ft_strdup(save[fd] + len + 1);
 		free(save[fd]);
 		save[fd] = tmp;
-		if (save[fd][len] == '\0')
+		if (save[fd][0] == '\0')
 			ft_strdel(&save[fd]);
 	}
 	else if (save[fd][len] == '\0')
@@ -61,7 +61,7 @@ int		get_next_line(const int fd, char **line)
 	}
 	if (res < 0)
 		return (-1);
-	else if (res == 0 || (save[fd] == NULL || save[fd][0] == '\0'))
+	else if (res == 0 && (save[fd] == NULL || save[fd][0] == '\0'))
 		return (0);
 	return (ft_chrandsub(save, line, fd, res));
 }
