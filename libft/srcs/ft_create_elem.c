@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_create_elem.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 18:00:46 by saneveu           #+#    #+#             */
-/*   Updated: 2018/12/09 16:02:55 by saneveu          ###   ########.fr       */
+/*   Created: 2018/12/09 15:36:19 by saneveu           #+#    #+#             */
+/*   Updated: 2018/12/09 15:37:35 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include "libft.h"
-# define BUFF_SIZE 8 
-# include <unistd.h>
+#include "libft.h"
 
-int		get_next_line(const int fd, char **line);
+t_list		*ft_create_elem(void *content)
+{
+	t_list	*list;
 
-#endif
+	if (!(list = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	list->content = content;
+    list->content_size = 0;
+	list->next = NULL;
+	return (list);
+}

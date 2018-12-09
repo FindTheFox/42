@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/16 16:09:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2018/12/09 16:10:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+
+# define BUFF_SIZE 8
 
 typedef struct	s_list
 {
@@ -79,11 +81,15 @@ t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstadd(t_list **link, t_list *n);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 size_t			ft_lstsize(t_list *lst);
+void			ft_lstmerge(t_list **alst1, t_list *alst2);
 void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void			ft_putnbr_base(int nb, char *base);
 int				ft_atoi_base(char *str, char *base);
 void			ft_putnbr_base_fd(int nb, char *base, int fd);
 char			*ft_convert_base(char *nbr, char *base_from, char *base_to);
+t_list			*ft_create_elem(void *content);
+void			ft_list_push_back(t_list **begin_list, void *content);
+int				get_next_line(int const fd, char **line);
 
 #endif
