@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/08 17:50:52 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/16 01:37:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,13 @@ typedef struct	s_env
 	void	*mlx;
 	void	*win;
 }				t_env;
+
+typedef struct	s_point
+{
+	float x1;
+	float y1;
+	float x2;
+	float y2;
+}				t_point;
 
 #endif

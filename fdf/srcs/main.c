@@ -6,37 +6,42 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/08 18:11:06 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/16 01:52:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_line(t_env *mlx, int x1, int y1, int x2, int y2)
+void	ft_line(t_env *env, float x1, float y1, float x2, float y2)
 {
 	t_line *line;
 
 	if (!(line = (t_line *)malloc(sizeof(t_line))))
 		return ;
-	if (ft_abs(x2 - x1) >= ft_abs(y2 - y1))
-		line->lenght = ft_abs(x2 - x1);
+	if (ft_abs((int)x2 - (int)x1) >= ft_abs((int)y2 - (int)y1))
+		line->lenght = ft_abs((int)x2 - (int)x1);
 	else
-		line->lenght = ft_abs(y2 - y1);
+		line->lenght = ft_abs((int)y2 - (int)y1);
 	line->dx = (x2 - x1) / line->lenght;
 	line->dy = (y2 - y1) / line->lenght;
 	line->x = x1 + 0.5;
 	line->y = y1 + 0.5;
 	line->i = 1;
-	while (line->i <= line->lenght && line->x < mlx->width
-			&& line->y < mlx->height)
+	while (line->i++ <= line->lenght)
 	{
-		line->mix = line->i / (double)line->lenght;
-		mlx_pixel_put(mlx->mlx, mlx->win, line->x, line->y, 0xFFFFFF);
+		mlx_pixel_put(env->mlx, env->win, (int)line->x, (int)line->y, 0xffffff);
 		line->x += line->dx;
 		line->y += line->dy;
-		line->i++;
 	}
 	free(line);
+}
+
+int		ft_key(int key, void *truc)
+{
+	(void)truc;
+	if (key == 53)
+		exit(0);
+	return (0);
 }
 
 int		main(int ac, char **av)
@@ -51,7 +56,8 @@ int		main(int ac, char **av)
 	env->width = 500;
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, 500, 500, "test windows");
-	ft_line(env, 15, 25, 156, 500);
+	ft_line(env, 0, 0, 500, 500);
+	mlx_key_hook(env->win, ft_key, NULL);
 	mlx_loop(env->mlx);
 	return (0);
 }
