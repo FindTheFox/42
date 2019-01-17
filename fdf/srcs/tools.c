@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/17 14:41:02 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/17 18:17:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void		ft_display_map(t_map *map)
 	int j;
 
 	i = 0;
-	while (map->tab[i])
+	while (i < map->line)
 	{
 		j = 0;
-		while (map->tab[i][j])
+		while (j < map->column)
 		{
 			ft_putnbr(map->tab[i][j]);
 			ft_putchar('|');

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:58:57 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/17 14:47:32 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/17 17:55:53 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int				*ft_intsplit(const char *str, const char *set)
 			i++;
 		if (str[i])
 		{
-			tab[x] = ft_atoi(str + i);
+			tab[x++] = ft_atoi(str + i);
 			while (str[i] && !in_carset(set, str[i]))
 				i++;
 		}
