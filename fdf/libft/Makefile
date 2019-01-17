@@ -122,6 +122,7 @@ SRC += $(S_PATH)ft_convert_base.c
 SRC += $(S_PATH)ft_lst_push_back.c
 SRC += $(S_PATH)ft_create_elem.c
 SRC += $(S_PATH)ft_abs.c
+SRC += $(S_PATH)ft_intsplit.c
 
 # Objects and Headers
 

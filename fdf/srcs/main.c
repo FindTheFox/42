@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/16 01:52:38 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/17 14:11:03 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,21 @@ int		ft_key(int key, void *truc)
 int		main(int ac, char **av)
 {
 	t_env *env;
-
+	t_map *map;
 	if (!(env = (t_env *)malloc(sizeof(t_env))))
 		return (0);
+	if (!(map = (t_map *)malloc(sizeof(t_map))))
+		return (0);
     ac = 0;
-	(void)av;
-	env->height = 500;
+	/*env->height = 500;
 	env->width = 500;
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, 500, 500, "test windows");
 	ft_line(env, 0, 0, 500, 500);
 	mlx_key_hook(env->win, ft_key, NULL);
 	mlx_loop(env->mlx);
+	*/
+	map = ft_parse(av[1]);
+	ft_display_map(map);
 	return (0);
 }

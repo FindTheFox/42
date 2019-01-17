@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/01/08 16:21:37 by saneveu          ###   ########.fr        #
+#    Updated: 2019/01/17 14:21:00 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,13 @@ NAME	= fdf
 
 # src / obj files
 SRC		= main.c \
+			parsing.c \
+			tools.c \
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
-CC		= gcc
+CC		= gcc -g
 CFLAGS	= -Wall -Wextra -Werror
 
 # mlx library

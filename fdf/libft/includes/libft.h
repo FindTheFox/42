@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/08 17:44:47 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/17 13:34:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ t_list			*ft_create_elem(void *content);
 void			ft_list_push_back(t_list **begin_list, void *content);
 int				get_next_line(int const fd, char **line);
 int				ft_abs(int a);
+int				*ft_intsplit(const char *str, const char *set);
 
 #endif
