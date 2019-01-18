@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/17 14:04:50 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/18 18:33:16 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "libft.h"
-# define HEIGHT 500
-# define WIDTH 500
+# define HEIGHT 800
+# define WIDTH 600
 
 typedef struct	s_line
 {
@@ -31,12 +31,22 @@ typedef struct	s_line
 	double	mix;
 }				t_line;
 
+typedef struct	s_img
+{
+	int		*data;
+	int		bpp;
+	int		s_l;
+	int		endian;
+	void	*img_ptr;
+}				t_img;
+
 typedef struct	s_env
 {
 	int		height;
 	int		width;
-	void	*mlx;
-	void	*win;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	*img;
 }				t_env;
 
 typedef struct	s_map
@@ -50,5 +60,8 @@ int			main(int ac, char **av);
 t_map		*ft_parse(char *file);
 void		ft_line(t_env *env, float x1, float y1, float x2, float y2);
 void		ft_display_map(t_map *map);
+t_env		*setup_mlx(t_env *env);
+void 		color_pixel_img(int *data, int x, int y, int color, t_env *env);
+void		setup_img(t_env *env);
 
 #endif

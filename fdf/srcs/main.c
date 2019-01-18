@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/17 18:12:52 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/01/18 19:09:20 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_line(t_env *env, float x1, float y1, float x2, float y2)
 	line->i = 1;
 	while (line->i++ <= line->lenght)
 	{
-		mlx_pixel_put(env->mlx, env->win, (int)line->x, (int)line->y, 0xffffff);
+		color_pixel_img(env->img->data, (int)line->x, (int)line->y, 0xffffff, env);
 		line->x += line->dx;
 		line->y += line->dy;
 	}
@@ -48,19 +48,21 @@ int		main(int ac, char **av)
 {
 	t_env *env;
 	t_map *map;
-	if (!(env = (t_env *)malloc(sizeof(t_env))))
-		return (0);
-	if (!(map = (t_map *)malloc(sizeof(t_map))))
-		return (0);
-    ac = 0;
-	/*env->height = 500;
-	env->width = 500;
-	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, 500, 500, "test windows");
+	t_img *img;
+
+	env = NULL;
+	map = NULL;
+	img = NULL;
+	if (!(env = setup_mlx(env)))
+		return(0);
+	setup_img(env);
+	ac = 0;
+	(void)av;
 	ft_line(env, 0, 0, 500, 500);
-	mlx_key_hook(env->win, ft_key, NULL);
-	mlx_loop(env->mlx);*/
-	map = ft_parse(av[1]);
-	ft_display_map(map);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
+	mlx_key_hook(env->win_ptr, ft_key, NULL);
+	mlx_loop(env->mlx_ptr);
+	//map = ft_parse(av[1]);
+	//ft_display_map(map);
 	return (0);
 }
