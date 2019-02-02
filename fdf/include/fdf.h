@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/02 01:27:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/02 21:28:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ typedef struct	s_line
 
 typedef struct	s_coord
 {
-	int		x;
-	int		y;
+	float		x;
+	float		y;
+	int			color;
 }				t_coord;
 
 typedef struct	s_map
@@ -54,8 +55,11 @@ typedef struct	s_env
 	void	*win_ptr;
 	void	*img_ptr;
 	int		*str;
-	float	mx;
-	float	my;
+	int		mx;
+	int		my;
+	int		x_unit;
+	int		y_unit;
+	double	z_unit;
 	t_coord *C1;
 	t_coord *C2;
 
@@ -69,6 +73,8 @@ t_env		*setup_mlx(t_env *env);
 void 		color_pixel_img(t_env *env, int x, int y, int color);
 void		setup_img(t_env *env);
 int 		ft_usage();
+void		ft_draw(t_map *map, t_env *env);
+void	ft_iso(t_env *mlx, t_map *map, int i, int j);
 
 void		paint_all_in_white(t_env *env);
 

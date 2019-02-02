@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/01 23:28:26 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/02 21:47:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,35 @@ void		ft_draw(t_map *map, t_env *env)
 	int y;
 
 	x = 0;
-	while (x < map->column)
+	while (x < map->line)
 	{
 		y = 0;
-		while (y < map->line)
+		while (y < map->column)
 		{
-			ft_line(env, x + env->mx, y + env->my, (x + 1) + env->mx, (y + 1) + env->mx);
-
+			ft_iso(env, map, x, y);
+			y++;
 		}
+		x++;
+	}
+}
+
+void	ft_iso(t_env *mlx, t_map *map, int i, int j)
+{
+	mlx->C1->x = (j - i) * mlx->x_unit;
+	mlx->C1->y = (j + i) * mlx->y_unit + mlx->z_unit * map->tab[i][j];
+	//mlx->C1->color = ft_choose_color(map->tab[i][j], mlx);
+	if (i < map->line - 1)
+	{
+		mlx->C2->x = (j - i - 1) * mlx->x_unit;
+		mlx->C2->y = (j + i + 1) * mlx->y_unit + mlx->z_unit * map->tab[i + 1][j];
+		//mlx->C2->color = ft_choose_color(map->tab[i + 1][j], mlx);
+		ft_line(mlx, mlx->C1->x, mlx->C1->y, mlx->C2->x, mlx->C2->y);
+	}
+	if (j < map->column - 1)
+	{
+		mlx->C2->x = (j + 1 - i) * mlx->x_unit;
+		mlx->C2->y = (j + 1 + i) * mlx->y_unit + mlx->z_unit * map->tab[i][j + 1];
+		//mlx->C2->color = ft_choose_color(map->tab[i][j + 1], mlx);
+		ft_line(mlx, mlx->C1->x, mlx->C1->y, mlx->C2->x, mlx->C2->y);
 	}
 }
