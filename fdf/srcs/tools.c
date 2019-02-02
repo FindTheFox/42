@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/18 19:03:21 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/01 23:28:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,39 @@ void		ft_display_map(t_map *map)
 	}
 }
 
-void 		color_pixel_img(int *data, int x, int y, int color, t_env *env)
+int			ft_usage()
 {
-	data[y * env->width + x] = color;
+	ft_putendl("usage : ./fdf [map_file]");
+	return (0);
 }
 
-void		setup_img(t_env *env)
+void 		color_pixel_img(t_env *env, int x, int y, int color)
 {
-	t_img	*img;
-
-	if (!(img = (t_img *)malloc(sizeof(t_img))))
-		return ;
-	env->img = img;
-	env->img->img_ptr = mlx_new_image(env->mlx_ptr, env->width, env->height);
-	env->img->data = (int *)mlx_get_data_addr(env->mlx_ptr, &img->bpp, &img->s_l, &img->endian);
+	if (x >= 0 && y >= 0 && y < env->height && x < env->width)
+		env->str[x + env->width * y] = color;
 }
 
-t_env		*setup_mlx(t_env *env)
+void		paint_all_in_white(t_env *env)
 {
-	if (!(env = (t_env *)malloc(sizeof(t_env))))
-		return (NULL);
-	env->height = 600;
-	env->width = 800;
-	env->mlx_ptr = mlx_init();
-	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "fdf");
-	return (env);
+	int x;
+
+	x = 1;
+	env->str[x] = 0xffffff;
+}
+
+void		ft_draw(t_map *map, t_env *env)
+{
+	int x;
+	int y;
+
+	x = 0;
+	while (x < map->column)
+	{
+		y = 0;
+		while (y < map->line)
+		{
+			ft_line(env, x + env->mx, y + env->my, (x + 1) + env->mx, (y + 1) + env->mx);
+
+		}
+	}
 }
