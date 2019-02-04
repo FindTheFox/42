@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/02 21:51:08 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/04 19:13:52 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_line(t_env *env, float x1, float y1, float x2, float y2)
 int		ft_key(int key, void *truc)
 {
 	(void)truc;
-	ft_putnbr(key);
 	if (key == 53)
 		exit(0);
 	return (0);
@@ -78,7 +77,7 @@ int		main(int ac, char **av)
 		return(ft_usage());
 	if (!(env = setup_mlx(env)))
 		return(0);
-	(void)av;
+	//(void)av;
 	env->map = ft_parse(av[1]);
 	setup_img(env);
 	ac = 0;

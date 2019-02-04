@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 12:58:57 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/17 17:55:53 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/04 17:59:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		ct(const char *str, const char *set)
 	{
 		while (in_carset(set, str[i]))
 			i++;
-		if (str[i] && !in_carset(set, str[i]))
+		if (str[i])
 			len++;
 		while (str[i] && !in_carset(set, str[i]))
 			i++;

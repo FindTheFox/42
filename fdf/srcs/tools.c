@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/02 21:47:26 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/04 19:48:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void		ft_draw(t_map *map, t_env *env)
 	int x;
 	int y;
 
+	if(!(env->C1 = (t_coord *)malloc(sizeof(t_coord))))
+		return ;
+	if(!(env->C2 = (t_coord *)malloc(sizeof(t_coord))))
+		return ;
 	x = 0;
 	while (x < map->line)
 	{
