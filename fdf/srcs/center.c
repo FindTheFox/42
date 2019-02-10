@@ -6,9 +6,15 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:45:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/04 19:48:49 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/08 00:39:44 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+int		ft_find_center(t_env *env)
+{
+	int i;
+
+	
+}

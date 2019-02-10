@@ -1,0 +1,46 @@
+
+/*
+void	ft_iso(t_env *env, t_map *map, int i, int j)
+{
+
+	env->C1->x = (j - i) * env->x_unit + env->mx;
+	env->C1->y = (j + i) * env->y_unit + env->my - env->z_unit * map->tab[i][j];
+	//mlx->C1->color = ft_choose_color(map->tab[i][j], mlx);
+	if (i < map->line - 1)
+	{
+		env->C2->x = (j - i - 1) * env->x_unit + env->mx;
+		env->C2->y = (j + i + 1) * env->y_unit + env->my - env->z_unit * map->tab[i + 1][j];
+		//mlx->C2->color = ft_choose_color(map->tab[i + 1][j], mlx);
+		ft_line(env, env->C1->x, env->C1->y, env->C2->x, env->C2->y);
+	}
+	if (j < map->column - 1)
+	{
+		env->C2->x = (j + 1 - i) * env->x_unit + env->mx;
+		env->C2->y = (j + 1 + i) * env->y_unit + env->my - env->z_unit * map->tab[i][j + 1];
+		//mlx->C2->color = ft_choose_color(map->tab[i][j + 1], mlx);
+		ft_line(env, env->C1->x, env->C1->y, env->C2->x, env->C2->y);
+	}
+}
+*/
+
+
+void	ft_para(t_env *env, t_map *map, int i, int j)
+{
+	env->C1->x = i * env->x_unit + env->mx;
+	env->C1->y = j * env->y_unit + env->my;
+	//mlx->C1->color = ft_choose_color(map->tab[i][j], mlx);
+  	if (i < map->line - 1)
+	{
+		env->C2->x = i * env->x_unit + env->mx;
+		env->C2->y = j * (env->y_unit + env->my);
+		//mlx->C2->color = ft_choose_color(map->tab[i + 1][j], mlx);
+		ft_line(env, env->C1->x, env->C1->y, env->C2->x, env->C2->y);
+	}
+	if (j < map->column - 1)
+	{
+		env->C2->x = (i) * env->x_unit + env->mx;
+		env->C2->y = (j) * env->y_unit + env->my;
+		//mlx->C2->color = ft_choose_color(map->tab[i][j + 1], mlx);
+		ft_line(env, env->C1->x, env->C1->y, env->C2->x, env->C2->y);
+	}
+}
