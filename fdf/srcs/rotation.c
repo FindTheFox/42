@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:45:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/11 08:22:19 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/11 08:32:48 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_rotation(int key, t_env *e)
 	}
 	else if (key == 91 || key == 87)
 	{
-		e->rotation_y += ft_to_radian(key == 124 ? -(e->speed) : e->speed);
+		e->rotation_y += ft_to_radian(key == 87 ? -(e->speed) : e->speed);
 		ft_rotation_y(e, e->map);
 	}
 	else if (key == 123)
@@ -49,9 +49,12 @@ void	ft_rotation_x(t_env *e, t_map **m)
 		j = -1;
 		while (++j < e->column)
 		{
-			m[i][j].rx = m[i][j].rx;
-			m[i][j].ry = m[i][j].ry * cos(e->angle) - m[i][j].rz * sin(e->angle);
-			m[i][j].rz = m[i][j].ry * sin(e->angle) + m[i][j].rz * cos(e->angle);
+			m[i][j].rx = m[i][j].x;	
+			m[i][j].rx = m[i][j].y;	
+			m[i][j].rx = m[i][j].z;	
+			m[i][j].x = m[i][j].rx;
+			m[i][j].y = m[i][j].ry * cos(e->rotation_x) - m[i][j].rz * sin(e->rotation_x);
+			m[i][j].z = m[i][j].ry * sin(e->rotation_x) + m[i][j].rz * cos(e->rotation_x);
 		}
 	}
 }
@@ -67,9 +70,9 @@ void	ft_rotation_y(t_env *e, t_map **m)
 		j = -1;
 		while (++j < e->column)
 		{
-			m[i][j].rx = m[i][j].rx * cos(e->angle) + m[i][j].rz * sin(e->angle);
-			m[i][j].ry = m[i][j].ry;
-			m[i][j].rz = m[i][j].rx * -sin(e->angle) + m[i][j].rz * cos(e->angle);
+			m[i][j].x = m[i][j].rx * cos(e->rotation_y) + m[i][j].rz * sin(e->rotation_y);
+			m[i][j].y = m[i][j].ry;
+			m[i][j].z = m[i][j].rx * -sin(e->rotation_y) + m[i][j].rz * cos(e->rotation_y);
 		}
 	}
 }
@@ -85,9 +88,9 @@ void	ft_rotation_z(t_env *e, t_map **m)
 		j = -1;
 		while (++j < e->column)
 		{
-			m[i][j].rx = m[i][j].rx * cos(e->angle) - m[i][j].ry * sin(e->angle); 
-			m[i][j].ry = m[i][j].rx * sin(e->angle) + m[i][j].ry * cos(e->angle);
-			m[i][j].rz = m[i][j].rz;
+			m[i][j].x = m[i][j].rx * cos(e->rotation_z) - m[i][j].ry * sin(e->rotation_z); 
+			m[i][j].y = m[i][j].rx * sin(e->rotation_z) + m[i][j].ry * cos(e->rotation_z);
+			m[i][j].z = m[i][j].rz;
 		}
 	}
 }
