@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/02/10 05:54:24 by saneveu          ###   ########.fr        #
+#    Updated: 2019/02/11 08:23:34 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,13 @@ SRC		= main.c \
 			parsing.c \
 			tools.c \
 			setup.c \
-			draw.c
+			draw.c \
+			rotation.c \
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
-CC		= gcc -g -fsanitize=address 
+CC		= gcc -g
 CFLAGS	= -Wall -Wextra -Werror
 
 # mlx library

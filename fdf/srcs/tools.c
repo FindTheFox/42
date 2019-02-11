@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/10 07:44:17 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/11 03:16:42 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,18 @@ void		display_tab(int **tab, t_env *env)
 		}
 		i++;
 	}
+}
+
+void		ft_clear_img(t_env *e)
+{
+	int i;
+
+	i = 0;
+	while (i < e->width * e->height)
+	{
+		if (e->str[i] != 0)
+			e->str[i] = 0;
+		i++;
+	}
+	mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 }

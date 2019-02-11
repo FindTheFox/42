@@ -6,26 +6,26 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 00:54:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/10 07:59:36 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/11 08:21:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_line(t_env *env, t_coord *c1, t_coord *c2)
+void	ft_line(t_env *env, float x1, float y1, float x2, float y2)
 {
 	t_line *line;
 
 	if (!(line = (t_line *)malloc(sizeof(t_line))))
 		return ;
-	if (ft_abs((int)c2->x - (int)c1->x) >= ft_abs((int)c2->y - (int)c1->y))
-		line->lenght = ft_abs((int)c2->x - (int)c1->x);
+	if (ft_abs((int)x2 - (int)x1) >= ft_abs((int)y2 - (int)y1))
+		line->lenght = ft_abs((int)x2 - (int)x1);
 	else
-		line->lenght = ft_abs((int)c2->y - (int)c1->y);
-	line->dx = (c2->x - c1->x) / line->lenght;
-	line->dy = (c2->y - c1->y) / line->lenght;
-	line->x = c1->x + 0.5;
-	line->y = c1->y + 0.5;
+		line->lenght = ft_abs((int)y2 - (int)y1);
+	line->dx = (x2 - x1) / line->lenght;
+	line->dy = (y2 - y1) / line->lenght;
+	line->x = x1 + 0.5;
+	line->y = y1 + 0.5;
 	line->i = 1;
 	while (line->i <= line->lenght && line->x < env->width && line->y < env->height)
 	{
@@ -40,103 +40,49 @@ void	ft_line(t_env *env, t_coord *c1, t_coord *c2)
 	free(line);
 }
 
-/*void		ft_draw1(t_map *map, t_env *env)
+void		calcul_pos_iso(t_map **m, int i, int j, t_env *e)
 {
-	int 	x;
-	int 	y;
-	int 	a;
-
-	x = 0;
-	while (x < env->line)
-	{
-		y = 0;
-		while (y < env->column)
-		{
-			ft_iso2(env, map[a], x, y);
-			y++;
-		}
-		x++;
-	}
+	(void)e;
+	m[i][j].cx = (m[i][j].rx - m[i][j].ry);//mx
+	m[i][j].cy = -(m[i][j].rz) + m[i][j].rx + m[i][j].ry + e->my;//my
 }
 
-void		ft_draw(t_map **map, t_env *env)
-{
-	int a;
-	t_screen *s;
+void		calcul_pos_para(t_map **m, int i, int j, t_env *e);
 
-	if (!(s = (t_screen *)malloc(sizeof(t_screen))))
-	a = 0;
-	while (a < env->line * env->column)
-	{
-		
-	}	
-}*/
-
-t_coord		*calcul_pos(t_map **m, int i, int j, t_env *e, t_coord *c)
-{
-	c->x = m[i][j].x * e->x_unit + e->mx;
-	c->y = m[i][j].y * e->y_unit + e->my;
-	return (c);
-}
-
-t_coord		*malloc_t_coord(t_coord *c)
-{
-	if (!(c = (t_coord *)malloc(sizeof(t_coord))))
-		exit(EXIT_FAILURE);
-	return (c);
-}
-
-void		do_rectangle(t_env *e, t_map **map)
+void		tile_apply(t_map **m, t_env *e)
 {
 	int i;
 	int j;
-	t_coord *c1;
-	t_coord *c2;
-
-	c1 = NULL;
-	c2 = NULL;
-	c1 = malloc_t_coord(c1);
-	c2 = malloc_t_coord(c2);
-	i = 0;
-	j = 0;
-	while (i < e->line)
+	
+	i = -1;
+	while (++i < e->line)
 	{
-		j = 0;
-		while (j < e->column)
+		j = -1;
+		while (++j < e->column)
 		{
-			if (j == e->column - 1 && i != e->line - 1)
-				ft_line(e, calcul_pos(map, i, j, e, c1), calcul_pos(map, i + 1, j, e, c2));
-			else if (i == e->column - 1 && j != e->column - 1)
-				ft_line(e, calcul_pos(map, i, j, e, c1), calcul_pos(map, i, j + 1, e, c2));
-			else if (i != e->column - 1 && j != e->column - 1)
-			{
-				ft_line(e, calcul_pos(map, i, j, e, c1), calcul_pos(map, i, j + 1, e, c2));
-				ft_line(e, calcul_pos(map, i, j, e, c1), calcul_pos(map, i + 1, j, e, c2));
-			}
-			j++;
+			m[i][j].rx = m[i][j].x * e->x_unit + e->mx;//mx
+			m[i][j].ry = m[i][j].y * e->y_unit + e->my;//my
+			m[i][j].rz = m[i][j].z;
 		}
-		i++;
 	}
 }
 
-/*
-void	ft_iso2(t_env *env, t_map *map)
+void		do_rectangle(t_env *e, t_map **m)
 {
-	int			a;
-	t_screen	*screen;
+	int i;
+	int j;
 
-	if (!(screen = (t_screen *)malloc(sizeof(t_screen))))
-		return ;
-	a = 0;
-	while (a <= (env->line * env->column))
+	tile_apply(m, e);
+	i = -1;
+	while (++i < e->line)
 	{
-		screen->x1 = (map[a].y - map[a].x) * env->x_unit + env->mx;
-		screen->y1 = (map[a].y + map[a].x) * env->y_unit + env->my - map[a].z * env->z_unit;	
-		screen->x2 = (map[a + 1].y - map[a + 1].x) * env->x_unit + env->mx;
-		screen->y2 = (map[a + 1].y + map[a + 1].x) * env->y_unit + env->my - map[a + 1].z * env->z_unit;
-		ft_line(env, screen);
-		a++;
+		j = -1;
+		while (++j < e->column)
+		{
+			if (i < e->line - 1)
+				ft_line(e, m[i][j].rx, m[i][j].ry, m[i + 1][j].rx, m[i + 1][j].ry);
+			if (j < e->column - 1)
+				ft_line(e, m[i][j].rx, m[i][j].ry, m[i][j + 1].rx, m[i][j + 1].ry);
+		}
 	}
-	free(screen);
 }
-*/

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/10 08:06:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/11 08:14:34 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ int		ft_key(int key, t_env *e)
 {
 	(void)e;
 	ft_putnbr(key);
-	if (key == 123)
+	if (key == 86 || key == 91 || key == 88 || key == 87)
+	{
+		ft_clear_img(e);
 		ft_rotation(key, e);
+		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
+	}
 	if (key == 53)
 		exit(0);
 	return (0);
@@ -41,7 +45,7 @@ int		ft_key_mouse(int key, int x, int y, t_env *env)
 			return (0);
 		C2->x = x;
 		C2->y = y;
-		//ft_line(env, env->C1->x, env->C1->y, env->C2->x, env->C2->y);
+		//ft_line(env, env->C1->x, env->C1->y, ev->C2->x, env->C2->y);
 	}
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 	return (0);
@@ -65,7 +69,7 @@ int		main(int ac, char **av)
 	//ft_draw(env->map, env);
 	do_rectangle(env, env->map);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
-	mlx_key_hook(env->win_ptr, ft_key, NULL);
+	mlx_key_hook(env->win_ptr, ft_key, env);
 	mlx_mouse_hook(env->win_ptr, ft_key_mouse, env);
 	mlx_loop(env->mlx_ptr);
 	free(env->map);
