@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:48:27 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/11 07:52:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/12 06:58:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_env		*setup_mlx(t_env *env)
 {
 	env->height = HEIGHT;
 	env->width = WIDTH;
-	env->x_unit = 10;       //(env->width / 2) / env->column; // (width / 2) / map->line
-	env->y_unit = 10; ///(env->height / 2) / env->line;
-	env->z_unit = 10; ///env->y_unit / 2;
+	env->x_unit = 100;       //(env->width / 2) / env->column; // (width / 2) / map->line
+	env->y_unit = 100; ///(env->height / 2) / env->line;
+	env->z_unit = 100; ///env->y_unit / 2;
 	env->mlx_ptr = mlx_init();
 	env->mx = marge_x(env);
 	env->my = marge_y(env);
@@ -38,6 +38,7 @@ t_env		*setup_mlx(t_env *env)
 	env->speed = 1;
 	env->mod = 2;
 	env->angle = 0;
+	env->rot = X;
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "fdf");
 	return (env);
 }

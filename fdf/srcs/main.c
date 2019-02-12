@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/11 08:27:58 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/12 06:58:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int		ft_key(int key, t_env *e)
 {
-	(void)e;
-	ft_putnbr(key);
+	//ft_putnbr(key);
 	if (key == 86 || key == 91 || key == 88 || key == 87)
 	{
 		ft_clear_img(e);
 		ft_rotation(key, e);
-		do_rectangle(e, e->map);
+		ft_draw(e);
 		mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 	}
 	if (key == 53)
@@ -68,7 +67,7 @@ int		main(int ac, char **av)
 	ac = 0;
 	//print_map_elem(env, env->map);
 	//ft_draw(env->map, env);
-	do_rectangle(env, env->map);
+	ft_draw(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
 	mlx_key_hook(env->win_ptr, ft_key, env);
 	mlx_mouse_hook(env->win_ptr, ft_key_mouse, env);

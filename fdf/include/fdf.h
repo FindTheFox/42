@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/11 08:19:18 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/12 06:31:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <fcntl.h>
 # include "libft.h"
 # define HEIGHT 1080
-# define WIDTH 1920
-# define ISO	1;
-# define PARA	2;
+# define WIDTH	1920
+# define X		1
+# define Y		2
+# define Z		3
 
 typedef struct	s_line
 {
@@ -43,14 +44,18 @@ typedef	struct	s_coord
 
 typedef struct	s_map
 {
-	int 	x;
-	int 	y;
-	int		z;
+	float 	x;
+	float 	y;
+	float	z;
 	float	rx;
 	float	ry;
 	float	rz;
-	float 	cx;
-	float	cy;
+	float	fx;
+	float	fy;
+	float	fz;
+	float	tx;
+	float	ty;
+	float	tz;
 }				t_map;
 
 typedef struct	s_screen
@@ -96,24 +101,27 @@ t_env		*setup_mlx(t_env *env);
 void 		color_pixel_img(t_env *env, int x, int y, int color);
 void		setup_img(t_env *env);
 int 		ft_usage();
-void		ft_draw(t_map **map, t_env *env);
+void		ft_draw(t_env *env);
 int			hauteur_max(t_map *map);
 int			marge_x(t_env *env);
 int			marge_y(t_env *env);
 t_map		**ft_parse_helper(t_map **map, int **tab, t_env *env);
 void		do_rectangle(t_env *env, t_map **map);
 void		ft_rotation(int key, t_env *e);
-void		ft_rotation_x(t_env *e, t_map **m);
-void		ft_rotation_y(t_env *e, t_map **m);
-void		ft_rotation_z(t_env *e, t_map **m);
+void		ft_rotation_x(t_env *e, t_map m);
+void		ft_rotation_y(t_env *e, t_map m);
+void		ft_rotation_z(t_env *e, t_map m);
 void		display_tab(int **tab, t_env *env);
 void		print_map_elem(t_env *env, t_map **map);
 void		ft_clear_img(t_env *e);
 double 		ft_to_radian(double degree);
-void		do_calcul(t_env *env);
-void		calcul_pos_iso(t_map **m, int i, int j, t_env *e);
-void		calcul_pos_para(t_map **m, int i, int j, t_env *e);
 void		tile_apply(t_map **m, t_env *e);
 void		paint_all_in_white(t_env *env);
+void		marge_apply(t_map **m, t_env *e);
+void		ft_transform(t_env *e);
+void		ft_calculate(t_env *e, t_map m, char c);
+
+void		display_img(t_env *e);
+void		do_tmp(t_map **m, int i, int j, int A);
 
 #endif
