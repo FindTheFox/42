@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 01:52:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/12 06:58:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/21 21:04:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ t_map		**ft_parse_helper(t_map **map, int **tab, t_env *env)
 	int		j;
 
 	i = 0;
+	env->max_z = 0;
+	env->min_z = 0;
 	while (i < env->line)
 	{
 		j = 0;
@@ -51,9 +53,14 @@ t_map		**ft_parse_helper(t_map **map, int **tab, t_env *env)
 			return (0);
 		while (j < env->column)
 		{
+			map[i][j].ox = i;
+			map[i][j].oy = j;
+			map[i][j].oz = tab[i][j];
 			map[i][j].x = i;
 			map[i][j].y = j;
 			map[i][j].z = tab[i][j];
+			map[i][j].z > env->max_z ? env->max_z = map[i][j].z : env->max_z;
+			map[i][j].z < env->min_z ? env->min_z = map[i][j].z : env->min_z;
 			j++;
 		}
 		i++;

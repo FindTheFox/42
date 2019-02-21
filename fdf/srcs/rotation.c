@@ -6,37 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 19:45:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/12 07:09:44 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/21 22:07:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-void	ft_rotation(int key, t_env *e)
-{
-	if (key == 86 || key == 88)
-	{
-		e->rotation_x += ft_to_radian(key == 86 ? -(e->speed) : e->speed);
-		printf("rota_x = %f\n", e->rotation_x);
-	}	
-	else if (key == 91 || key == 87)
-	{	
-		e->rotation_y += ft_to_radian(key == 87 ? -(e->speed) : e->speed);
-		printf("rota_y = %f\n", e->rotation_y);
-	}
-	else if (key == 123)
-	{
-		e->rotation_z += ft_to_radian(key == 123 ? -(e->speed) : e->speed);
-		printf("rota_z = %f\n", e->rotation_z);
-	}
-}
-
-double 		ft_to_radian(double degree)
-{
-	return (degree / (180 / M_PI));
-}
-
+/*
 void	calcul_rotation_x(t_env *e, t_map m)
 {
 	m.tx = m.rx;
@@ -77,23 +53,45 @@ void		ft_calculate(t_env *e, t_map m, char c)
 	else if (c == 'z')
 		calcul_rotation_z(e, m);
 }
+*/
 
-void		ft_transform(t_env *e)
+void		calcul_apply(t_env *e, t_map **map, int i, int j)
+{
+	float theta;
+	float x;
+	float y;
+	float z;
+
+	x = map[i][j].ox * e->scale;
+	y = map[i][j].oy * e->scale;
+	z = map[i][j].oz * e->z_height * e->scale;
+	//printf("scale x = %f |||| scale y = %f |||| scale z = %f\n", x, y, z);
+	//c.color_on == 1 ? set_color(v, &c.map) : 0;
+	theta = to_radian(e->rot_y);
+	map[i][j].x = x * cos(theta) - z * sin(theta);
+	map[i][j].z = z * cos(theta) + x * sin(theta);
+	//printf("rot x = %f\n", map.x);
+	theta = to_radian(e->rot_x);
+	map[i][j].y = y * cos(theta) - z * sin(theta);
+	map[i][j].z = z * cos(theta) + y * sin(theta);
+	//printf("rot y = %f\n", map.y);
+	map[i][j].x += e->move_x;
+	map[i][j].y += e->move_y;
+	map[i][j].x += e->center_x;
+	map[i][j].y += e->center_y;
+	//printf("marge x = %f\nmarge y = %f\n", map[i][j].x, map[i][j].y);
+}
+
+void		transform(t_env *e)
 {
 	int i;
 	int j;
 
 	i = -1;
-	tile_apply(e->map, e);
 	while (++i < e->line)
 	{
 		j = -1;
 		while (++j < e->column)
-		{	
-			ft_calculate(e, e->map[i][j], 'x');
-			ft_calculate(e, e->map[i][j], 'y');
-			ft_calculate(e, e->map[i][j], 'z');
-		}
+			calcul_apply(e, e->map, i, j);
 	}
-	marge_apply(e->map, e);
 }

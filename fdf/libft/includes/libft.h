@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2019/01/17 13:34:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/13 03:29:17 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+char			*ft_itoa(int nb);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
 int				ft_isalnum(int c);

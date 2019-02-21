@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/12 06:58:35 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/21 21:46:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,6 @@ void		paint_all_in_white(t_env *env)
 	env->str[x] = 0xffffff;
 }
 
-void		print_map_elem(t_env *env, t_map **map)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (++i < env->line)
-	{
-		j = - 1;
-		while (++j < env->column)
-		{
-			ft_putstr("/ x = ");
-			ft_putnbr(map[i][j].x);
-			ft_putstr("/ y = ");
-			ft_putnbr(map[i][j].y);
-			ft_putstr("/ z = ");
-			ft_putnbr(map[i][j].z);
-		}
-	}
-}
-
 void		display_tab(int **tab, t_env *env)
 {
 	int i;
@@ -72,6 +51,14 @@ void		display_tab(int **tab, t_env *env)
 	}
 }
 
+void		reset(t_env *e)
+{
+	e->rot_x = 5;
+	e->rot_y = 0;
+	e->rot_z = 0;
+	draw_img(e);
+}
+
 void		ft_clear_img(t_env *e)
 {
 	int i;
@@ -83,7 +70,6 @@ void		ft_clear_img(t_env *e)
 			e->str[i] = 0;
 		i++;
 	}
-	mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 }
 
 void		display_img(t_env *e)
@@ -105,18 +91,41 @@ void		display_img(t_env *e)
 	return ;
 }
 
-void		do_tmp(t_map **m, int i, int j, int A)
+int		ft_key_mouse(int key, int x, int y, t_env *env)
 {
-	if (A == 0)
+	t_coord *C1;
+	t_coord *C2;
+
+	if (key == 1)
 	{
-		m[i][j].tx = m[i][j].x;
-		m[i][j].ty = m[i][j].y;
-		m[i][j].tz = m[i][j].z;
+		if (!(C1 = (t_coord *)malloc(sizeof(t_coord))))
+			return (0);
+		C1->x = x;
+		C1->y = y;
 	}
-	if (A == 1)
+	if (key == 2)
 	{
-		m[i][j].tx = m[i][j].rx;
-		m[i][j].ty = m[i][j].ry;
-		m[i][j].tz = m[i][j].rz;
+		if (!(C2 = (t_coord *)malloc(sizeof(t_coord))))
+			return (0);
+		C2->x = x;
+		C2->y = y;
+		//ft_line(env, env->C1->x, env->C1->y, ev->C2->x, env->C2->y);
+	}
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
+	return (0);
+}
+
+void		print_map_elem(t_env *env, t_map **map)
+{
+	int i;
+	int j;
+
+	i = -1;
+	printf("=============map-elem_start===============\n");
+	while (++i < env->line)
+	{
+		j = -1;
+		while (++j < env->column)
+			printf("x = %f ||| y = %f\n", map[i][j].x, map[i][j].y);
 	}
 }

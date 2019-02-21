@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/02/11 08:23:34 by saneveu          ###   ########.fr        #
+#    Updated: 2019/02/21 18:08:46 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRC		= main.c \
 			setup.c \
 			draw.c \
 			rotation.c \
+			event.c \
+			calcul.c 
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
@@ -30,7 +32,7 @@ CFLAGS	= -Wall -Wextra -Werror
 MLX		= ./minilibx/
 MLX_LIB	= $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./minilibx
-MLX_LNK	= -L ./minilibx -l mlx -framework OpenGL -framework AppKit
+MLX_LNK	= -L ./minilibx -l mlx -lXext -lX11 -L/usr/X11/lib -lXext -lX11	#-l mlx -framework OpenGL -framework AppKit#
 
 # ft library
 FT		= ./libft/
