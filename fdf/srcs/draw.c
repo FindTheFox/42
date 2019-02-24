@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 00:54:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/24 10:33:56 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/25 00:15:28 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		do_rectangle(t_env *e, t_map **m)
 	}
 }
 
-void		show_commande(t_env *e)
+void		show_commande(t_env*e)
 {
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0xffffff,
 		"(Key 2 & 8) Axe X rotation de : ");
@@ -88,6 +88,8 @@ void		show_commande(t_env *e)
 
 void		draw_img(t_env *e)
 {
+	t_env *e;
+
 	ft_clear_img(e);
 	transform(e);
 	//printf("rot_x = %f // rot_t = %f // rot_z = %f\n", e->rot_x, e->rot_y, e->rot_z);
