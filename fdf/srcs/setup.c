@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:48:27 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/21 22:10:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/24 07:30:25 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,14 @@ t_env		*setup_mlx(t_env *env)
 	env->mlx_ptr = mlx_init();
 	env->scale = fmin(env->width / 2 / (env->line + env->max_z),
 		env->height / 2 / (env->column + env->max_z));
-	printf("scale = %f\n", env->scale);
-	env->center_x = (env->width - (env->column * env->scale)) / 2;
-	env->center_y = (env->height - (env->line * env->scale)) / 2;
-	printf("center_x = %d\ncenter_y = %d\n", env->center_x, env->center_y);
-	env->z_height = 1;
-	env->rot_x = 45;
-	env->rot_y = 75;
+	env->center_width = env->width / 2;//(env->width - (env->column * env->scale)) / 2;
+	env->center_height = env->height / 2;//(env->height - (env->line * env->scale)) / 2;
+	env->z_height = env->max_z;
+	env->rot_x = 0;
+	env->rot_y = 0;
+	env->rot_z = 0;
 	env->move_x = 0;
 	env->move_y = 0;
-//	env->mod = 2;
-//	env->angle = 0;
-//	env->rot = X;
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "fdf");
 	
 	return (env);

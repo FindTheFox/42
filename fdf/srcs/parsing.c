@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 01:52:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/21 21:04:04 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/23 18:27:11 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ t_map		**ft_parse(char *file, t_env *env)
 		tab[i++] = ft_intsplit(line, " \t\n");
 		free(line);
 	}
-	//display_tab(tab, env);
 	map = ft_parse_helper(map, tab, env);
-	//display_tab(tab, env);
 	close(fd);
 	return(map);
 }

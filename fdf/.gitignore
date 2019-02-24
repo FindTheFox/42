@@ -1,0 +1,25 @@
+# Program name
+**/fdf
+
+# Dir
+
+**/build
+
+# Precompiled Headers
+**/*.gch
+**/*.pch
+
+# Libraries
+libft/*.a
+**/*.a
+
+# Executables
+**/*.out
+
+# Debug files
+**/*.dSYM
+
+# Vscode
+.vscode
+                                                              1,1          Haut
+

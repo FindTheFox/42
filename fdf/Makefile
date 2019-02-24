@@ -6,19 +6,18 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/02/21 18:08:46 by saneveu          ###   ########.fr        #
+#    Updated: 2019/02/23 19:23:14 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= fdf
 
 # src / obj files
-SRC		= main.c \
+SRC		= 	main.c \
 			parsing.c \
 			tools.c \
 			setup.c \
 			draw.c \
-			rotation.c \
 			event.c \
 			calcul.c 
 
@@ -54,29 +53,33 @@ obj:
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
 	@$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
-	@echo "Object done."
+	@echo "-->	Object-Compile"
 
 $(FT_LIB):
 	@make -C $(FT)
-	@echo "Libft ok."
+	@echo "=====	libft	====="
+	@echo "\33[1;32mOk\33[0m"
 
 $(MLX_LIB):
 	@make -C $(MLX)
-	@echo "MiniLibX ok."
+	@echo "=====	MiniLibX   ====="
+	@echo "\33[1;32mOk\33[0m"
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
-	@echo "Everything done."
+	@echo "\33[1;5;32mit's good\33[0m"
 
 clean:
 	@rm -rf $(OBJDIR)
 	@make -C $(FT) clean
 	@make -C $(MLX) clean
-	@echo "Objects cleaned."
+	@echo "=====	Objects		====="
+	@echo "\33[33mClean.\33[0m"
 
 fclean: clean
 	@rm -rf $(NAME)
 	@make -C $(FT) fclean
-	@echo "Everything cleaned."
+	@echo "=====	Everything	====="
+	@echo "\33[33mClean.\33[0m"
 
 re: fclean all

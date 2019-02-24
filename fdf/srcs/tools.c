@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/21 21:46:08 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/02/24 10:19:22 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,14 @@ void		display_tab(int **tab, t_env *env)
 
 void		reset(t_env *e)
 {
-	e->rot_x = 5;
+	e->rot_x = 0;
 	e->rot_y = 0;
 	e->rot_z = 0;
+	e->move_x = 0;
+	e->move_y = 0;
+	e->scale = fmin(e->width / 2 / (e->line + e->max_z),
+		e->height / 2 / (e->column + e->max_z));
+	e->z_height = e->max_z;
 	draw_img(e);
 }
 
@@ -129,3 +134,5 @@ void		print_map_elem(t_env *env, t_map **map)
 			printf("x = %f ||| y = %f\n", map[i][j].x, map[i][j].y);
 	}
 }
+
+void		choose_color(int z, int z2);
