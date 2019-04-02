@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/24 09:22:09 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/02 18:21:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,27 @@ int		main(int ac, char **av)
 	setup_img(env);
 	ac = 0;
 	draw_img(env);
-	mlx_key_hook(env->win_ptr, deal_key, env);
+//	mlx_key_hook(env->win_ptr, deal_key, env);
+	event(env);
 	mlx_loop(env->mlx_ptr);
 	free(env->map);
 	free(env);
 	return (0);
 }
 
-void		end_program(t_env *e)
+void		event(t_env *e)
+{
+	mlx_key_hook(e->win_ptr, deal_key, e);
+	mlx_hook(e->win_ptr, 2, 1L<<0, rota_event, e);
+	mlx_hook(e->win_ptr, 17, 1L<<17, end_program, e);
+}
+
+int			end_program(void *e)
 {
 	//========free all=========//
-	mlx_clear_window(e->mlx_ptr, e->win_ptr);
-	mlx_destroy_image(e->mlx_ptr, e->img_ptr);
-	mlx_destroy_window(e->mlx_ptr, e->win_ptr);
+	mlx_clear_window(((t_env*)e)->mlx_ptr, ((t_env*)e)->win_ptr);
+	mlx_destroy_image(((t_env*)e)->mlx_ptr, ((t_env*)e)->img_ptr);
+	mlx_destroy_window(((t_env*)e)->mlx_ptr, ((t_env*)e)->win_ptr);
 	exit(0);
+	return (0);
 }

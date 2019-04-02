@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:48:27 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/24 07:30:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/01 16:21:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ t_env		*setup_mlx(t_env *env)
 		env->height / 2 / (env->column + env->max_z));
 	env->center_width = env->width / 2;//(env->width - (env->column * env->scale)) / 2;
 	env->center_height = env->height / 2;//(env->height - (env->line * env->scale)) / 2;
-	env->z_height = env->max_z;
+	env->z_height = 0.2;
 	env->rot_x = 0;
 	env->rot_y = 0;
 	env->rot_z = 0;
 	env->move_x = 0;
 	env->move_y = 0;
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "fdf");
+	env->choice_color = 0;
 	
 	return (env);
 }

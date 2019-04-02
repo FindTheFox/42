@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/24 10:19:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/02 18:20:54 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 
 # define HEIGHT 1080
 # define WIDTH	1920
-# define V_ROT	5.
-# define V_ROT_Z (M_PI / 360) 
+# define V_ROT	5
+# define V_ROT_Z 1 /*(M_PI / 360)*/
 # define V_MV	20.
-# define V_ZOOM 2
-# define V_Z_HEIGHT 5.
+# define V_ZOOM 1
+# define V_Z_HEIGHT 0.1
 # define NEAR	0.1
 # define FAR	100.
 # define FOV	90.
@@ -69,6 +69,12 @@ typedef struct	s_screen
 	int			color;
 }				t_screen;
 
+typedef struct	s_color
+{
+	int color_1;
+	int color_2;
+}				t_color;
+
 typedef	struct	s_matrix
 {
 	float x[4];
@@ -98,9 +104,10 @@ typedef struct	s_env
 	int		min_z;
 	int		center_x;
 	int		center_y;
-	int		z_height;
+	double	z_height;
 	double	move_x;
 	double	move_y;
+	int		choice_color;
 }				t_env;
 
 
@@ -133,7 +140,7 @@ void		tile_apply(t_map **m, t_env *e);
 void		put_to_screen(t_env *e);
 void		reset(t_env *e);
 void        rotate(t_env *e, double *axe, double degree);
-void		end_program(t_env *e);
+int			end_program(void *e);
 void        zoom(t_env *e, int zoom);
 void		get_center(t_env *env);
 void        move_x(t_env *e, double pixel);
@@ -145,6 +152,10 @@ void		set_matrix(t_env *e, t_matrix *mt);
 void		mult_perspective(t_env *e, t_map **m, t_matrix mt, int i, int j);
 void        hauteur(t_env *e, double z_speed);
 void		show_commande(t_env *e);
+t_color		*choose_color(t_env *e);
+void        color_event(t_env *e);
+int         rota_event(int key, t_env *e);
+void		event(t_env *e);
 
 void		display_img(t_env *e);
 void		do_tmp(t_map **m, int i, int j, int A);

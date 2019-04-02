@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/24 10:19:22 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/01 16:01:51 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void		reset(t_env *e)
 	e->move_y = 0;
 	e->scale = fmin(e->width / 2 / (e->line + e->max_z),
 		e->height / 2 / (e->column + e->max_z));
-	e->z_height = e->max_z;
+	e->z_height = 0.2;
 	draw_img(e);
 }
 
