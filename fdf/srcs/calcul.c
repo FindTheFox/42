@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:08:58 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/02 16:25:14 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/10 17:05:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,7 @@ void		transform(t_env *e)
 {
 	int i;
 	int j;
-	//t_matrix mt;
 
-	/*
-	set_matrix(e, &mt);
-	i = -1;
-	while (++i < e->line)
-	{
-		j = -1;
-		while (++j < e->column)
-			mult_perspective(e, e->map, mt, i, j);
-	}
-	*/
 	i = -1;
 	while (++i < e->line)
 	{
@@ -96,73 +85,4 @@ void		transform(t_env *e)
 		while (++j < e->column)
 			marge_apply(e, e->map, i, j);
 	}
-	
 }
-
-void		set_matrix(t_env *e, t_matrix *mt)
-{
-	//float scale;
-	float ar = e->width / e->height;
-    float zNear = NEAR;
-    float zFar = FAR;
-    float zRange = zNear - zFar;
-    float tanHalfFOV = tanf(to_radian(FOV / 2.0));
-
-	/*ft_bzero(mt->x, 4);
-	ft_bzero(mt->y, 4);
-	ft_bzero(mt->z, 4);
-	ft_bzero(mt->w, 4);
-	mt->x[0] = scale; // scale the x coordinates of the projected point
-	mt->y[1] = scale; // scale the y coordinates of the projected point
-	mt->y[2] = -FAR / (FAR - NEAR); // used to remap z to [0,1]
-	mt->w[2] = -FAR * NEAR / (FAR - NEAR); // used to remap z [0,1]
-	mt->z[3] = -1; // set w = -z
-	mt->w[3] = 0;*/
-	mt->x[0] = 1.0f / (tanHalfFOV * ar);
-    mt->x[1] = 0.0f;
-    mt->x[2] = 0.0f;
-    mt->x[3] = 0.0f;
-
-    mt->y[0] = 0.0f;
-    mt->y[1] = 1.0f / tanHalfFOV;
-    mt->y[2] = 0.0f;
-    mt->y[3] = 0.0f;
-
-    mt->z[0] = 0.0f;
-    mt->z[1] = 0.0f;
-    mt->z[2] = (-zNear - zFar) / zRange;
-    mt->z[3] = 2.0f * zFar * zNear / zRange;
-
-    mt->w[0] = 0.0f;
-    mt->w[1] = 0.0f;
-    mt->w[2] = 1.0f;
-    mt->w[3] = 0.0f;
-}
-
-void		mult_perspective(t_env *e, t_map **m, t_matrix mt, int i, int j)
-{
-	float x;
-	float y;
-	float z;
-	float w;
-
-	(void)e;
-	x = m[i][j].ox;// * e->scale;
-	y = m[i][j].oy;// * e->scale;
-	z = m[i][j].oz;// * e->z_height;
-	//printf("before --> x = %f  //  y = %f  //  z = %f\n", x, y, z);
-	m[i][j].x = x * mt.x[0] + y * mt.y[0] + z * mt.z[0] + mt.w[0];
-	m[i][j].y = x * mt.x[1] + y * mt.y[1] + z * mt.z[1] + mt.w[1];
-	m[i][j].z = x * mt.x[2] + y * mt.y[2] + z * mt.z[2] + mt.w[2];
-	w = x * mt.x[2] + y * mt.y[2] + z * mt.z[3] + mt.w[3];
-	//printf("After --> x = %f  //  y = %f  //  z = %f\n", m[i][j].x, m[i][j].y, m[i][j].z);
-	if (w != 1)
-	{
-		x /= w;
-		y /= w;
-		z /= w;
-	}
-	m[i][j].x = x;
-	m[i][j].y = y;
-	m[i][j].z = z;
-} 

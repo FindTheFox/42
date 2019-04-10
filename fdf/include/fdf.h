@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/02 18:20:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/10 16:53:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,15 +123,10 @@ int			hauteur_max(t_map *map);
 t_map		**ft_parse_helper(t_map **map, int **tab, t_env *env);
 void		do_rectangle(t_env *env, t_map **map);
 void		event_rotation(int key, t_env *e);
-void		ft_rotation_x(t_env *e, t_map m);
-void		ft_rotation_y(t_env *e, t_map m);
-void		ft_rotation_z(t_env *e, t_map m);
 void		display_tab(int **tab, t_env *env);
 void		print_map_elem(t_env *env, t_map **map);
 void		ft_clear_img(t_env *e);
 double 		to_radian(double degree);
-void		tile_apply(t_map **m, t_env *e);
-void		paint_all_in_white(t_env *env);
 void		transform(t_env *e);
 void		marge_apply(t_env *e, t_map **m, int i, int j);
 void		calcul_apply(t_env *e, t_map **map, int i, int j);
@@ -143,8 +138,7 @@ void        rotate(t_env *e, double *axe, double degree);
 int			end_program(void *e);
 void        zoom(t_env *e, int zoom);
 void		get_center(t_env *env);
-void        move_x(t_env *e, double pixel);
-void        move_y(t_env *e, double pixel);
+void        move(t_env *e, double *axe, double pixel);
 void		apply_center(t_env *e, t_map **m, int i, int j);
 void        iso(t_env *e);
 void        para(t_env *e);
@@ -152,13 +146,13 @@ void		set_matrix(t_env *e, t_matrix *mt);
 void		mult_perspective(t_env *e, t_map **m, t_matrix mt, int i, int j);
 void        hauteur(t_env *e, double z_speed);
 void		show_commande(t_env *e);
-t_color		*choose_color(t_env *e);
+void		choose_color(t_env *e, float z, t_color *c);
 void        color_event(t_env *e);
 int         rota_event(int key, t_env *e);
 void		event(t_env *e);
+int			color_alt(float z);
+void		free_tab(int **tab);
+void		free_map(t_map **tab);
 
-void		display_img(t_env *e);
-void		do_tmp(t_map **m, int i, int j, int A);
-void		turn_and_draw(t_env *e);
 
 #endif

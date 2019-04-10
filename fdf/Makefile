@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/02/24 23:46:05 by saneveu          ###   ########.fr        #
+#    Updated: 2019/04/10 17:12:02 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRC		= 	main.c \
 			setup.c \
 			draw.c \
 			event.c \
-			calcul.c 
+			calcul.c \
+			event_ft.c \
+			color.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

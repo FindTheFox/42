@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 01:52:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/02/23 18:27:11 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/10 16:00:19 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_map		**ft_parse_helper(t_map **map, int **tab, t_env *env)
 	{
 		j = 0;
 		if (!(map[i] = (t_map *)malloc(sizeof(t_map) * env->column)))
-			return (0);
+			return (NULL);
 		while (j < env->column)
 		{
 			map[i][j].ox = i;
@@ -79,7 +79,7 @@ t_map		**ft_parse(char *file, t_env *env)
 	fd = 0;
 	env->line = 0;
 	env->column = 0;
-	if ((fd = open(file, O_RDONLY)) < 0)
+	if (!(fd = open(file, O_RDONLY)))
 		return (NULL);
 	while (get_next_line(fd, &line) > 0)
 		ft_count(line, env);
@@ -97,6 +97,7 @@ t_map		**ft_parse(char *file, t_env *env)
 		free(line);
 	}
 	map = ft_parse_helper(map, tab, env);
+	free_tab(tab);
 	close(fd);
 	return(map);
 }
