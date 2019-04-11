@@ -6,35 +6,35 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 00:54:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/10 17:03:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/11 19:00:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	ft_line(t_env *env, float x1, float y1, float x2, float y2, int color)
+void	ft_line(t_env *env, t_screen *s, int color)
 {
 	t_line *line;
 
 	if (!(line = (t_line *)malloc(sizeof(t_line))))
 		return ;
-	if (ft_abs((int)x2 - (int)x1) >= ft_abs((int)y2 - (int)y1))
-		line->lenght = ft_abs((int)x2 - (int)x1);
+	if (ft_abs((int)s->x2 - (int)s->x1) >= ft_abs((int)s->y2 - (int)s->y1))
+		line->lenght = ft_abs((int)s->x2 - (int)s->x1);
 	else
-		line->lenght = ft_abs((int)y2 - (int)y1);
-	line->dx = (x2 - x1) / line->lenght;
-	line->dy = (y2 - y1) / line->lenght;
-	line->x = x1 + 0.5;
-	line->y = y1 + 0.5;
+		line->lenght = ft_abs((int)s->y2 - (int)s->y1);
+	line->dx = (s->x2 - s->x1) / line->lenght;
+	line->dy = (s->y2 - s->y1) / line->lenght;
+	line->x = s->x1 + 0.5;
+	line->y = s->y1 + 0.5;
 	line->i = 1;
 	while (line->i <= line->lenght && line->x < env->width && line->y < env->height)
 	{
-		color_pixel_img(env, (int)line->x, (int)line->y, color); //nice cyan (0x36845f) // fonction choix de couleurs
+		color_pixel_img(env, (int)line->x, (int)line->y, color);
 		line->x += line->dx;
 		line->y += line->dy;
 		line->i++;
 	}
-	//printf("t_line addr = %p\n", line);
+	free(s);
 	free(line);
 }
 
@@ -43,6 +43,8 @@ void		do_rectangle(t_env *e, t_map **m)
 	int i;
 	int j;
 	t_color *c;
+	t_screen *s1;
+	t_screen *s2;
 
 	if (!(c = (t_color *)malloc(sizeof(t_color))))
 		return ;
@@ -52,14 +54,29 @@ void		do_rectangle(t_env *e, t_map **m)
 		j = -1;
 		while (++j < e->column)
 		{
+			s1 = assign_coord(m[i][j].x, m[i][j].y, m[i+1][j].x, m[i+1][j].y);
+			s2 = assign_coord(m[i][j].x, m[i][j].y, m[i][j+1].x, m[i][j+1].y);
 			choose_color(e, m[i][j].oz, c);
 			if (i < e->line - 1)
-				ft_line(e, m[i][j].x, m[i][j].y, m[i + 1][j].x, m[i + 1][j].y, c->color_1);
+				ft_line(e, s1, c->color_1);
 			if (j < e->column - 1)
-				ft_line(e, m[i][j].x, m[i][j].y, m[i][j + 1].x, m[i][j + 1].y, c->color_2);
+				ft_line(e, s2, c->color_2);
 		}
 	}
 	free(c);
+}
+
+t_screen	*assign_coord(int x1, int y1, int x2, int y2)
+{
+	t_screen *s;
+
+	if (!(s = (t_screen *)malloc(sizeof(t_screen))))
+		return (NULL);
+	s->x1 = x1;
+	s->y1 = y1;
+	s->x2 = x2;
+	s->y2 = y2;
+	return (s);
 }
 
 void		show_commande(t_env*e)

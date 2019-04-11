@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/10 16:53:41 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/11 18:57:57 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef struct	s_env
 
 int			main(int ac, char **av);
 t_map		**ft_parse(char *file, t_env *env);
-void		ft_line(t_env *env, float x1, float y1, float x2, float y2, int color);
+void		ft_line(t_env *env, t_screen *s, int color);
 t_env		*setup_mlx(t_env *env);
 void 		color_pixel_img(t_env *env, int x, int y, int color);
 void		setup_img(t_env *env);
@@ -153,6 +153,8 @@ void		event(t_env *e);
 int			color_alt(float z);
 void		free_tab(int **tab);
 void		free_map(t_map **tab);
-
+void		dim_tab(t_env *e, char **line, int *fd, char *file);
+void		assign_color(t_color *c, int color1, int color2);
+t_screen	*assign_coord(int x1, int y1, int x2, int y2);
 
 #endif
