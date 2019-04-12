@@ -6,19 +6,19 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/10 17:02:26 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/12 18:21:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int			ft_usage()
+int			ft_usage(void)
 {
 	ft_putendl("usage : ./fdf [map_file]");
 	return (0);
 }
 
-void 		color_pixel_img(t_env *env, int x, int y, int color)
+void		color_pixel_img(t_env *env, int x, int y, int color)
 {
 	if (x >= 0 && y >= 0 && y < env->height && x < env->width)
 		env->str[x + env->width * y] = color;
