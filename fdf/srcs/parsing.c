@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 01:52:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/11 18:11:14 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:24:10 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ t_map		**ft_parse(char *file, t_env *env)
 	int		**tab;
 	int		i;
 
+	if (!(test_file(file)))
+		return (0);
 	dim_tab(env, &line, &fd, file);
 	if ((fd = open(file, O_RDONLY)) == -1)
 		return (0);

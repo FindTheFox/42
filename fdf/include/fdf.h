@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/12 18:17:38 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:21:05 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,6 @@ void			dim_tab(t_env *e, char **line, int *fd, char *file);
 void			assign_color(t_color *c, int color1, int color2);
 t_screen		*coord(int x1, int y1, int x2, int y2);
 void			show_commande2(t_env *e);
+int				test_file(char *file);
 
 #endif

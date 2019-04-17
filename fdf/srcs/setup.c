@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:48:27 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/12 17:45:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/17 17:24:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,17 @@ void			show_commande2(t_env *e)
 		"(P) Para");
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 200, 0xffffff,
 		"(Arrow) Move");
+}
+
+int				test_file(char *file)
+{
+	int i;
+
+	i = -1;
+	while (file[++i])
+		if (file[i] == '.' && file[i + 1] == 'f'
+		&& file[i + 2] == 'd' && file[i + 3] == 'f')
+			return (1);
+	ft_putendl("name of file invalid");
+	return (0);
 }
