@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/17 17:21:05 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/18 17:18:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <math.h>
 # include <fcntl.h>
 # include "../libft/includes/libft.h"
+
+# include <stdio.h>
 
 # define HEIGHT 1080
 # define WIDTH	1920
@@ -41,12 +43,6 @@ typedef struct	s_line
 	double	mix;
 }				t_line;
 
-typedef	struct	s_coord
-{
-	float x;
-	float y;
-}				t_coord;
-
 typedef struct	s_map
 {
 	float	x;
@@ -64,48 +60,36 @@ typedef struct	s_screen
 	float		x2;
 	float		y1;
 	float		y2;
-	int			color;
+	int			color_1;
+	int			color_2;
 }				t_screen;
-
-typedef struct	s_color
-{
-	int color_1;
-	int color_2;
-}				t_color;
-
-typedef	struct	s_matrix
-{
-	float x[4];
-	float y[4];
-	float z[4];
-	float w[4];
-}				t_matrix;
 
 typedef struct	s_env
 {
-	t_map	**map;
-	int		line;
-	int		column;
-	int		height;
-	int		width;
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
-	int		*str;
-	int		center_width;
-	int		center_height;
-	double	rot_x;
-	double	rot_y;
-	double	rot_z;
-	double	scale;
-	int		max_z;
-	int		min_z;
-	int		center_x;
-	int		center_y;
-	double	z_height;
-	double	move_x;
-	double	move_y;
-	int		choice_color;
+	t_map		**map;
+	t_screen	*s;
+	int			line;
+	int			column;
+	int			height;
+	int			width;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	int			*str;
+	int			center_width;
+	int			center_height;
+	double		rot_x;
+	double		rot_y;
+	double		rot_z;
+	double		scale;
+	int			max_z;
+	int			min_z;
+	int			center_x;
+	int			center_y;
+	double		z_height;
+	double		move_x;
+	double		move_y;
+	int			choice_color;
 }				t_env;
 
 int				main(int ac, char **av);
@@ -139,7 +123,7 @@ void			iso(t_env *e);
 void			para(t_env *e);
 void			hauteur(t_env *e, double z_speed);
 void			show_commande(t_env *e);
-t_color			*choose_color(t_env *e, float z);
+void			choose_color(t_env *e, float z, t_screen *s);
 void			color_event(t_env *e);
 int				rota_event(int key, t_env *e);
 void			event(t_env *e);
@@ -147,9 +131,12 @@ int				color_alt(float z);
 void			free_tab(int **tab);
 void			free_map(t_map **tab);
 void			dim_tab(t_env *e, char **line, int *fd, char *file);
-void			assign_color(t_color *c, int color1, int color2);
-t_screen		*coord(int x1, int y1, int x2, int y2);
+void			assign_color(t_screen *c, int color1, int color2);
+void			coord(t_screen *s, int x1, int y1, int x2, int y2);
 void			show_commande2(t_env *e);
 int				test_file(char *file);
+void			free_all(t_env *e);
+t_screen		*malloc_struct(t_screen *s);
+void			ft_addr(t_env *e);
 
 #endif

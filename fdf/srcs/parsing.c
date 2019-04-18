@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 01:52:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/17 17:24:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/18 16:56:54 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ t_map		**ft_parse(char *file, t_env *env)
 	if (!(map = (t_map **)malloc(sizeof(t_map *) * env->line)))
 		return (0);
 	i = 0;
+	printf("tab addr = %p\n", tab);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab[i++] = ft_intsplit(line, " \t\n");
@@ -103,6 +104,7 @@ t_map		**ft_parse(char *file, t_env *env)
 	}
 	map = ft_parse_helper(map, tab, env);
 	free_tab(tab);
+	printf("map addr = %p\n", map);
 	close(fd);
 	return (map);
 }
