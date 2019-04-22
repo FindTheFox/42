@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 01:52:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/18 16:56:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/22 18:28:43 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ t_map		**ft_parse_helper(t_map **map, int **tab, t_env *env)
 			map[i][j].z < env->min_z ? env->min_z = map[i][j].z : env->min_z;
 		}
 	}
+	map[i] = NULL;
+	free_tab(tab, env);
 	return (map);
 }
 
@@ -93,18 +95,15 @@ t_map		**ft_parse(char *file, t_env *env)
 		return (0);
 	if (!(tab = (int **)malloc(sizeof(int *) * (env->line))))
 		return (0);
-	if (!(map = (t_map **)malloc(sizeof(t_map *) * env->line)))
+	if (!(map = (t_map **)malloc(sizeof(t_map *) * (env->line + 1))))
 		return (0);
 	i = 0;
-	printf("tab addr = %p\n", tab);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tab[i++] = ft_intsplit(line, " \t\n");
 		free(line);
 	}
 	map = ft_parse_helper(map, tab, env);
-	free_tab(tab);
-	printf("map addr = %p\n", map);
 	close(fd);
 	return (map);
 }

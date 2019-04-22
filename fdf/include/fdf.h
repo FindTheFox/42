@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:52 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/18 17:18:33 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/22 18:09:57 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct	s_map
 	float	x;
 	float	y;
 	float	z;
-	float	ox;
 	float	oy;
+	float	ox;
 	float	oz;
 
 }				t_map;
@@ -128,12 +128,12 @@ void			color_event(t_env *e);
 int				rota_event(int key, t_env *e);
 void			event(t_env *e);
 int				color_alt(float z);
-void			free_tab(int **tab);
+void			free_tab(int **tab, t_env *e);
 void			free_map(t_map **tab);
 void			dim_tab(t_env *e, char **line, int *fd, char *file);
 void			assign_color(t_screen *c, int color1, int color2);
 void			coord(t_screen *s, int x1, int y1, int x2, int y2);
-void			show_commande2(t_env *e);
+void			show_commande2(t_env *e, char *line);
 int				test_file(char *file);
 void			free_all(t_env *e);
 t_screen		*malloc_struct(t_screen *s);

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 20:48:27 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/18 17:07:17 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/22 18:26:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,35 +46,49 @@ t_env			*setup_mlx(t_env *env)
 
 void			show_commande(t_env *e)
 {
+	char *line;
+
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 20, 0xffffff,
 		"(2 & 8) Axe X rotation de :");
+	line = ft_itoa(e->rot_x);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 300, 20, 0x00e60000,
-		ft_itoa(e->rot_x));
+		line);
+	free(line);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 40, 0xffffff,
 		"(4 & 6) Axe Y rotation de :");
+	line = ft_itoa(e->rot_y);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 300, 40, 0x00e60000,
-		ft_itoa(e->rot_y));
+		line);
+	free(line);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 60, 0xffffff,
 		"(7 & 9) Axe z rotation de :");
+	line = ft_itoa(e->rot_z);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 300, 60, 0x00e60000,
-		ft_itoa(e->rot_z));
+		line);
+	free(line);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 80, 0xffffff,
 		"(+ & -) Zoom =");
-	show_commande2(e);
+	show_commande2(e, line);
 }
 
-void			show_commande2(t_env *e)
+void			show_commande2(t_env *e, char *line)
 {
+	line = ft_itoa(e->scale);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 180, 80, 0x3225428f,
-		ft_itoa(e->scale));
+		line);
+	free(line);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 100, 0xffffff,
 		"(Up & Down) z_height =");
+	line = ft_itoa(e->z_height);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 250, 100, 0x3225428f,
-		ft_itoa(e->z_height));
+		line);
+	free(line);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 120, 0xffffff,
 		"(C) Color =");
+	line = ft_itoa(e->choice_color);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 140, 120, 0x3225428f,
-		ft_itoa(e->choice_color));
+		line);
+	free(line);
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 140, 0xffffff,
 		"(R) Reset");
 	mlx_string_put(e->mlx_ptr, e->win_ptr, 20, 160, 0xffffff,

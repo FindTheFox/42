@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 13:54:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/18 17:09:24 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/22 17:38:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void		ft_clear_img(t_env *e)
 	}
 }
 
-void		free_tab(int **tab)
+void		free_tab(int **tab, t_env *e)
 {
 	int i;
 
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
+	i = 0;
+	while (i < e->line)
+		free(tab[i++]);
 	free(tab);
 	tab = NULL;
 }
@@ -61,7 +61,10 @@ void		free_map(t_map **tab)
 
 void		free_all(t_env *e)
 {
+	ft_clear_img(e);
 	free(e->s);
+	e->s = NULL;
 	free_map(e->map);
 	free(e);
+	e = NULL;
 }
