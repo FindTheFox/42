@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 17:03:00 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/18 14:58:11 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/23 19:40:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,23 @@ int				color_alt(float z)
 	else if (z > 35)
 		color = 0xE8EAF6;
 	return (color);
+}
+
+void			color_event(t_env *e)
+{
+	if (e->choice_color == 4)
+		e->choice_color = 0;
+	else
+		e->choice_color++;
+	draw_img(e);
+}
+
+void			free_all(t_env *e)
+{
+	ft_clear_img(e);
+	free(e->s);
+	e->s = NULL;
+	free_map(e->map);
+	free(e);
+	e = NULL;
 }

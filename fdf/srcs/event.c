@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:01:11 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/18 14:14:22 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/23 19:38:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,6 @@ int			deal_key(int key, t_env *e)
 	key == 35 ? para(e) : 0;
 	key == 8 ? color_event(e) : 0;
 	return (0);
-}
-
-void		color_event(t_env *e)
-{
-	if (e->choice_color == 4)
-		e->choice_color = 0;
-	else
-		e->choice_color++;
-	draw_img(e);
 }
 
 void		rotate(t_env *e, double *axe, double degree)

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 16:59:05 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/22 18:29:58 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/23 18:56:57 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			main(int ac, char **av)
 	if (!(env->map = ft_parse(av[1], env)))
 		return (0);
 	if (!(env = setup_mlx(env)))
-		return (0);	
+		return (0);
 	setup_img(env);
 	ac = 0;
 	draw_img(env);

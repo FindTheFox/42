@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 01:52:35 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/22 18:28:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/23 19:41:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_map		**ft_parse_helper(t_map **map, int **tab, t_env *env)
 			map[i][j].z < env->min_z ? env->min_z = map[i][j].z : env->min_z;
 		}
 	}
-	map[i] = NULL;
 	free_tab(tab, env);
 	return (map);
 }
