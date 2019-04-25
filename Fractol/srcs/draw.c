@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/25 05:34:06 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/25 19:43:18 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void    fractol(t_env *e)
     e->scalex = (e->x_right - e->x_left) * e->zoom;
     e->scaley = (e->y_top - e->y_floor) * e->zoom;
     e->i.x = -1;
+    f.tmp = 0;
     while(++e->i.x < e->scalex)
     {
         e->i.y = -1;
