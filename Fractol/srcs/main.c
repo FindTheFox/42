@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 00:59:31 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/25 04:24:29 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/28 23:57:32 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ int     main(int ac, char **av)
     setup(env);
     fractol(env);
     mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img_ptr, 0, 0);
+    event(env);
     mlx_loop(env->mlx_ptr);
 }

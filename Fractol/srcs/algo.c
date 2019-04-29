@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:24:01 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/25 05:30:14 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/29 05:15:15 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@ int     mandelbrot(t_fractol f, t_env *e)
         f.z_r = f.tmp;
         f.iter++; 
     }
-    if(f.iter >= e->max_iter - 1)
-        return (1);
-    return (0);
+    return (f.iter);
+}
+
+int     julia(t_fractol f, t_env *e)
+{
+    f.iter = 0;
+    while((f.z_r * f.z_r + f.z_i * f.z_i) < 4 && f.iter < e->max_iter)
+    {
+        f.tmp = f.z_r * f.z_r - f.z_i + e->rng.real;
+    }
 }

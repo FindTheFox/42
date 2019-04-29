@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   event.c                                            :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/29 00:00:46 by saneveu          ###   ########.fr       */
+/*   Created: 2019/04/28 23:02:21 by saneveu           #+#    #+#             */
+/*   Updated: 2019/04/29 00:00:35 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void        deal_key(int key, t_env *e)
-{
-   key == 65307 ? ft_exit() : 0 ; 
-}
+void    error();
 
-void        event(t_env *e)
+void    ft_exit(t_env *e)
 {
-    mlx_key_hook(e->win_ptr, deal_key, e);
+    exit(EXIT_SUCCESS);
+    return ;
 }
