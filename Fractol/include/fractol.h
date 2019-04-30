@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/30 07:34:11 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/01 00:33:28 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "../libft/includes/libft.h"
 
 # define HEIGHT 800
-# define WITDH  1200
+# define WIDTH  1200
 # define ZOOM   30
 
 typedef struct  s_rng
@@ -61,8 +61,8 @@ typedef struct  s_env
     double      y_top;
     double      y_floor;
     double      zoom;
-    double      scalex;
-    double      scaley;
+    double      minx;
+    double      miny;
     int         max_iter;
     t_index     i;
     int         choix;
@@ -71,6 +71,8 @@ typedef struct  s_env
     int         usr_color;
     int         *color;
     t_rng       julia;
+    t_index     offset;
+    int         motion;
 }               t_env;
 
 int         main(int ac, char **av);
@@ -103,6 +105,9 @@ void        event(t_env *e);
 void        change_la_couleur(t_env *e);
 void        zoom(t_env *e, int speed);
 void        change_julia_set(t_env *e);
+void        switch_fractal(t_env *e, int c);
+void        switch_color(t_env *e);
+int         motion_mouse(int x, int y, t_env *e);
 
 int         ft_exit(t_env *e);
 void        error();

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/30 06:49:11 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/01 00:13:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,21 @@
 void    setup(t_env *e)
 {
     e->mlx_ptr = mlx_init();
-    e->win_ptr = mlx_new_window(e->mlx_ptr, WITDH, HEIGHT, "Fractol");
-    e->img_ptr = mlx_new_image(e->mlx_ptr, WITDH, HEIGHT);
+    e->win_ptr = mlx_new_window(e->mlx_ptr, WIDTH, HEIGHT, "Fractol");
+    e->img_ptr = mlx_new_image(e->mlx_ptr, WIDTH, HEIGHT);
     e->img = (int *)mlx_get_data_addr(e->img_ptr, &e->bpp, &e->s_l, &e->endian);
     e->usr_color = 0;
-    e->x_left = -2.1;
+    /*->x_left = -2.1;
     e->x_right = 0.6;
     e->y_floor = -1.2;
-    e->y_top = 1.2;
+    e->y_top = 1.2;*/
+    e->zoom = 300;
+    e->offset = (t_index) {.x = 0, .y = 0};
     e->rng = 0;
-    e->scalex = ((e->x_right - e->x_left) * e->zoom);
-    e->scaley = ((e->y_top - e->y_floor) * e->zoom);
-    e->julia.real = -0.506667;
-    e->julia.imag = 0.520000;
+    e->motion = 0;
+    e->minx = ((e->x_right - e->x_left) * e->zoom);
+    e->miny = ((e->y_top - e->y_floor) * e->zoom);
+    e->julia = (t_rng) {.real = -0.506667, .imag = 0.520000};;
     init_fractal(e);
 }
 
@@ -51,13 +53,13 @@ void        init_fractal(t_env *e)
 {
     if (e->choix == 0)
     {
-        e->zoom = 400;
+        //e->zoom = 200;
         e->max_iter = 100;
     }
     if (e->choix == 1)
     {
-        e->zoom = 350;
         e->max_iter = 300;
+        julias_changes(e);
     }
 }
 
@@ -98,7 +100,7 @@ void        whatcolor(t_env *e, char *name, int ac)
         }
         else
         {
-            ft_putendl("3 colors set available");
+            ft_putendl("5 colors set available");
             exit(EXIT_FAILURE);
         }
     }
