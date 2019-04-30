@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/04/28 22:48:42 by saneveu          ###   ########.fr        #
+#    Updated: 2019/04/30 01:43:31 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ NAME	= Fractol
 SRC		= 	main.c \
 			algo.c \
 			draw.c \
-			setup.c
+			setup.c \
+			exit.c \
+			fractol.c \
+			event.c \
+			color.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

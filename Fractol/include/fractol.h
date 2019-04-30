@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/29 00:16:22 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/30 06:54:22 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include "../libft/includes/libft.h"
 
 # define HEIGHT 800
-# define WITDH 1200
+# define WITDH  1200
+# define ZOOM   30
 
 typedef struct  s_rng
 {
@@ -42,7 +43,6 @@ typedef struct  s_fractol
     double      c_i;
     double      z_r;
     double      z_i;
-    int         iter;
     double      tmp;
     t_rng       j;
 }               t_fractol;
@@ -67,6 +67,10 @@ typedef struct  s_env
     t_index     i;
     int         choix;
     int         rng;
+    int         iter;
+    int         usr_color;
+    int         *color;
+    t_rng       julia;
 }               t_env;
 
 int         main(int ac, char **av);
@@ -74,8 +78,30 @@ void        fractol(t_env *e);
 void		color_pixel_img(t_env *env, int x, int y, int color);
 void        setup(t_env *e);
 int         do_test(t_fractol *f, t_env *e);
-void        choose_fractol(t_env *e, t_fractol f);
-int         mandelbrot(t_fractol f, t_env *e);
+void        do_fractol(t_env *e);
+
+void        draw(t_env *e, t_fractol f);
+int         calc_c(t_env *e, int flag);
+void        julias_changes(t_env *e);
+void        init_fractal(t_env *e);
+
+void        whatfractal(t_env *e, char *name, int ac);
+void        whatcolor(t_env *e, char *name, int ac);
+
+void        colorset0(t_env *e);
+void        colorset1(t_env *e);
+void        colorset2(t_env *e);
+
+void         mandelbrot(t_fractol f, t_env *e);
+void         julia(t_fractol f, t_env *e);
+
 void        event(t_env *e);
+void        change_la_couleur(t_env *e);
+void        zoom(t_env *e, int speed);
+void        change_julia_set(t_env *e);
+
+int         ft_exit(t_env *e);
+void        error();
+void		ft_clear_img(t_env *e);
 
 #endif

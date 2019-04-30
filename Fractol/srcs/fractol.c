@@ -6,13 +6,10 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 23:43:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/29 05:14:38 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/29 23:26:51 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void        rng_julia_c(t_env *e)
-{
-    
-}
+void        rng_julia_c(t_env *e);

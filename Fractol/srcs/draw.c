@@ -6,41 +6,44 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/28 23:55:42 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/30 06:09:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void        draw(t_env *e, t_fractol f)
+{
+    e->iter = 0;
+    if (e->choix == 0)
+        mandelbrot(f, e);
+    else if (e->choix == 1)
+        julia(f, e);
+    color_pixel_img(e, e->i.x, e->i.y, (e->iter <= e->max_iter ?
+    e->color[e->iter % 16] : 0x00000));
+}
+
 void    fractol(t_env *e)
 {
     t_fractol f;
 
-    e->scalex = (e->x_right - e->x_left) * e->zoom;
-    e->scaley = (e->y_top - e->y_floor) * e->zoom;
+    e->scalex = ((e->x_right - e->x_left) * e->zoom);
+    e->scaley = ((e->y_top - e->y_floor) * e->zoom);
     e->i.x = -1;
-    f.tmp = 0;
-    while(++e->i.x < e->scalex)
+    while(++e->i.x < WITDH)
     {
         e->i.y = -1;
-        while(++e->i.y < e->scaley)
-            draw_fractol(e, f);
+        while(++e->i.y < HEIGHT)
+            draw(e, f);
     }
 }
 
-void        choose_fractol(t_env *e, t_fractol f)
+void        do_fractol(t_env *e)
 {
-    f.c_r = e->i.x / e->zoom + e->x_left;
-    f.c_i = e->i.y / e->zoom + e->y_floor;///
-    f.z_r = 0;
-    f.z_i = 0;
-    if (e->choix = 0)
-        mandelbrot(f, e);
-    if (e->choix = 1)
-        julia(f, e);
-    if (f.iter == e->max_iter)
-        color_pixel_img(e, e->i.x, e->i.y, 0x849429);
-}       
+    ft_clear_img(e);
+    fractol(e);
+    mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
+}
 
 void		color_pixel_img(t_env *env, int x, int y, int color)
 {
