@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/30 06:09:38 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/04/30 07:56:00 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void        draw(t_env *e, t_fractol f)
         mandelbrot(f, e);
     else if (e->choix == 1)
         julia(f, e);
+    else if (e->choix == 2)
+        lauren(f, e);
+    else if (e->choix == 3)
+        phoenix(f, e);
     color_pixel_img(e, e->i.x, e->i.y, (e->iter <= e->max_iter ?
     e->color[e->iter % 16] : 0x00000));
 }
@@ -41,6 +45,7 @@ void    fractol(t_env *e)
 void        do_fractol(t_env *e)
 {
     ft_clear_img(e);
+    init_fractal(e);
     fractol(e);
     mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 }
