@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 01:12:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/30 07:10:06 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/01 04:05:12 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void        colorset0(t_env *e)
 		0x9d1f7f,
 		0x8d0e7f
 	};
-
+	e->div = 16;
 	e->color = color;
 }
 
@@ -56,6 +56,7 @@ void        colorset1(t_env *e)
 		0xEF01BF,
         0xED0166 
     };
+	e->div = 16;
     e->color = color;
 }
 
@@ -78,6 +79,7 @@ void        colorset2(t_env *e)
         0xa17878,
         0xa77070,
     };
+	e->div = 16;
     e->color = color;
 }
 
@@ -101,7 +103,7 @@ void	colorset3(t_env *e)
 		65536 * 153 + 256 * 87 + 0,
 		65536 * 106 + 256 * 52 + 3
 	};
-
+	e->div = 16;
 	e->color = color;
 }
 
@@ -125,6 +127,70 @@ void		colorset4(t_env *e)
 		0x3f,
 		0x1f
 	};
+	e->div = 16;
+	e->color = color;
+}
 
+void		colorset5(t_env *e)
+{
+	static int color[20] = {
+		0xcf0223,
+		0xc8062a,
+		0xc10a30,
+		0xb90e37,
+		0xb2123e,
+		0xab1644,
+		0xa41a4b,
+		0x9d1e51,
+		0x952258,
+		0x8e265f,
+		0x872b65,
+		0x802f6c,
+		0x783373,
+		0x713779,
+		0x6a3b80,
+		0x633f86,
+		0x5c438d,
+		0x544794,
+		0x4d4b9a,
+		0x464fa1,	
+	};
+	e->div = 20;
+	e->color = color;
+}
+
+void		colorset6(t_env *e)
+{
+	static int color[7] = {
+		0x542fff,
+		0x8054ff,
+		0xa176ff,
+		0xbc98ff,
+		0xd5baff,
+		0xebdcff,
+		0xffffff,
+	};
+	e->div = 7;
+	e->color = color;
+}
+
+void		colorset7(t_env *e)
+{
+	static int color[13] = {
+		0x0ee2f5,
+		0x0d9df6,
+		0x0c58f7,
+		0x0b11f7,
+		0x4a09f8,
+		0x9108f9,
+		0xda07fa,
+		0xfb06d3,
+		0xfc058a,
+		0xfd0440,
+		0xfd1102,
+		0xfe5b01,
+		0xffa600,
+	};
+	e->div = 13;
 	e->color = color;
 }

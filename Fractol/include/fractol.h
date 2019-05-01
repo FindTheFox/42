@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/01 00:33:28 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/01 04:06:22 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct  s_env
     t_rng       julia;
     t_index     offset;
     int         motion;
+    int         div;
 }               t_env;
 
 int         main(int ac, char **av);
@@ -95,11 +96,15 @@ void        colorset1(t_env *e);
 void        colorset2(t_env *e);
 void        colorset3(t_env *e);
 void        colorset4(t_env *e);
+void		colorset5(t_env *e);
+void		colorset6(t_env *e);
+void		colorset7(t_env *e);
 
 void        mandelbrot(t_fractol f, t_env *e);
 void        julia(t_fractol f, t_env *e);
 void        lauren(t_fractol f, t_env *e);
 void	    phoenix(t_fractol f, t_env *e);
+void        burning_ship(t_fractol f, t_env *e);
 
 void        event(t_env *e);
 void        change_la_couleur(t_env *e);

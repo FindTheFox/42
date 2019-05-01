@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/01 00:37:05 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/01 04:06:44 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int        deal_key(int key, t_env *e)
 {
-    //ft_putnbr(key);
-    //ft_putchar('\n');
+    ft_putnbr(key);
+    ft_putchar('\n');
     key == 65307 ? ft_exit(e) : 0;
     key == 99 ? switch_color(e) : 0;
     key == 65451 ? zoom(e, ZOOM) : 0;
@@ -25,6 +25,7 @@ int        deal_key(int key, t_env *e)
     key == 65433 ? switch_fractal(e, 1) : 0;
     key == 65435 ? switch_fractal(e, 2) : 0;
     key == 65430 ? switch_fractal(e, 3) : 0;
+    key == 65437 ? switch_fractal(e, 4) : 0;
     do_fractol(e);
     return (0); 
 }
@@ -40,29 +41,37 @@ void        switch_fractal(t_env *e, int c)
 {
     if (c == 0)
         e->choix = 0;
-    if (c == 1)
+    else if (c == 1)
         e->choix = 1;
-    if (c == 2)
+    else if (c == 2)
         e->choix = 2;
-    if (c == 3)
+    else if (c == 3)
         e->choix = 3;
+    else if (c == 4)
+        e->choix = 4;
     init_fractal(e);
 }
 
 void        switch_color(t_env *e)
 {
-    e->usr_color == 4 ? e->usr_color = 0 :
+    e->usr_color == 7 ? e->usr_color = 0 :
         e->usr_color++;
     if (e->usr_color == 0)
         colorset0(e);
-    if (e->usr_color == 1)
+    else if (e->usr_color == 1)
         colorset1(e);
-    if (e->usr_color == 2)
+    else if (e->usr_color == 2)
         colorset2(e);
-    if (e->usr_color == 3)
+    else if (e->usr_color == 3)
         colorset3(e);
-    if (e->usr_color == 4)
+    else if (e->usr_color == 4)
         colorset4(e);
+    else if (e->usr_color == 5)
+        colorset5(e);
+    else if (e->usr_color == 6)
+        colorset6(e);
+    else if (e->usr_color == 7)
+        colorset7(e);
 }
 
 void        zoom(t_env *e, int speed)
@@ -72,7 +81,7 @@ void        zoom(t_env *e, int speed)
 
 void        change_julia_set(t_env *e)
 {
-    e->rng == 5 ? e->rng = 0 : e->rng++;
+    e->rng == 6 ? e->rng = 0 : e->rng++;
     julias_changes(e);
 }
 

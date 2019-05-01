@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/01 00:13:08 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/01 03:18:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,27 @@ void        julias_changes(t_env *e)
 		e->julia = (t_rng) {.real = 0.18, .imag = -0.566667 };
 	else if (e->rng == 5)
 		e->julia = (t_rng) {.real = 0.371504, .imag = -0.153893 };
+    else if (e->rng == 6)
+        e->julia = (t_rng) {.real = 0.566666, .imag = -0.5};
 }
 
 void        init_fractal(t_env *e)
 {
     if (e->choix == 0)
     {
-        //e->zoom = 200;
+        e->zoom = 300;
         e->max_iter = 100;
     }
-    if (e->choix == 1)
+    else if (e->choix == 1)
     {
+        e->zoom = 350;
         e->max_iter = 300;
         julias_changes(e);
+    }
+    else if (e->choix == 2)
+    {
+        e->max_iter = 200;
+        e->zoom = 300;
     }
 }
 
@@ -96,6 +104,11 @@ void        whatcolor(t_env *e, char *name, int ac)
         else if (ft_atoi(name) == 3)
         {
             e->usr_color = 2;
+            colorset2(e);
+        }
+        else if (ft_atoi(name) == 4)
+        {
+            e->usr_color = 3;
             colorset2(e);
         }
         else
