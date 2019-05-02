@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/01 04:06:44 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/02 18:39:27 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ int        deal_key(int key, t_env *e)
 {
     ft_putnbr(key);
     ft_putchar('\n');
-    key == 65307 ? ft_exit(e) : 0;
-    key == 99 ? switch_color(e) : 0;
-    key == 65451 ? zoom(e, ZOOM) : 0;
-    key == 65453 ? zoom(e, -ZOOM) : 0;
-    key == 106 ? change_julia_set(e) : 0;
-    key == 65436 ? switch_fractal(e, 0) : 0;
-    key == 65433 ? switch_fractal(e, 1) : 0;
-    key == 65435 ? switch_fractal(e, 2) : 0;
-    key == 65430 ? switch_fractal(e, 3) : 0;
-    key == 65437 ? switch_fractal(e, 4) : 0;
+    key == /*65307*/53 ? ft_exit(e) : 0;
+    key == /*99*/8 ? switch_color(e) : 0;
+    key == /*65451*/69 ? zoom(e, ZOOM) : 0;
+    key == /*65453*/78 ? zoom(e, -ZOOM) : 0;
+    key == /*106*/38 ? change_julia_set(e) : 0;
+    key == /*65436*/83 ? switch_fractal(e, 0) : 0;
+    key == /*65433*/84 ? switch_fractal(e, 1) : 0;
+    key == /*65435*/85 ? switch_fractal(e, 2) : 0;
+    key == /*65430*/86 ? switch_fractal(e, 3) : 0;
+    key == /*65437*/87 ? switch_fractal(e, 4) : 0;
     do_fractol(e);
     return (0); 
 }
