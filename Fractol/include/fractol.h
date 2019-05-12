@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/09 10:34:59 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/12 18:45:15 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct  s_rng
 
 typedef struct  s_index
 {
-    int         x;
-    int         y;
+    double          x;
+    double          y;
 }               t_index;
 
 typedef struct  s_fractol

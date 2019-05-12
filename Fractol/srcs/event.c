@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/09 10:10:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/12 18:45:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,8 @@ int			mouse_zoom(int k, int x, int y, t_env *e)
 		{
 			e->offset.x = round(e->offset.x + ((WIDTH >> 1) - x) * scaling);
 			e->offset.y = round(e->offset.y + ((HEIGHT >> 1) - y) * scaling);
-            printf("x1 = %d\n", e->offset.x);
-            printf("y1 = %d\n", e->offset.y);
+            printf("x1 = %f\n", e->offset.x);
+            printf("y1 = %f\n", e->offset.y);
         }
 		e->zoom *= scaling;
         //do_fractol(e);

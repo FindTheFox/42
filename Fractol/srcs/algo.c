@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:24:01 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/11 20:40:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/12 20:25:17 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void     mandelbrot(t_fractol f, t_env *e)
 {
-    //f.c_r = 1.5 * (e->i.x - WIDTH / 2)
-            //(0.5 * e->zoom * WIDTH) + e->offset.x;//e->i.x / e->zoom + e->minx;
-    //f.c_i = (e->i.y - HEIGHT / 2)
-            //(0.5 * e->zoom * HEIGHT) + e->offset.y;
+    //f.c_r = e->i.x / e->zoom + e->minx;
+    //f.c_i = e->i.y / e->zoom + e->miny;
     while((f.z_r * f.z_r + f.z_i * f.z_i) < 4 && e->iter < e->max_iter)
     {
         f.tmp = f.z_r * f.z_r - f.z_i * f.z_i + f.c_r;

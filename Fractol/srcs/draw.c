@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/11 20:08:27 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/12 20:59:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void    *fractol_pixel_wheel(void *thread)
 
     e = (t_env *)((t_thread *)thread)->e;
     t = (t_thread *)thread;
-    //e->minx = ;//((e->offset.x + (WIDTH >> 1)) / (e->zoom / 2)) / -2;//
-    //e->miny = ;//((e->offset.y + (HEIGHT >> 1)) / (e->zoom / 2)) / -2;//
+    e->minx = ((e->offset.x + (WIDTH >> 1)) / (e->zoom / 2)) / -2;//
+    e->miny = ((e->offset.y + (HEIGHT >> 1)) / (e->zoom / 2)) / -2;//
     e->i.y = t->n * HEIGHT / THREADS;
     max = (t->n + 1) * HEIGHT / THREADS;
     while(e->i.y < max)
@@ -68,16 +68,21 @@ void        fractol_start(t_env *e)
     t_thread    t[THREADS];
     int         i;
 
-    i = -1;
-    while(++i < THREADS)
+    i = 0;
+    while(i < THREADS)
     {
         t[i].n = i;
         t[i].e = e;
-        pthread_create(&(t[i].id), NULL, fractol_pixel_wheel, &t[i]);
+        if (pthread_create(&(t[i].id), NULL, fractol_pixel_wheel, (void *)&t[i]))
+        {
+            printf("echec creation thread %d\n", t[i].n);
+            exit(EXIT_FAILURE);
+        }
+        i++;
     }
     i = 0;
     while(i < THREADS)
-        pthread_join(t[i++].n, NULL);
+        pthread_join(t[i++].id, NULL);
 }
 
 void        do_fractol(t_env *e)
