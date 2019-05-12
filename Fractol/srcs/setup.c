@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/01 03:18:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/09 10:59:32 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,10 @@ void    setup(t_env *e)
     e->img_ptr = mlx_new_image(e->mlx_ptr, WIDTH, HEIGHT);
     e->img = (int *)mlx_get_data_addr(e->img_ptr, &e->bpp, &e->s_l, &e->endian);
     e->usr_color = 0;
-    /*->x_left = -2.1;
-    e->x_right = 0.6;
-    e->y_floor = -1.2;
-    e->y_top = 1.2;*/
-    e->zoom = 300;
-    e->offset = (t_index) {.x = 0, .y = 0};
+    e->zoom = 5;
+    e->offset = (t_index) {.x = -0.5, .y = 0};
     e->rng = 0;
     e->motion = 0;
-    e->minx = ((e->x_right - e->x_left) * e->zoom);
-    e->miny = ((e->y_top - e->y_floor) * e->zoom);
     e->julia = (t_rng) {.real = -0.506667, .imag = 0.520000};;
     init_fractal(e);
 }

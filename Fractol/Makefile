@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/05/02 18:31:37 by saneveu          ###   ########.fr        #
+#    Updated: 2019/05/09 09:50:48 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,13 @@ CFLAGS	= -Wall -Wextra -Werror
 MLX		= ./minilibx/
 MLX_LIB	= $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./minilibx
-MLX_LNK	= -L ./minilibx -l mlx -framework OpenGL -framework AppKit##-lXext -lX11 -L/usr/X11/lib  #
+MLX_LNK	= -L ./minilibx -l mlx -lXext -lX11 -L/usr/X11/lib ##-framework OpenGL -framework AppKit## #
 
 # ft library
 FT		= ./libft/
 FT_LIB	= $(addprefix $(FT),libft.a)
 FT_INC	= -I ./libft/includes
-FT_LNK	= -L ./libft -l ft
+FT_LNK	= -L ./libft -l ft -lpthread
 
 # directories
 SRCDIR	= ./srcs/

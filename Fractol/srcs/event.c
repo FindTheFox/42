@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/02 18:39:27 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/09 10:10:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,28 @@ int        deal_key(int key, t_env *e)
 {
     ft_putnbr(key);
     ft_putchar('\n');
-    key == /*65307*/53 ? ft_exit(e) : 0;
-    key == /*99*/8 ? switch_color(e) : 0;
-    key == /*65451*/69 ? zoom(e, ZOOM) : 0;
-    key == /*65453*/78 ? zoom(e, -ZOOM) : 0;
-    key == /*106*/38 ? change_julia_set(e) : 0;
-    key == /*65436*/83 ? switch_fractal(e, 0) : 0;
-    key == /*65433*/84 ? switch_fractal(e, 1) : 0;
-    key == /*65435*/85 ? switch_fractal(e, 2) : 0;
-    key == /*65430*/86 ? switch_fractal(e, 3) : 0;
-    key == /*65437*/87 ? switch_fractal(e, 4) : 0;
+    key == 65307/*53*/ ? ft_exit(e) : 0;
+    key == 99/*8*/ ? switch_color(e) : 0;
+    key == 65451/*69*/ ? zoom(e, ZOOM) : 0;
+    key == 65453/*78*/ ? zoom(e, -ZOOM) : 0;
+    key == 106/*38*/ ? change_julia_set(e) : 0;
+    key == 65436/*83*/ ? switch_fractal(e, 0) : 0;
+    key == 65433/*84*/ ? switch_fractal(e, 1) : 0;
+    key == 65435/*85*/ ? switch_fractal(e, 2) : 0;
+    key == 65430/*86*/ ? switch_fractal(e, 3) : 0;
+    key == 65437/*87*/ ? switch_fractal(e, 4) : 0;
+    key == 65432 ? switch_fractal(e, 5) : 0;
+    key == 114 ? rgb_usr(e, 'r') : 0;
+    key == 103 ? rgb_usr(e, 'g') : 0;
+    key == 98 ? rgb_usr(e, 'b') : 0;
+    key == 65365 ? e->max_iter += 10 : 0;
+    key == 65366 ? e->max_iter -= 10 : 0;
+    key == 65361 ? move(e, 'x', -40) : 0;
+    key == 65363 ? move(e, 'x', 40) : 0;
+    key == 65361 ? move(e, 'y', 40) : 0;
+    key == 65364 ? move(e, 'y', -40) : 0;
     do_fractol(e);
     return (0); 
-}
-
-void        event(t_env *e)
-{
-    mlx_key_hook(e->win_ptr, deal_key, e); /*simple push button*/
-    mlx_hook(e->win_ptr, 1, 1 << 8, motion_mouse, e); /*change set when mouse moving*/
-    mlx_hook(e->win_ptr, 17, (1L << 17), ft_exit, e); /*if win close by the cross*/
 }
 
 void        switch_fractal(t_env *e, int c)
@@ -49,12 +52,14 @@ void        switch_fractal(t_env *e, int c)
         e->choix = 3;
     else if (c == 4)
         e->choix = 4;
+    else if (c == 5)
+        e->choix = 5;
     init_fractal(e);
 }
 
 void        switch_color(t_env *e)
 {
-    e->usr_color == 7 ? e->usr_color = 0 :
+    e->usr_color == 6 ? e->usr_color = 0 :
         e->usr_color++;
     if (e->usr_color == 0)
         colorset0(e);
@@ -69,9 +74,11 @@ void        switch_color(t_env *e)
     else if (e->usr_color == 5)
         colorset5(e);
     else if (e->usr_color == 6)
-        colorset6(e);
-    else if (e->usr_color == 7)
-        colorset7(e);
+    {
+        !e->r ? e->r = 1 : 0;
+        !e->g ? e->g = 1 : 0;
+        !e->b ? e->b = 1 : 0;
+    }
 }
 
 void        zoom(t_env *e, int speed)
@@ -91,7 +98,50 @@ int        motion_mouse(int x, int y, t_env *e)
 	{
 		e->julia.real = (x + e->offset.x) / (double)e->zoom + e->minx;
 		e->julia.imag = (y + e->offset.y) / (double)e->zoom + e->miny;
-		do_fractol(e);
+		//do_fractol(e);
 	}
     return (1);
+}
+
+void        rgb_usr(t_env *e, char c)
+{
+    if (c == 'r')
+        e->r += 1;
+    else if (c == 'g')
+        e->g += 1;
+    else if (c == 'b')
+        e->g += 1;
+}
+
+void        move(t_env *e, char c, int m)
+{
+    if (c == 'x')
+        e->offset.x += m;
+    else if (c == 'y')
+        e->offset.y += m;
+}
+
+int			mouse_zoom(int k, int x, int y, t_env *e)
+{
+	float	scaling;
+    
+    scaling = 0;
+	if ((k == 1 || k == 3 || k == 4 || k == 5) &&
+	(x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT))
+	{
+		if (k == 4 || k == 1)
+			scaling = 1.25;
+		else if (k == 5 || k == 3)
+			scaling = -1.25;
+		if (k == 1 || k == 3)
+		{
+			e->offset.x = round(e->offset.x + ((WIDTH >> 1) - x) * scaling);
+			e->offset.y = round(e->offset.y + ((HEIGHT >> 1) - y) * scaling);
+            printf("x1 = %d\n", e->offset.x);
+            printf("y1 = %d\n", e->offset.y);
+        }
+		e->zoom *= scaling;
+        //do_fractol(e);
+	}
+	return (1);
 }

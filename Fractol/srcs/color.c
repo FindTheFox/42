@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 01:12:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/01 04:05:12 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/09 07:12:15 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,6 @@ void        colorset0(t_env *e)
 void        colorset1(t_env *e)
 {
     static int color[16] = {
-       0xFF0005,
-		0xFD5800,
-		0xFCB600,
-		0xE3FB00,
-		0x85FA00,
-		0x27F900,
-		0x00F836,
-		0x00F791,
-		0x01F5EC,
-		0x01A2F4,
-		0x0147F3,
-		0x1501F2,
-		0x6E01F1,
-		0xC701F0,
-		0xEF01BF,
-        0xED0166 
-    };
-	e->div = 16;
-    e->color = color;
-}
-
-void        colorset2(t_env *e)
-{
-    static int color[16] = {
         0xf06d89,        
         0xfeaebf,
         0xfbc4d0,
@@ -83,7 +59,7 @@ void        colorset2(t_env *e)
     e->color = color;
 }
 
-void	colorset3(t_env *e)
+void	colorset2(t_env *e)
 {
 	static int color[16] = {
 		65536 * 66 + 256 * 30 + 15,
@@ -107,7 +83,7 @@ void	colorset3(t_env *e)
 	e->color = color;
 }
 
-void		colorset4(t_env *e)
+void		colorset3(t_env *e)
 {
 	static int color[16] = {
 		0xffffff,
@@ -131,7 +107,7 @@ void		colorset4(t_env *e)
 	e->color = color;
 }
 
-void		colorset5(t_env *e)
+void		colorset4(t_env *e)
 {
 	static int color[20] = {
 		0xcf0223,
@@ -159,22 +135,7 @@ void		colorset5(t_env *e)
 	e->color = color;
 }
 
-void		colorset6(t_env *e)
-{
-	static int color[7] = {
-		0x542fff,
-		0x8054ff,
-		0xa176ff,
-		0xbc98ff,
-		0xd5baff,
-		0xebdcff,
-		0xffffff,
-	};
-	e->div = 7;
-	e->color = color;
-}
-
-void		colorset7(t_env *e)
+void		colorset5(t_env *e)
 {
 	static int color[13] = {
 		0x0ee2f5,
@@ -193,4 +154,21 @@ void		colorset7(t_env *e)
 	};
 	e->div = 13;
 	e->color = color;
+}
+
+int		color_rgb(t_env *e)
+{
+	int color;
+	int r;
+	int g;
+	int b;
+
+	color = 0;
+	r = (e->iter * e->r) % 255;
+	color += r << 16;
+	g = (e->iter * e->g) % 256;
+	color += g << 8;
+	b = (e->iter * e->b) % 255;
+	color += b;
+	return (color);
 }
