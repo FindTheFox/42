@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/05/12 18:46:27 by saneveu          ###   ########.fr        #
+#    Updated: 2019/05/13 17:31:55 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,20 +25,23 @@ SRC		= 	main.c \
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
-CC		= gcc -g
+CC		= gcc -g 
 CFLAGS	= -Wall -Wextra -Werror
+
+# pthread lib
+	PTH_LIB = -lpthread -D_REENTRANT 
 
 # mlx library
 MLX		= ./minilibx/
 MLX_LIB	= $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./minilibx
-MLX_LNK	= -L ./minilibx -l mlx -framework OpenGL -framework AppKit##-lXext -lX11 -L/usr/X11/lib #### #
+MLX_LNK	= -L ./minilibx -l mlx -lXext -lX11 -L/usr/X11/lib##-framework OpenGL -framework AppKit#
 
 # ft library
 FT		= ./libft/
 FT_LIB	= $(addprefix $(FT),libft.a)
 FT_INC	= -I ./libft/includes
-FT_LNK	= -L ./libft -l ft -lpthread
+FT_LNK	= -L ./libft -l ft ##-lpthread
 
 # directories
 SRCDIR	= ./srcs/
@@ -47,7 +50,7 @@ OBJDIR	= ./obj/
 
 .PHONY: all, clean, fclean, re
 
-all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
+all: obj $(FT_LIB) $(MLX_LIB) $(PT_LNK) $(NAME)
 
 obj:
 	@mkdir -p $(OBJDIR)
@@ -67,8 +70,8 @@ $(MLX_LIB):
 	@echo "\33[1;32mOk\33[0m"
 
 $(NAME): $(OBJ)
-	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
-	@echo "\33[1;5;32mit's good\33[0m"
+	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) $(PTH_LIB) -lm -o $(NAME)
+	@echo "[\33[1;5;32mit's good\33][0m"
 
 clean:
 	@rm -rf $(OBJDIR)

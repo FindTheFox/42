@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/09 10:59:32 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/14 01:03:10 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    setup(t_env *e)
     e->win_ptr = mlx_new_window(e->mlx_ptr, WIDTH, HEIGHT, "Fractol");
     e->img_ptr = mlx_new_image(e->mlx_ptr, WIDTH, HEIGHT);
     e->img = (int *)mlx_get_data_addr(e->img_ptr, &e->bpp, &e->s_l, &e->endian);
-    e->usr_color = 0;
+    //e->usr_color = 0;
     e->zoom = 5;
     e->offset = (t_index) {.x = -0.5, .y = 0};
     e->rng = 0;
@@ -62,6 +62,11 @@ void        init_fractal(t_env *e)
     {
         e->max_iter = 200;
         e->zoom = 300;
+    }
+    else if (e->choix == 6)
+    {
+        e->max_iter = 50;
+        e->zoom = 350;
     }
 }
 

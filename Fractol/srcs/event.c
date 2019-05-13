@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/12 18:45:50 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/14 01:14:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int        deal_key(int key, t_env *e)
     key == 65430/*86*/ ? switch_fractal(e, 3) : 0;
     key == 65437/*87*/ ? switch_fractal(e, 4) : 0;
     key == 65432 ? switch_fractal(e, 5) : 0;
+    key == 65429 ? switch_fractal(e, 6) : 0;
+    key == 65431 ? switch_fractal(e, 7) : 0;
     key == 114 ? rgb_usr(e, 'r') : 0;
     key == 103 ? rgb_usr(e, 'g') : 0;
     key == 98 ? rgb_usr(e, 'b') : 0;
@@ -54,6 +56,10 @@ void        switch_fractal(t_env *e, int c)
         e->choix = 4;
     else if (c == 5)
         e->choix = 5;
+    else if (c == 6)
+        e->choix = 6;
+    else if (c == 7)
+        e->choix = 7;
     init_fractal(e);
 }
 

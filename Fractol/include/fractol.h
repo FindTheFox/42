@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/12 18:45:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/14 01:16:07 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct  s_fractol
     double      z_i;
     double      tmp;
     t_rng       j;
+    int         iter;
+    t_index     i;
 }               t_fractol;
 
 typedef struct  s_env
@@ -59,18 +61,13 @@ typedef struct  s_env
     int         bpp;
     int         s_l;
     int         endian;
-    double      x_left;
-    double      x_right;
-    double      y_top;
-    double      y_floor;
     double      zoom;
     double      minx;
     double      miny;
     int         max_iter;
-    t_index     i;
     int         choix;
     int         rng;
-    int         iter;
+    //int         iter;
     int         usr_color;
     int         *color;
     t_rng       julia;
@@ -80,13 +77,16 @@ typedef struct  s_env
     int         r;
     int         g;
     int         b;
+    pthread_mutex_t mutex;
 }               t_env;
 
 typedef struct  s_thread
 {
     int         n;
-    t_env       *e;
+    double      start;
+    double      end;
     pthread_t   id;
+    t_env       *e;
 }               t_thread;
 
 int         main(int ac, char **av);
@@ -112,14 +112,16 @@ void        colorset2(t_env *e);
 void        colorset3(t_env *e);
 void        colorset4(t_env *e);
 void		colorset5(t_env *e);
-int         color_rgb(t_env *e);
+int         color_rgb(t_env *e, t_fractol *f);
 
-void        mandelbrot(t_fractol f, t_env *e);
-void        julia(t_fractol f, t_env *e);
-void        lauren(t_fractol f, t_env *e);
-void	    phoenix(t_fractol f, t_env *e);
-void        burning_ship(t_fractol f, t_env *e);
-void        tricorn(t_fractol f, t_env *e);
+void        mandelbrot(t_fractol *f, t_env *e);
+void	    mandelbrot_flower(t_fractol *f, t_env *e);
+void        bimandel(t_fractol *f, t_env *e);
+void        julia(t_fractol *f, t_env *e);
+void        lauren(t_fractol *f, t_env *e);
+void	    phoenix(t_fractol *f, t_env *e);
+void        burning_ship(t_fractol *f, t_env *e);
+void        tricorn(t_fractol *f, t_env *e);
 
 void        event(t_env *e);
 void        change_la_couleur(t_env *e);
