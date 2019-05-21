@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/14 01:15:04 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/21 18:54:19 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void    *fractol_pixel_wheel(void *thread)
 
     e = ((t_thread*)thread)->e;
     t = (t_thread*)thread;
-    //e = (t_env *)thread;
-    e->minx = ((e->offset.x + (WIDTH >> 1)) / (e->zoom / 2)) / -2;//
-    e->miny = ((e->offset.y + (HEIGHT >> 1)) / (e->zoom / 2)) / -2;//
+    e->minx = ((e->offset.x + (WIDTH >> 1)) / (e->zoom / 2)) / -2;//((e->x2 - e->x1) * e->zoom);
+    e->miny = ((e->offset.y + (HEIGHT >> 1)) / (e->zoom / 2)) / -2;//((e->y2 - e->y1) * e->zoom);
     t->start = t->n * WIDTH / THREADS;
     t->end = (t->n + 1) * WIDTH / THREADS;
     f.i.x = t->start;

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:24:01 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/14 01:12:29 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/21 18:57:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	phoenix(t_fractol *f, t_env *e)
 
     zi_old = 0;
     zr_old = 0;
-   
 	while (f->iter++ < e->max_iter && f->z_r * f->z_r + f->z_i * f->z_i < 4)
 	{
         ti = 2 * f->z_r * f->z_i + f->c_i * zi_old;

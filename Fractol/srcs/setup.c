@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/14 01:03:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/21 18:53:55 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ void    setup(t_env *e)
     e->offset = (t_index) {.x = -0.5, .y = 0};
     e->rng = 0;
     e->motion = 0;
-    e->julia = (t_rng) {.real = -0.506667, .imag = 0.520000};;
+    e->julia = (t_rng) {.real = -0.506667, .imag = 0.520000};
+    e->x1 = - 2.1;
+    e->x2 = 1.2;
+    e->y1 = -0.5;
+    e->y2 = 0.5;
     init_fractal(e);
 }
 
