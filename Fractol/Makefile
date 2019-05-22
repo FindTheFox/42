@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/05/14 17:44:58 by saneveu          ###   ########.fr        #
+#    Updated: 2019/05/22 17:43:24 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRC		= 	main.c \
 			draw.c \
 			setup.c \
 			exit.c \
-			fractol.c \
 			event.c \
 			color.c
 

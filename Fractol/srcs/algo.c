@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:24:01 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/21 18:57:36 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/22 19:12:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void     bimandel(t_fractol *f, t_env *e)
 
 void     julia(t_fractol *f, t_env *e)
 {
-    f->z_r = f->i.x / e->zoom + e->minx;
-    f->z_i = f->i.y / e->zoom + e->miny;
+    f->z_r = f->i.x / e->zoom + e->minx + e->offset.x;
+    f->z_i = f->i.y / e->zoom + e->miny + e->offset.y;
     f->c_r = e->julia.real;
     f->c_i = e->julia.imag;
     while((f->z_r * f->z_r + f->z_i * f->z_i) < 4 && f->iter < e->max_iter)

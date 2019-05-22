@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/21 18:40:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/22 19:03:43 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define HEIGHT 800
 # define WIDTH  1200
-# define ZOOM   30.
+# define ZOOM   100
 # define THREADS 8
 
 typedef struct  s_rng
@@ -134,9 +134,10 @@ void        switch_fractal(t_env *e, int c);
 void        switch_color(t_env *e);
 int         motion_mouse(int x, int y, t_env *e);
 void        rgb_usr(t_env *e, char c);
-void        move(t_env *e, char c, int m);
+void        move(t_env *e, char c, double m);
 int			mouse_zoom(int k, int x, int y, t_env *e);
 void        reset(t_env *e);
+void        allow_motion_julia(t_env *e);
 
 int         ft_exit(t_env *e);
 void        error();

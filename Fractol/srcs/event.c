@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/21 19:11:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/22 19:07:37 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int        deal_key(int key, t_env *e)
     ft_putchar('\n');
     key == /*65307*/53 ? ft_exit(e) : 0;
     key == /*99*/8 ? switch_color(e) : 0;
-    key == /*65451*/69 ? zoom(e, ZOOM) : 0;
-    key == /*65453*/78 ? zoom(e, -ZOOM) : 0;
+    //key == /*65451*/69 ? zoom(e, ZOOM) : 0;
+    //key == /*65453*/78 ? zoom(e, -ZOOM) : 0;
     key == /*106*/38 ? change_julia_set(e) : 0;
     key == /*65436*/83 ? switch_fractal(e, 0) : 0;
     key == /*65433*/84 ? switch_fractal(e, 1) : 0;
@@ -34,13 +34,19 @@ int        deal_key(int key, t_env *e)
     key == /*98*/11 ? rgb_usr(e, 'b') : 0;
     key == /*65365*/116 ? e->max_iter += 10 : 0;
     key == /*65366*/121 ? e->max_iter -= 10 : 0;
-    key == 65361 ? move(e, 'x', -40) : 0;
-    key == 65363 ? move(e, 'x', 40) : 0;
-    key == 65361 ? move(e, 'y', 40) : 0;
-    key == 65364 ? move(e, 'y', -40) : 0;
+    key == /*65361*/123 ? move(e, 'x', 0.05) : 0;
+    key == /*65363*/124 ? move(e, 'x', -0.05) : 0;
+    key == /*65361*/126 ? move(e, 'y', 0.05) : 0;
+    key == /*65364*/125 ? move(e, 'y', -0.05) : 0;
+    key == 49 ? allow_motion_julia(e) : 0;
     key == 15 ? reset(e) : 0;
     do_fractol(e);
     return (0); 
+}
+
+void        allow_motion_julia(t_env *e)
+{
+    !e->motion ? (e->motion = 1) : (e->motion = 0);
 }
 
 void        reset(t_env *e)
@@ -110,7 +116,7 @@ void        change_julia_set(t_env *e)
 
 int        motion_mouse(int x, int y, t_env *e)
 {
-    if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT && !e->motion)
+    if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT && e->motion)
 	{
 		e->julia.real = (x + e->offset.x) / (double)e->zoom + e->minx;
 		e->julia.imag = (y + e->offset.y) / (double)e->zoom + e->miny;
@@ -129,7 +135,7 @@ void        rgb_usr(t_env *e, char c)
         e->g += 1;
 }
 
-void        move(t_env *e, char c, int m)
+void        move(t_env *e, char c, double m)
 {
     if (c == 'x')
         e->offset.x += m;
@@ -151,10 +157,8 @@ int			mouse_zoom(int k, int x, int y, t_env *e)
 			scaling = -1.25;
 		if (k == 1 || k == 3)
 		{
-			e->offset.x = round(e->offset.x + ((WIDTH >> 1) - x) * scaling);
-			e->offset.y = round(e->offset.y + ((HEIGHT >> 1) - y) * scaling);
-            printf("x1 = %f\n", e->offset.x);
-            printf("y1 = %f\n", e->offset.y);
+			e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom * scaling));
+			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom * scaling));
         }
 		e->zoom *= scaling;
         do_fractol(e);
