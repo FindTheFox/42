@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 01:12:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/21 19:35:02 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/22 20:36:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,10 @@ int		color_rgb(t_env *e, t_fractol *f)
 
 	color = 0;
 	r = (f->iter * e->r) % 255;
-	color += r << 16;
 	g = (f->iter * e->g) % 255;
-	color += g << 8;
 	b = (f->iter * e->b) % 255;
+	color += r << 16;
+	color += g << 8;
 	color += b;
 	return (color);
 }

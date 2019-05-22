@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 17:35:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/22 22:06:24 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,42 @@ void        julias_changes(t_env *e)
 
 void        init_fractal(t_env *e)
 {
-    if (e->choix == 0)
+    if (e->choix == 0 || e->choix == 3)
     {
         e->zoom = 300;
         e->max_iter = 100;
+        e->x1 = -2.1;
+        e->x2 = 0.6;
+        e->y1 = -1.35;
+        e->y2 = 1.2;
     }
     else if (e->choix == 1)
     {
-        e->zoom = 350;
-        e->max_iter = 300;
-        julias_changes(e);
-    }
-    else if (e->choix == 2)
-    {
-        e->max_iter = 200;
         e->zoom = 300;
+        e->max_iter = 300;
+        e->x1 = -1.5;
+        e->x2 = 1.15;
+        e->y1 = -1.15;
+        e->y2 = 1.25;
+        julias_changes(e);
     }
     else if (e->choix == 6)
     {
         e->max_iter = 50;
-        e->zoom = 350;
+        e->zoom = 200;
+        e->x1 = -2.5;
+        e->x2 = 0.6;
+        e->y1 = -2.1;
+        e->y2 = 1.2;   
+    }
+    else if (e->choix == 2)
+    {
+        e->max_iter = 200;
+        e->zoom = 250;
+        e->x1 = -3;
+        e->x2 = 1;
+        e->y1 = -1.5;
+        e->y2 = 1.35;
     }
 }
 

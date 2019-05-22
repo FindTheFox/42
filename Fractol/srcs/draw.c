@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 19:11:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/22 20:23:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void        draw(t_env *e, t_fractol *f)
 {
-    f->c_r = (f->i.x / e->zoom) + e->minx + e->offset.x;//(f->i.x * (e->x2 - e->x1) / WIDTH + e->x1);//
-    f->c_i = (f->i.y / e->zoom) + e->miny + e->offset.y;//(f->i.y * (e->y2 - e->y1) / HEIGHT + e->y1);//
+    f->c_r = (f->i.x / e->zoom) + e->x1 + e->offset.x;//(f->i.x * (e->x2 - e->x1) / WIDTH + e->x1);//
+    f->c_i = (f->i.y / e->zoom) + e->y1 + e->offset.y;//(f->i.y * (e->y2 - e->y1) / HEIGHT + e->y1);//
     f->z_r = 0;
     f->z_i = 0;
     f->iter = 0;
@@ -43,20 +43,16 @@ void    *fractol_pixel_wheel(void *thread)
 
     e = ((t_thread*)thread)->e;
     t = (t_thread*)thread;
-    e->minx = e->x1;//((e->offset.x + (WIDTH >> 1)) / (e->zoom / 2)) / -2;
-    e->miny = e->y1;//((e->offset.y + (HEIGHT >> 1)) / (e->zoom / 2)) / -2;
+    //e->minx = e->x1;//((e->offset.x + (WIDTH >> 1)) / (e->zoom / 2)) / -2;
+    //e->miny = e->y1;//((e->offset.y + (HEIGHT >> 1)) / (e->zoom / 2)) / -2;
     t->start = t->n * WIDTH / THREADS;
     t->end = (t->n + 1) * WIDTH / THREADS;
     f.i.x = t->start;
     while(f.i.x < t->end)
     {
         f.i.y = -1;
-        //f.c_r = 1.5 * (f.i.x - WIDTH / 2.0) / (0.5 * ZOOM * WIDTH) + e->x1;
         while(++f.i.y < HEIGHT)
-        {
-            //f.c_i = (f.i.y - HEIGHT / 2.0) / (0.5 * ZOOM * HEIGHT) + e->y1;
             draw(e, &f);
-        }
         f.i.x++; 
     }
     pthread_exit(NULL);
@@ -80,7 +76,6 @@ void        fractol_start(t_env *e)
     i = -1;
     while(++i < THREADS)
         pthread_join(t[i].id, NULL);
-    //mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
 }
 
 void        do_fractol(t_env *e)

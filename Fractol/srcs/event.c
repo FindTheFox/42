@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 19:07:37 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/22 22:02:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,9 @@ int        deal_key(int key, t_env *e)
     key == /*65361*/126 ? move(e, 'y', 0.05) : 0;
     key == /*65364*/125 ? move(e, 'y', -0.05) : 0;
     key == 49 ? allow_motion_julia(e) : 0;
-    key == 15 ? reset(e) : 0;
+    //key == 15 ? reset(e) : 0;
     do_fractol(e);
     return (0); 
-}
-
-void        allow_motion_julia(t_env *e)
-{
-    !e->motion ? (e->motion = 1) : (e->motion = 0);
-}
-
-void        reset(t_env *e)
-{
-    e->zoom = 200;
-    e->offset = (t_index) {.x = 0, .y = 0}; 
 }
 
 void        switch_fractal(t_env *e, int c)
@@ -103,17 +92,6 @@ void        switch_color(t_env *e)
     }
 }
 
-void        zoom(t_env *e, int speed)
-{
-    e->zoom += speed;
-}
-
-void        change_julia_set(t_env *e)
-{
-    e->rng == 6 ? e->rng = 0 : e->rng++;
-    julias_changes(e);
-}
-
 int        motion_mouse(int x, int y, t_env *e)
 {
     if (x > 0 && x < WIDTH && y > 0 && y < HEIGHT && e->motion)
@@ -128,39 +106,34 @@ int        motion_mouse(int x, int y, t_env *e)
 void        rgb_usr(t_env *e, char c)
 {
     if (c == 'r')
-        e->r += 1;
+        e->r < 40 ? e->r += 1 : (e->r = 0);
     else if (c == 'g')
-        e->g += 1;
+        e->g < 40 ? e->g += 1 : (e->g = 0);
     else if (c == 'b')
-        e->g += 1;
-}
-
-void        move(t_env *e, char c, double m)
-{
-    if (c == 'x')
-        e->offset.x += m;
-    else if (c == 'y')
-        e->offset.y += m;
+        e->g < 40 ? e->g += 1 : (e->g = 0);
 }
 
 int			mouse_zoom(int k, int x, int y, t_env *e)
 {
 	float	scaling;
     
+    ft_putnbr(k);
     scaling = 0;
-	if ((k == 1 || k == 3 || k == 4 || k == 5) &&
+	if ((k == 1 || k == 2 || k == 4 || k == 5) &&
 	(x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT))
 	{
-		if (k == 4 || k == 1)
-			scaling = 1.25;
-		else if (k == 5 || k == 3)
-			scaling = -1.25;
-		if (k == 1 || k == 3)
-		{
-			e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom * scaling));
-			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom * scaling));
+		if (k == 2)
+        {
+            e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom / 1.25));
+			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom / 1.25));
         }
-		e->zoom *= scaling;
+        k == 2 || k == 5 ? e->zoom /= 1.25 : 0;
+        if (k == 1)
+		{
+			e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom * 1.25));
+			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom * 1.25));
+        }
+        k == 1 || k == 4 ? e->zoom *= 1.25 : 0;
         do_fractol(e);
 	}
 	return (1);
