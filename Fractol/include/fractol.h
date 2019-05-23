@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 19:03:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/23 01:27:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # define HEIGHT 800
 # define WIDTH  1200
-# define ZOOM   100
+# define ZOOM   50
 # define THREADS 8
 
 typedef struct  s_rng

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 20:23:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/23 02:00:53 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void        fractol_start(t_env *e)
     i = -1;
     while(++i < THREADS)
         pthread_join(t[i].id, NULL);
+    printf("zoom = %f\nmv x = %f\nmv y = %f\n", e->zoom, e->offset.x, e->offset.y);
 }
 
 void        do_fractol(t_env *e)

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:24:01 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 20:26:12 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/23 01:19:42 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ void    tricorn(t_fractol *f, t_env *e)
 
     f->z_r = 0;
     f->z_i = 0;
-    f->c_r = f->i.x / e->zoom + e->minx;
-    f->c_i = f->i.y / e->zoom + e->miny;
+    f->c_r = f->i.x / e->zoom + e->x1 + e->offset.x;
+    f->c_i = f->i.y / e->zoom + e->y1 + e->offset.y;
     while(f->iter++ > e->max_iter)
     {
         old.real = f->z_r;

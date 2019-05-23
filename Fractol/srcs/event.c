@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 22:02:46 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/23 02:28:25 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,30 @@ int        deal_key(int key, t_env *e)
 {
     ft_putnbr(key);
     ft_putchar('\n');
-    key == /*65307*/53 ? ft_exit(e) : 0;
-    key == /*99*/8 ? switch_color(e) : 0;
-    //key == /*65451*/69 ? zoom(e, ZOOM) : 0;
-    //key == /*65453*/78 ? zoom(e, -ZOOM) : 0;
-    key == /*106*/38 ? change_julia_set(e) : 0;
-    key == /*65436*/83 ? switch_fractal(e, 0) : 0;
-    key == /*65433*/84 ? switch_fractal(e, 1) : 0;
-    key == /*65435*/85 ? switch_fractal(e, 2) : 0;
-    key == /*65430*/86 ? switch_fractal(e, 3) : 0;
-    key == /*65437*/87 ? switch_fractal(e, 4) : 0;
-    key == /*654328*/88 ? switch_fractal(e, 5) : 0;
-    key == /*65429*/89 ? switch_fractal(e, 6) : 0;
-    key == /*65431*/91 ? switch_fractal(e, 7) : 0;
-    key == /*1148*/15 ? rgb_usr(e, 'r') : 0;
-    key == /*103*/5 ? rgb_usr(e, 'g') : 0;
-    key == /*98*/11 ? rgb_usr(e, 'b') : 0;
-    key == /*65365*/116 ? e->max_iter += 10 : 0;
-    key == /*65366*/121 ? e->max_iter -= 10 : 0;
-    key == /*65361*/123 ? move(e, 'x', 0.05) : 0;
-    key == /*65363*/124 ? move(e, 'x', -0.05) : 0;
-    key == /*65361*/126 ? move(e, 'y', 0.05) : 0;
-    key == /*65364*/125 ? move(e, 'y', -0.05) : 0;
+    key == 65307/*53*/ ? ft_exit(e) : 0;
+    key == 99/*8*/ ? switch_color(e) : 0;
+    //key == 65451/*69*/ ? zoom(e, ZOOM) : 0;
+    //key == 65453/*78*/ ? zoom(e, -ZOOM) : 0;
+    key == 106/*38*/ ? change_julia_set(e) : 0;
+    key == 65436/*83*/ ? switch_fractal(e, 0) : 0;
+    key == 65433/*84*/ ? switch_fractal(e, 1) : 0;
+    key == 65435/*85*/ ? switch_fractal(e, 2) : 0;
+    key == 65430/*86*/ ? switch_fractal(e, 3) : 0;
+    key == 65437/*87*/ ? switch_fractal(e, 4) : 0;
+    key == 654328/*88*/ ? switch_fractal(e, 5) : 0;
+    key == 65429/*89*/ ? switch_fractal(e, 6) : 0;
+    key == 65431/*91*/ ? switch_fractal(e, 7) : 0;
+    key == 1148/*15*/ ? rgb_usr(e, 'r') : 0;
+    key == 103/*5*/ ? rgb_usr(e, 'g') : 0;
+    key == 98/*11*/ ? rgb_usr(e, 'b') : 0;
+    key == 65365/*116*/ ? e->max_iter += 10 : 0;
+    key == 65366/*121*/ ? e->max_iter -= 10 : 0;
+    key == 65361/*123*/ ? move(e, 'x', 0.05) : 0;
+    key == 65363/*124*/ ? move(e, 'x', -0.05) : 0;
+    key == 65362/*126*/ ? move(e, 'y', 0.05) : 0;
+    key == 65364/*125*/ ? move(e, 'y', -0.05) : 0;
     key == 49 ? allow_motion_julia(e) : 0;
-    //key == 15 ? reset(e) : 0;
+    key == 100/*15*/ ? reset(e) : 0;
     do_fractol(e);
     return (0); 
 }
@@ -115,10 +115,6 @@ void        rgb_usr(t_env *e, char c)
 
 int			mouse_zoom(int k, int x, int y, t_env *e)
 {
-	float	scaling;
-    
-    ft_putnbr(k);
-    scaling = 0;
 	if ((k == 1 || k == 2 || k == 4 || k == 5) &&
 	(x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT))
 	{
@@ -126,14 +122,16 @@ int			mouse_zoom(int k, int x, int y, t_env *e)
         {
             e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom / 1.25));
 			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom / 1.25));
+            e->zoom /= 1.25;
         }
-        k == 2 || k == 5 ? e->zoom /= 1.25 : 0;
+        k == 5 ? e->zoom /= 1.25 : 0;
         if (k == 1)
 		{
 			e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom * 1.25));
 			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom * 1.25));
+            e->zoom *= 1.25;
         }
-        k == 1 || k == 4 ? e->zoom *= 1.25 : 0;
+        k == 4 ? e->zoom *= 1.25 : 0;
         do_fractol(e);
 	}
 	return (1);

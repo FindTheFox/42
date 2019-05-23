@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 22:06:24 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/23 02:20:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,12 @@ void    setup(t_env *e)
     e->win_ptr = mlx_new_window(e->mlx_ptr, WIDTH, HEIGHT, "Fractol");
     e->img_ptr = mlx_new_image(e->mlx_ptr, WIDTH, HEIGHT);
     e->img = (int *)mlx_get_data_addr(e->img_ptr, &e->bpp, &e->s_l, &e->endian);
-    //e->usr_color = 0;
     e->zoom = 5;
     e->offset = (t_index) {.x = -0.5, .y = 0};
     e->rng = 0;
     e->motion = 0;
     e->julia = (t_rng) {.real = -0.506667, .imag = 0.520000};
-    e->x1 = -2.1;
-    e->x2 = 0.6;
-    e->y1 = -1.2;
-    e->y2 = 1.2;
+
     init_fractal(e);
 }
 
@@ -51,7 +47,7 @@ void        julias_changes(t_env *e)
 
 void        init_fractal(t_env *e)
 {
-    if (e->choix == 0 || e->choix == 3)
+    if (e->choix == 0)
     {
         e->zoom = 300;
         e->max_iter = 100;
@@ -70,15 +66,6 @@ void        init_fractal(t_env *e)
         e->y2 = 1.25;
         julias_changes(e);
     }
-    else if (e->choix == 6)
-    {
-        e->max_iter = 50;
-        e->zoom = 200;
-        e->x1 = -2.5;
-        e->x2 = 0.6;
-        e->y1 = -2.1;
-        e->y2 = 1.2;   
-    }
     else if (e->choix == 2)
     {
         e->max_iter = 200;
@@ -87,6 +74,32 @@ void        init_fractal(t_env *e)
         e->x2 = 1;
         e->y1 = -1.5;
         e->y2 = 1.35;
+    }
+    else if (e->choix == 3)
+    {
+        e->max_iter = 300;
+        e->zoom = 300;
+        e->x1 = -2.1;
+        e->x2 = 0.2;
+        e->y1 = -2;
+        e->y2 = 1;
+    }
+    else if (e->choix == 4)
+    {
+        e->max_iter = 100;
+        e->x1 = -2;
+        e->x2 = 0.7;
+        e->y1 = -3;
+        e->y2 = 0.2;
+    }
+    else if (e->choix == 6)
+    {
+        e->max_iter = 50;
+        e->zoom = 200;
+        e->x1 = -2.5;
+        e->x2 = 0.6;
+        e->y1 = -2.1;
+        e->y2 = 1.2;   
     }
 }
 
