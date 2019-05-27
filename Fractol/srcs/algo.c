@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:24:01 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/26 08:48:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/27 22:41:27 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void     mandelbrot(t_fractol *f, t_env *e)
     int n;
 
     n = f->z_r * f->z_r + f->z_i * f->z_i; 
-    while(n< 4 && f->iter < e->max_iter)
+    while(n < 4 && f->iter < e->max_iter)
     {
         f->tmp = f->z_r * f->z_r - f->z_i * f->z_i + f->c_r;
         f->z_i = 2 * f->z_i * f->z_r + f->c_i;

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/26 06:52:26 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/27 23:03:34 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,13 @@ int         press_event(int key, t_env *e)
 
 void        cycle_usr(int k, t_env *e)
 {
-    k == 65451 ? e->cycle += 5 : 0; 
     if (k == 65453)
-        e->cycle == 2 ? e->cycle = 0 : (e->cycle -= 1);
-    e->cycle > 0 && e->cycle < 2 ? e->cycle = 2 : 0;
-    if (k == 65451)
+        e->cycle <= 0 ? e->cycle = 1 : (e->cycle -= 5);
+    else if (k == 65451)
         e->cycle > 300 ? e->cycle = 0 : (e->cycle += 5);
-    //ft_putnbr(e->cycle);
-    //ft_putendl("");
+    //e->cycle < 0 ? e->cycle = 1 : 0;
+    ft_putnbr(e->cycle);
+    ft_putendl("");
     do_fractol(e);
 }
 void        switch_fractal(t_env *e, int c)

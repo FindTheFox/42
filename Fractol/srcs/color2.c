@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 03:08:54 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/26 09:06:35 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/27 23:00:49 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ t_color			linear_color(t_env *e, double i, int *p)
 	double		adjust;
 	int			c;
 
-	if (e->cycle)
-		index = fmod(i, e->cycle - 1) / (e->cycle - 1);
-	else
+	if (!e->cycle)
 	    index = i / e->iter_max;
+	else
+		index = fmod(i, e->cycle - 1) / (e->cycle - 1);
 	c = e->div - 1;
 	adjust = fmod(index, 1.0f / c) * c;
 	index = index * c;
@@ -80,9 +80,13 @@ t_color			smooth_color(t_env *e, t_pixel p, int *c)
 	double 	index;
 	double 	zn;
 	double 	nu;
-	int		i;
 	//double 	adjust;
 	
+	//i = 0;
+	//while (i < 2)
+	//{
+	//	p.z.real * 
+	//1}
 	//**********it = it + 2 - log(log(a² + b²)) / log(2)
 
 	zn = log(p.c.real * p.c.real + p.c.real * p.c.real);
