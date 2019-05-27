@@ -123,6 +123,8 @@ SRC += $(S_PATH)ft_lst_push_back.c
 SRC += $(S_PATH)ft_create_elem.c
 SRC += $(S_PATH)ft_abs.c
 SRC += $(S_PATH)ft_intsplit.c
+SRC += $(S_PATH)ft_lerp.c
+SRC += $(S_PATH)ft_lerpi.c
 
 # Objects and Headers
 

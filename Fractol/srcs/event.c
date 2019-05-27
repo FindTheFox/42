@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/23 02:28:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/26 06:52:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,62 @@
 int        deal_key(int key, t_env *e)
 {
     ft_putnbr(key);
-    ft_putchar('\n');
+    ft_putendl("");
+    key == 104 ? help_event(e) : 0;
     key == 65307/*53*/ ? ft_exit(e) : 0;
-    key == 99/*8*/ ? switch_color(e) : 0;
-    //key == 65451/*69*/ ? zoom(e, ZOOM) : 0;
-    //key == 65453/*78*/ ? zoom(e, -ZOOM) : 0;
+    key == 99/*8*/ ? switch_color(e) : 0; 
     key == 106/*38*/ ? change_julia_set(e) : 0;
     key == 65436/*83*/ ? switch_fractal(e, 0) : 0;
     key == 65433/*84*/ ? switch_fractal(e, 1) : 0;
     key == 65435/*85*/ ? switch_fractal(e, 2) : 0;
     key == 65430/*86*/ ? switch_fractal(e, 3) : 0;
     key == 65437/*87*/ ? switch_fractal(e, 4) : 0;
-    key == 654328/*88*/ ? switch_fractal(e, 5) : 0;
+    key == 65432/*88*/ ? switch_fractal(e, 5) : 0;
     key == 65429/*89*/ ? switch_fractal(e, 6) : 0;
     key == 65431/*91*/ ? switch_fractal(e, 7) : 0;
-    key == 1148/*15*/ ? rgb_usr(e, 'r') : 0;
-    key == 103/*5*/ ? rgb_usr(e, 'g') : 0;
-    key == 98/*11*/ ? rgb_usr(e, 'b') : 0;
-    key == 65365/*116*/ ? e->max_iter += 10 : 0;
-    key == 65366/*121*/ ? e->max_iter -= 10 : 0;
-    key == 65361/*123*/ ? move(e, 'x', 0.05) : 0;
-    key == 65363/*124*/ ? move(e, 'x', -0.05) : 0;
-    key == 65362/*126*/ ? move(e, 'y', 0.05) : 0;
-    key == 65364/*125*/ ? move(e, 'y', -0.05) : 0;
-    key == 49 ? allow_motion_julia(e) : 0;
-    key == 100/*15*/ ? reset(e) : 0;
-    do_fractol(e);
+    //key == 32/*49*/ ? allow_motion_julia(e) : 0;
+    key == 100/*15*/ ? reset_default(e) : 0;
+    if(key == 32)
+    {
+        e->smooth == 0 ? e->smooth += 1 : (e->smooth = 0); 
+        do_fractol(e);
+    }
+    if(key == 108)
+        e->linear == 0 ? e->linear += 1 : (e->linear = 0);
+    //do_fractol(e);
     return (0); 
 }
 
+int         press_event(int key, t_env *e)
+{
+    key == 65451/*69*/ || key == 65453/*78*/ ? cycle_usr(key, e) : 0;
+    key == 114/*15*/ ? rgb_usr(e, 'r') : 0;
+    key == 103/*5*/ ? rgb_usr(e, 'g') : 0;
+    key == 98/*11*/ ? rgb_usr(e, 'b') : 0;
+    key == 65361/*123*/ ? move(e, 'x', 0.05) : 0;
+    key == 65363/*124*/ ? move(e, 'x', -0.05) : 0;
+    key == 65361/*126*/ ? move(e, 'y', 0.05) : 0;
+    key == 65364/*125*/ ? move(e, 'y', -0.05) : 0;
+    if (key == 65365 || key == 65366)
+    {
+        key == 65365 ? e->max_iter += 20 : (e->max_iter -= 20);
+        do_fractol(e);
+    }    
+    return (0);
+}
+
+void        cycle_usr(int k, t_env *e)
+{
+    k == 65451 ? e->cycle += 5 : 0; 
+    if (k == 65453)
+        e->cycle == 2 ? e->cycle = 0 : (e->cycle -= 1);
+    e->cycle > 0 && e->cycle < 2 ? e->cycle = 2 : 0;
+    if (k == 65451)
+        e->cycle > 300 ? e->cycle = 0 : (e->cycle += 5);
+    //ft_putnbr(e->cycle);
+    //ft_putendl("");
+    do_fractol(e);
+}
 void        switch_fractal(t_env *e, int c)
 {
     if (c == 0)
@@ -66,6 +93,7 @@ void        switch_fractal(t_env *e, int c)
     else if (c == 7)
         e->choix = 7;
     init_fractal(e);
+    do_fractol(e);
 }
 
 void        switch_color(t_env *e)
@@ -90,6 +118,7 @@ void        switch_color(t_env *e)
         !e->g ? e->g = 1 : 0;
         !e->b ? e->b = 1 : 0;
     }
+    do_fractol(e);
 }
 
 int        motion_mouse(int x, int y, t_env *e)
@@ -111,27 +140,29 @@ void        rgb_usr(t_env *e, char c)
         e->g < 40 ? e->g += 1 : (e->g = 0);
     else if (c == 'b')
         e->g < 40 ? e->g += 1 : (e->g = 0);
+    do_fractol(e);
 }
 
 int			mouse_zoom(int k, int x, int y, t_env *e)
 {
-	if ((k == 1 || k == 2 || k == 4 || k == 5) &&
+    ft_putnbr(k);
+	if ((k == 1 || k == 3 || k == 4 || k == 5) &&
 	(x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT))
 	{
-		if (k == 2)
+		if (k == 3)
         {
             e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom / 1.25));
 			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom / 1.25));
-            e->zoom /= 1.25;
+            e->max_iter -= 3;
         }
-        k == 5 ? e->zoom /= 1.25 : 0;
+        k == 3 || k == 5 ? e->zoom /= 1.25 : 0;
         if (k == 1)
 		{
 			e->x1 =  (x / e->zoom + e->x1) - (x / (e->zoom * 1.25));
 			e->y1 = (y / e->zoom + e->y1) - (y / (e->zoom * 1.25));
-            e->zoom *= 1.25;
+            e->max_iter += 3;
         }
-        k == 4 ? e->zoom *= 1.25 : 0;
+        k == 1 || k == 4 ? e->zoom *= 1.25 : 0;
         do_fractol(e);
 	}
 	return (1);

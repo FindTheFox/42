@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 23:02:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/03 00:44:56 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/25 11:23:10 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		ft_clear_img(t_env *e)
 	int i;
 
 	i = 0;
-	while (i < WIDTH * HEIGHT)
+	while (i < e->size.x * e->size.y)
 	{
 		if (e->img[i] != 0)
 			e->img[i] = 0;

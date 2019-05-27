@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/05/23 01:20:23 by saneveu          ###   ########.fr        #
+#    Updated: 2019/05/25 07:39:57 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRC		= 	main.c \
 			exit.c \
 			event.c \
 			color.c \
+			color2.c \
+			display.c \
 			event_tool.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
@@ -35,7 +37,7 @@ CFLAGS	= -Wall -Wextra -Werror
 MLX		= ./minilibx/
 MLX_LIB	= $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./minilibx
-MLX_LNK	= -L ./minilibx -l mlx -lXext -lX11 -L/usr/X11/lib###-framework OpenGL -framework AppKit####
+MLX_LNK	= -L ./minilibx -l mlx -lXext -lX11 -L/usr/X11/lib##-framework OpenGL -framework AppKit
 
 # ft library
 FT		= ./libft/

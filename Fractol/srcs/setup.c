@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/23 02:20:59 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/26 06:50:05 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,22 @@
 void    setup(t_env *e)
 {
     e->mlx_ptr = mlx_init();
-    e->win_ptr = mlx_new_window(e->mlx_ptr, WIDTH, HEIGHT, "Fractol");
-    e->img_ptr = mlx_new_image(e->mlx_ptr, WIDTH, HEIGHT);
+    e->size = (t_index) {.x = WIDTH, .y = HEIGHT};
+    e->win_ptr = mlx_new_window(e->mlx_ptr, e->size.x, e->size.y, "Fractol");
+    e->img_ptr = mlx_new_image(e->mlx_ptr, e->size.x, e->size.y);
     e->img = (int *)mlx_get_data_addr(e->img_ptr, &e->bpp, &e->s_l, &e->endian);
-    e->zoom = 5;
+    init_param(e);
+    init_fractal(e);
+}
+
+void        init_param(t_env *e)
+{
+    e->cycle = 10;
+    e->smooth = 0;
     e->offset = (t_index) {.x = -0.5, .y = 0};
     e->rng = 0;
     e->motion = 0;
-    e->julia = (t_rng) {.real = -0.506667, .imag = 0.520000};
-
-    init_fractal(e);
+    e->help = 0;
 }
 
 void        julias_changes(t_env *e)
@@ -47,7 +53,7 @@ void        julias_changes(t_env *e)
 
 void        init_fractal(t_env *e)
 {
-    if (e->choix == 0)
+    if (e->choix == 0 || e->choix == 3)
     {
         e->zoom = 300;
         e->max_iter = 100;
@@ -66,32 +72,6 @@ void        init_fractal(t_env *e)
         e->y2 = 1.25;
         julias_changes(e);
     }
-    else if (e->choix == 2)
-    {
-        e->max_iter = 200;
-        e->zoom = 250;
-        e->x1 = -3;
-        e->x2 = 1;
-        e->y1 = -1.5;
-        e->y2 = 1.35;
-    }
-    else if (e->choix == 3)
-    {
-        e->max_iter = 300;
-        e->zoom = 300;
-        e->x1 = -2.1;
-        e->x2 = 0.2;
-        e->y1 = -2;
-        e->y2 = 1;
-    }
-    else if (e->choix == 4)
-    {
-        e->max_iter = 100;
-        e->x1 = -2;
-        e->x2 = 0.7;
-        e->y1 = -3;
-        e->y2 = 0.2;
-    }
     else if (e->choix == 6)
     {
         e->max_iter = 50;
@@ -101,19 +81,42 @@ void        init_fractal(t_env *e)
         e->y1 = -2.1;
         e->y2 = 1.2;   
     }
+    else if (e->choix == 2)
+    {
+        e->max_iter = 200;
+        e->zoom = 250;
+        e->x1 = -3;
+        e->x2 = 1;
+        e->y1 = -1.5;
+        e->y2 = 1.35;
+    }
 }
 
 void        whatfractal(t_env *e, char *name, int ac)
 {
     if (ac >= 2)
     {
-        if (!ft_strcmp(name, "Mandelbrot") || ac == 1)
+        if (!ft_strcmp(name, "mandel") || ac == 1)
             e->choix = 0;
-        else if (!ft_strcmp(name, "Julia"))
+        else if (!ft_strcmp(name, "julia"))
+            e->choix = 1;
+        else if (!ft_strcmp(name, "lauren"))
+            e->choix = 2;
+        else if (!ft_strcmp(name, "burningship"))
+            e->choix = 3;
+        else if (!ft_strcmp(name, "phoenix"))
+            e->choix = 4;
+        else if (!ft_strcmp(name, "tricorn"))
+            e->choix = 5;
+        else if (!ft_strcmp(name, "mandel flower"))
+            e->choix = 6;
+        else if (!ft_strcmp(name, "bimandel"))
             e->choix = 1;
         else
         {
-            ft_putendl("Not valids arguments.\n[Mandelbrot - Julia]fractal [1 - 3]colors");
+            ft_putendl("Not valids arguments.");
+            ft_putendl("[mandel] [julia] [lauren] [burningship]");
+            ft_putendl("[phoenix] [tricorn] [mandelflower] [bimandel]");
             exit(EXIT_FAILURE);
         }
     }

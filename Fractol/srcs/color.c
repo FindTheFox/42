@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 01:12:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/22 20:36:08 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/26 06:35:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void        colorset0(t_env *e)
 	e->color = color;
 }
 
-void        colorset1(t_env *e)
+void        colorset3(t_env *e)
 {
     static int color[16] = {
         0xf06d89,        
@@ -59,7 +59,7 @@ void        colorset1(t_env *e)
     e->color = color;
 }
 
-void	colorset2(t_env *e)
+void	colorset1(t_env *e)
 {
 	static int color[16] = {
 		65536 * 66 + 256 * 30 + 15,
@@ -83,7 +83,7 @@ void	colorset2(t_env *e)
 	e->color = color;
 }
 
-void		colorset3(t_env *e)
+void		colorset2(t_env *e)
 {
 	static int color[16] = {
 		0xffffff,
@@ -109,11 +109,7 @@ void		colorset3(t_env *e)
 
 void		colorset4(t_env *e)
 {
-	static int color[20] = {
-		0xcf0223,
-		0xc8062a,
-		0xc10a30,
-		0xb90e37,
+	static int color[16] = {
 		0xb2123e,
 		0xab1644,
 		0xa41a4b,
@@ -131,7 +127,7 @@ void		colorset4(t_env *e)
 		0x4d4b9a,
 		0x464fa1,	
 	};
-	e->div = 20;
+	e->div = 16;
 	e->color = color;
 }
 
@@ -156,7 +152,7 @@ void		colorset5(t_env *e)
 	e->color = color;
 }
 
-int		color_rgb(t_env *e, t_fractol *f)
+int		color_rgb(t_env *e, int iter)
 {
 	int color;
 	int r;
@@ -164,11 +160,36 @@ int		color_rgb(t_env *e, t_fractol *f)
 	int b;
 
 	color = 0;
-	r = (f->iter * e->r) % 255;
-	g = (f->iter * e->g) % 255;
-	b = (f->iter * e->b) % 255;
+	r = (iter * e->r) % 256;
+	g = (iter * e->g) % 256;
+	b = (iter * e->b) % 256;
 	color += r << 16;
 	color += g << 8;
 	color += b;
 	return (color);
 }
+
+int			get_color(t_env *e, t_pixel p[WIDTH][HEIGHT], t_index i)
+{
+	//if (e->usr_color == 6)
+    //    return(f->iter <= e->max_iter ? color_rgb(e, f)
+    //    : 0x00000);   
+    //else
+    //    color_pixel_img(e, f->i.x, f->i.y, (f->iter <= e->max_iter ?
+    //        e->color[f->iter % e->div] : 0x00000));
+    
+	//if (f->iter < e->max_iter)
+    //    color_pixel_img(e, f->i.x, f->i.y, hsv_to_rgb(f->iter / 256, 1, f->iter, 0));
+	if (p[(int)i.x][(int)i.y].i >= e->max_iter)
+		return (0x010101);
+	else if (e->usr_color == 6) 
+		return(color_rgb(e, p[(int)i.x][(int)i.y].i));		
+	else
+	{
+		if (e->smooth)
+			return(smooth_color(e, p[(int)i.x][(int)i.y], e->color).value);
+		return(linear_color(e, (double)p[(int)i.x][(int)i.y].i, e->color).value);
+	}
+}
+
+
