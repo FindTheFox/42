@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 21:02:50 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/25 11:40:32 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/29 02:17:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ void        move(t_env *e, char c, double m)
 
 void        allow_motion_julia(t_env *e)
 {
-    !e->motion ? (e->motion = 1) : (e->motion = 0);
+    e->motion == 0 ? (e->motion = 1) : (e->motion = 0);
 }
 
 void        reset_default(t_env *e)
 {
     init_fractal(e);
     e->offset = (t_index) {.x = -0.5, .y = 0};
+    e->cycle = 2;
     do_fractol(e); 
     
 }

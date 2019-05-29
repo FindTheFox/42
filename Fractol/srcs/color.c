@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 01:12:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/26 06:35:08 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/29 02:29:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,44 +152,113 @@ void		colorset5(t_env *e)
 	e->color = color;
 }
 
-int		color_rgb(t_env *e, int iter)
+int		color_rgb(t_env *e, t_pixel p)
 {
 	int color;
 	int r;
 	int g;
 	int b;
+	double mult;
+	double nu;
+	double nu_frac;
 
 	color = 0;
-	r = (iter * e->r) % 256;
-	g = (iter * e->g) % 256;
-	b = (iter * e->b) % 256;
+	mult = p.c.real * p.c.real + p.c.imag * p.c.imag;
+	nu = (p.i + 2 - log2(log2(sqrt(mult)))) / e->max_iter;
+	nu_frac = nu - (int)nu;
+	r = ft_lerpi(e->r, e->r * p.i, nu_frac);
+	g = ft_lerpi(e->g, e->g * p.i, nu_frac);//(int)p.i * (e->g * nu_frac);
+	b = ft_lerpi(e->b, e->b * p.i, nu_frac);//(int)p.i * (e->b * nu_frac);
 	color += r << 16;
 	color += g << 8;
 	color += b;
 	return (color);
 }
 
+t_color		color_rgb2(t_env *e, t_pixel p)
+{
+	t_color color;
+	double	nu;
+	double	nu_frac;
+	double 	mult;
+
+	mult = p.c.real * p.c.real + p.c.imag * p.c.imag;
+	nu = (p.i + e->cycle - log2(log2(sqrt(mult)))) / e->max_iter;
+	nu_frac = nu - (int)nu;
+	color.rgb.r = (nu_frac * e->r);
+	color.rgb.g = (nu_frac * e->g);
+	color.rgb.b = (nu_frac * e->b);
+	color.value = color.rgb.r << 16 | color.rgb.g << 8 | color.rgb.b;
+	//printf("color = %d | r = %d | g = %d | b = %d", color.value, e->r, e->g, e->b);
+	return (color);
+}
+
+t_color		zebre_rgb_psyche(t_env *e, t_pixel p)
+{
+	t_color color;
+	double	nu;
+	double	nu_frac;
+	double 	mult;
+
+	mult = p.c.real * p.c.real + p.c.imag * p.c.imag;
+	nu = (p.i + 5 - log2(log2(sqrt(mult)))) / e->max_iter;
+	nu_frac = nu - (int)nu;
+	color.rgb.r = (e->r / nu_frac);
+	color.rgb.g = (e->g / nu_frac);
+	color.rgb.b = (e->b / nu_frac);
+	color.value = color.rgb.r << 16 | color.rgb.g << 8 | color.rgb.b;
+	//printf("color = %d | r = %d | g = %d | b = %d", color.value, e->r, e->g, e->b);
+	return (color);
+}
+
+t_color			color_gradiant(t_env *e, t_pixel p)
+{
+	t_color	color;
+	double	nu;
+	double	nu_frac;
+	double	mult;
+
+	mult = p.c.real * p.c.real + p.c.imag * p.c.imag;
+	nu = (p.i + e->cycle - log2(log2(sqrt(mult)))) / e->max_iter;
+	nu_frac = nu - (int)nu;	
+	color.rgb.r = ft_lerp(e->r, e->r2, nu_frac);
+	color.rgb.g = ft_lerp(e->g, e->g2, nu_frac);
+	color.rgb.b = ft_lerp(e->b, e->b2, nu_frac);
+	color.value = color.rgb.r << 16 | color.rgb.g << 8 | color.rgb.b;
+	return (color);
+}
+
+int			vasarely(t_pixel p)
+{
+	if (p.c.imag > 0)
+		return (0x000000);
+	return (0xFFFFFF);
+}
+
 int			get_color(t_env *e, t_pixel p[WIDTH][HEIGHT], t_index i)
 {
-	//if (e->usr_color == 6)
-    //    return(f->iter <= e->max_iter ? color_rgb(e, f)
-    //    : 0x00000);   
-    //else
-    //    color_pixel_img(e, f->i.x, f->i.y, (f->iter <= e->max_iter ?
-    //        e->color[f->iter % e->div] : 0x00000));
-    
-	//if (f->iter < e->max_iter)
-    //    color_pixel_img(e, f->i.x, f->i.y, hsv_to_rgb(f->iter / 256, 1, f->iter, 0));
 	if (p[(int)i.x][(int)i.y].i >= e->max_iter)
-		return (0x010101);
-	else if (e->usr_color == 6) 
-		return(color_rgb(e, p[(int)i.x][(int)i.y].i));		
-	else
+		return(0x000000);
+	if (e->style_color == 0)
 	{
-		if (e->smooth)
+		if (e->smooth == 1)
 			return(smooth_color(e, p[(int)i.x][(int)i.y], e->color).value);
-		return(linear_color(e, (double)p[(int)i.x][(int)i.y].i, e->color).value);
+		return(linear_color(e, p[(int)i.x][(int)i.y].i, e->color).value);	
 	}
+	else if (e->style_color == 1)
+		return(color_rgb(e, p[(int)i.x][(int)i.y]));
+	else if (e->style_color == 2)
+		return(color_rgb2(e, p[(int)i.x][(int)i.y]).value);
+	else if (e->style_color == 3)
+		return(color_gradiant(e, p[(int)i.x][(int)i.y]).value);
+	else if (e->style_color == 4)
+		return(vasarely(p[(int)i.x][(int)i.y]));
+	else if (e->style_color == 5) 
+		return(fire(p[(int)i.x][(int)i.y], e->max_iter));
+	else if (e->style_color == 6)
+		return(zebre_rgb_psyche(e, p[(int)i.x][(int)i.y]).value);
+	return(!e->smooth ? (linear_color(e, p[(int)i.x][(int)i.y].i, e->color).value) :
+			(smooth_color(e, p[(int)i.x][(int)i.y], e->color).value));
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 00:59:31 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/25 13:03:47 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/28 06:31:54 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int     main(int ac, char **av)
 void    event(t_env *e)
 {
     mlx_hook(e->win_ptr, 2, (1L << 0), press_event, e); /*press button*/
-    mlx_hook(e->win_ptr, 6, (1<<8), motion_mouse, e); /*change julia set when mouse moving*/
+    mlx_hook(e->win_ptr, 6, (1L << 6), &motion_mouse, e); /*change julia set when mouse moving*/
     mlx_hook(e->win_ptr, 17, (1L << 17), ft_exit, e); /*if win close by the cross*/
     mlx_key_hook(e->win_ptr, deal_key, e); /*simple push button*/ 
     mlx_mouse_hook(e->win_ptr, mouse_zoom, e);

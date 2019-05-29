@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/27 22:47:24 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/29 03:38:10 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,20 @@ void        draw_pixel(t_env *e)
         i.y = -1;
         while (++i.y < HEIGHT)
         {
-            color_pixel_img(e->img, i, e->size, get_color(e, e->data, i));
+            color_pixel_img(e->img, i, e->size, get_color(e, e->data, i)/*e->color[(int)e->data[(int)i.x][(int)i.y].i % e->div]*/);
         }
     }
 }
 
-void        draw(t_env *e, t_fractol *f)
+void        draw(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *))
 {
+
     f->c_r = (f->i.x / e->zoom) + e->x1 + e->offset.x;//(f->i.x * (e->x2 - e->x1) / WIDTH + e->x1);//
     f->c_i = (f->i.y / e->zoom) + e->y1 + e->offset.y;//(f->i.y * (e->y2 - e->y1) / HEIGHT + e->y1);//
     f->z_r = 0;
     f->z_i = 0;
     f->iter = 0;
-    e->choix == 0 ? mandelbrot(f, e): 0;
-    e->choix == 1 ? julia(f, e) : 0;
-    e->choix == 2 ? lauren(f, e) : 0;
-    e->choix == 3 ? burning_ship(f, e) : 0;
-    e->choix == 4 ? phoenix(f, e) : 0;
-    e->choix == 5 ? tricorn(f, e) : 0;
-    e->choix == 6 ? mandelbrot_flower(f, e) : 0;
-    e->choix == 7 ? bimandel(f, e) : 0;
+    (*fract)(f, e);
     //color_pixel_img(e->img, f->i, e->size, get_color(e, f));
 }
 
@@ -62,7 +56,7 @@ void    *fractol_pixel_wheel(void *thread)
         f.i.y = -1;
         while(++f.i.y < HEIGHT)
         {
-            draw(e, &f);
+            draw(e, &f, t->fractal);
             e->data[(int)f.i.x][(int)f.i.y] = (t_pixel){.c.real = f.z_r, .c.imag = f.z_i,
              .i = f.iter};
         }
@@ -82,6 +76,7 @@ void        thread_start(t_env *e, void *f(void *))
     {
         t[i].n = i;
         t[i].e = e;
+        t[i].fractal = ptr_f_choose(e);
         pthread_create(&(t[i]).id, NULL, f, &t[i]);
         i++;
     }
@@ -93,8 +88,13 @@ void        thread_start(t_env *e, void *f(void *))
 void        do_fractol(t_env *e)
 {
     ft_clear_img(e);
-    thread_start(e, fractol_pixel_wheel);
-    draw_pixel(e);
+    if (e->choix != 9)    
+    {
+        thread_start(e, fractol_pixel_wheel);
+        draw_pixel(e);
+    }
+    else
+        thread_start(e, buddhabrot_thread);
     mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
     if (e->help == 1)
         display(e);

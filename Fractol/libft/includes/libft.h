@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/25 02:51:35 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/28 04:47:37 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void			ft_list_push_back(t_list **begin_list, void *content);
 int				get_next_line(int const fd, char **line);
 int				ft_abs(int a);
 int				*ft_intsplit(const char *str, const char *set);
-int      		ft_lerpi(int first, int second, int p);
-double      	ft_lerp(double first, double second, int p);
+int      		ft_lerpi(int first, int second, double p);
+double      	ft_lerp(double first, double second, double p);
 
 #endif

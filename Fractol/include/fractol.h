@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/26 09:08:59 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/29 04:43:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 
 # include <stdio.h>
 
-# define HEIGHT 800
+# define HEIGHT 720
 # define WIDTH  1200
 # define ZOOM   100
 # define THREADS 8
+# define PI         3.14159
 
 typedef struct s_rgba
 {
@@ -57,7 +58,8 @@ typedef struct s_pixel
 {
     t_rng       z;
     t_rng       c;
-    long        i;
+    double      i;
+    t_color     color;
 }               t_pixel;
 
 typedef struct  s_fractol
@@ -109,6 +111,7 @@ typedef struct  s_env
     int         choix;
     int         rng;
     //int         iter;
+    int         style_color;
     int         usr_color;
     int         *color;
     t_rng       julia;
@@ -118,12 +121,15 @@ typedef struct  s_env
     int         r;
     int         g;
     int         b;
+    int         r2;
+    int         g2;
+    int         b2;
     t_fractol   *f;
     int         smooth;
     int         linear;
     double         cycle;
     int         help;
-    int         iter_max;
+    int         switc;
 }               t_env;
 
 typedef struct  s_thread
@@ -133,6 +139,7 @@ typedef struct  s_thread
     double      end;
     pthread_t   id;
     t_env       *e;
+    void        (*fractal)(t_fractol *, t_env *);
 }               t_thread;
 
 //int         do_test(t_fractol *f, t_env *e);
@@ -156,51 +163,64 @@ void        init_param(t_env *e);
 void        do_fractol(t_env *e);
 void        thread_start(t_env *e, void *f(void *));
 void        *fractol_pixel_wheel(void *t);
-void        draw(t_env *e, t_fractol *f);
+void        draw(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *));
 void		color_pixel_img(int *img, t_index i, t_index size, int color);
+void        *ptr_f_choose(t_env *e);
+void        *buddhabrot_thread(void *thread);
 
 /**Algorythme**/
 
 void        mandelbrot(t_fractol *f, t_env *e);
 void	    mandelbrot_flower(t_fractol *f, t_env *e);
-void        bimandel(t_fractol *f, t_env *e);
+void        mandel_cube(t_fractol *f, t_env *e);
 void        julia(t_fractol *f, t_env *e);
+void        julia_cube(t_fractol *f, t_env *e);
 void        lauren(t_fractol *f, t_env *e);
 void	    phoenix(t_fractol *f, t_env *e);
 void        burning_ship(t_fractol *f, t_env *e);
 void        tricorn(t_fractol *f, t_env *e);
+void        shell(t_fractol *f, t_env *e);
+void        buddhabrot(t_fractol *f, t_env *e);
 
 /**Colors**/
 
-int			get_color(t_env *e, t_pixel p[WIDTH][HEIGHT], t_index i);
+void            get_pal(t_env *e);
+int			    get_color(t_env *e, t_pixel p[WIDTH][HEIGHT], t_index i);
 t_color         smooth_color(t_env *e, t_pixel p, int *color);
+t_color			smooth_color_helper(t_env *e, double index, double mu, int *c);
 t_color         linear_color(t_env *e, double i, int *color);
 t_color         linear_color_helper(int c1, int c2, double a);
-void        colorset0(t_env *e);
-void        colorset1(t_env *e);
-void        colorset2(t_env *e);
-void        colorset3(t_env *e);
-void        colorset4(t_env *e);
-void		colorset5(t_env *e);
-int         color_rgb(t_env *e, int iter);
+void            colorset0(t_env *e);
+void            colorset1(t_env *e);
+void            colorset2(t_env *e);
+void            colorset3(t_env *e);
+void            colorset4(t_env *e);
+void		    colorset5(t_env *e);
+int             color_rgb(t_env *e, t_pixel p);
+t_color		    color_rgb2(t_env *e, t_pixel p);
+int	            smooth_blue(t_pixel p, int iter_max);
+int		        fire(t_pixel p, int iter_max);
+t_color			color_gradiant(t_env *e, t_pixel p);
+int				rgb_to_hsv(int r, int g, int b);
+t_color		    zebre_rgb_psyche(t_env *e, t_pixel p);
 
 /**Events**/
 
 void        event(t_env *e);
 int         press_event(int key, t_env *e);
 int         deal_key(int key, t_env *e);
-void        change_la_couleur(t_env *e);
+void        change_la_couleur(t_env *e);//
+void        event_color(int key, t_env *e);
 void        zoom(t_env *e, int speed);
 void        change_julia_set(t_env *e);
 void        switch_fractal(t_env *e, int c);
-void        switch_color(t_env *e);
+void        switch_pal(t_env *e);
 int         motion_mouse(int x, int y, t_env *e);
 void        rgb_usr(t_env *e, char c);
 void        move(t_env *e, char c, double m);
 int			mouse_zoom(int k, int x, int y, t_env *e);
 void        reset_default(t_env *e);
 void        allow_motion_julia(t_env *e);
-//int         calc_c(t_env *e, int flag);
 void        julias_changes(t_env *e);
 void        cycle_usr(int k, t_env *e);
 
