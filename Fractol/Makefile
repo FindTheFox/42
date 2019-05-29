@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-#    Updated: 2019/05/29 03:38:49 by saneveu          ###   ########.fr        #
+#    Updated: 2019/05/29 19:07:16 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,13 @@ SRC		= 	main.c \
 			color2.c \
 			display.c \
 			event_tool.c \
-			buddhabrot.c
+			buddhabrot.c \
+			tools.c \
+			color_tools.c \
+			palette.c \
+			event_mouse.c \
+			event_color.c \
+			algo2.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
@@ -38,7 +44,7 @@ CFLAGS	= -Wall -Wextra -Werror
 MLX		= ./minilibx/
 MLX_LIB	= $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./minilibx
-MLX_LNK	= -L ./minilibx -l mlx -lXext -lX11 -L/usr/X11/lib##-framework OpenGL -framework AppKit
+MLX_LNK	= -L ./minilibx -l mlx -framework OpenGL -framework AppKit##-lXext -lX11 -L/usr/X11/lib##
 
 # ft library
 FT		= ./libft/
@@ -74,7 +80,7 @@ $(MLX_LIB):
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) $(PTH_LIB) -lm -o $(NAME)
-	@echo "[\33[1;5;32mit's good\33][0m"
+	@echo "\33[1;5;32mit's good\33][0m"
 
 clean:
 	@rm -rf $(OBJDIR)

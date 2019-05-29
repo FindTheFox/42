@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 04:43:41 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/29 18:32:54 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,8 @@ int		        fire(t_pixel p, int iter_max);
 t_color			color_gradiant(t_env *e, t_pixel p);
 int				rgb_to_hsv(int r, int g, int b);
 t_color		    zebre_rgb_psyche(t_env *e, t_pixel p);
+t_rgba		    fill_rgb(int c);
+int			    vasarely(t_pixel p);
 
 /**Events**/
 
@@ -227,6 +229,8 @@ void        cycle_usr(int k, t_env *e);
 /**display**/
 
 void    display(t_env *e);
+void    display_helper(t_env *e, char *c, void *m);
+void    display_helper2(t_env *e, char *c, void *m);
 void    *backscreen(void *thread);
 void    init_second_win(t_env *e);
 void    help_event(t_env *e);
@@ -235,6 +239,6 @@ void    help_event(t_env *e);
 
 int         ft_exit(t_env *e);
 void        error();
-void		ft_clear_img(t_env *e);
+void		ft_clear_img(t_env *e, t_index winsize);
 
 #endif

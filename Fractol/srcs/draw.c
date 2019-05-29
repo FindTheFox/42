@@ -6,13 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 03:38:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/29 18:10:24 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void        draw_pixel(t_env *e)
+void            draw_pixel(t_env *e)
 {
     t_index i;
     
@@ -22,24 +22,23 @@ void        draw_pixel(t_env *e)
         i.y = -1;
         while (++i.y < HEIGHT)
         {
-            color_pixel_img(e->img, i, e->size, get_color(e, e->data, i)/*e->color[(int)e->data[(int)i.x][(int)i.y].i % e->div]*/);
+            color_pixel_img(e->img, i, e->size, get_color(e, e->data, i));
         }
     }
 }
 
-void        draw(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *))
+void            draw(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *))
 {
 
-    f->c_r = (f->i.x / e->zoom) + e->x1 + e->offset.x;//(f->i.x * (e->x2 - e->x1) / WIDTH + e->x1);//
-    f->c_i = (f->i.y / e->zoom) + e->y1 + e->offset.y;//(f->i.y * (e->y2 - e->y1) / HEIGHT + e->y1);//
+    f->c_r = (f->i.x / e->zoom) + e->x1 + e->offset.x;
+    f->c_i = (f->i.y / e->zoom) + e->y1 + e->offset.y;
     f->z_r = 0;
     f->z_i = 0;
     f->iter = 0;
     (*fract)(f, e);
-    //color_pixel_img(e->img, f->i, e->size, get_color(e, f));
 }
 
-void    *fractol_pixel_wheel(void *thread)
+void            *fractol_pixel_wheel(void *thread)
 {
     t_fractol   f;
     t_thread    *t;
@@ -66,7 +65,7 @@ void    *fractol_pixel_wheel(void *thread)
     return (NULL);
 }
 
-void        thread_start(t_env *e, void *f(void *))
+void            thread_start(t_env *e, void *f(void *))
 {
     t_thread    t[THREADS];
     int         i;
@@ -85,9 +84,9 @@ void        thread_start(t_env *e, void *f(void *))
         pthread_join(t[i].id, NULL);
 }
 
-void        do_fractol(t_env *e)
+void            do_fractol(t_env *e)
 {
-    ft_clear_img(e);
+    ft_clear_img(e, e->size);
     if (e->choix != 9)    
     {
         thread_start(e, fractol_pixel_wheel);
@@ -98,10 +97,4 @@ void        do_fractol(t_env *e)
     mlx_put_image_to_window(e->mlx_ptr, e->win_ptr, e->img_ptr, 0, 0);
     if (e->help == 1)
         display(e);
-}
-
-void		color_pixel_img(int *img, t_index i, t_index size, int color)
-{
-	if (i.x >= 0 && i.y >= 0 && i.y < size.y && i.x < size.x)
-        img[(int)(i.x + size.x * i.y)] = color;
 }
