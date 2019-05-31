@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 00:59:31 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/28 06:31:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:12:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int     main(int ac, char **av)
     if(!(env = (t_env *)malloc(sizeof(t_env))))
         return (0);
     whatfractal(env, av[1], ac);
-    whatcolor(env, av[2], ac);
     setup(env);
     do_fractol(env);
     event(env); 

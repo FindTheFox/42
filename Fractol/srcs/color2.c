@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 03:08:54 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 18:23:20 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:21:24 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,13 @@ t_color			color_helper(int ic1, int ic2, double p)
 	return (c);
 }
 
-t_color			linear_color(t_env *e, double i, int *p)
+t_color			linear_color(t_env *e, t_pixel p, int *c)
 {
 	double		index;
-	int			c;
 
-	index = fmod(i, e->cycle - 1) / (e->cycle - 1);
-	c = e->div;
-	index = index * c;
-	return (color_helper(p[(int)index + 1], p[(int)index], 0.5)); 
+	index = fmod(p.i, e->cycle - 1) / (e->cycle - 1);
+	index = index * e->div;
+	return (color_helper(c[(int)index + 1], c[(int)index], 0.5)); 
 }
 
 t_color			smooth_color(t_env *e, t_pixel p, int *c)

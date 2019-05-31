@@ -6,28 +6,35 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 18:10:24 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:15:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void            draw_pixel(t_env *e)
+void            *draw_pixel(void *thread)
 {
-    t_index i;
+    t_thread    *t;
+    t_env       *e;
+    t_index     i;
     
-    i.x = -1;
-    while (++i.x < WIDTH)
+    e = ((t_thread*)thread)->e;
+    t = (t_thread*)thread;
+    t->start = t->n * WIDTH / THREADS;
+    t->end = (t->n + 1) * WIDTH / THREADS;
+    i.x = t->start;
+    while(i.x < t->end)
     {
         i.y = -1;
-        while (++i.y < HEIGHT)
-        {
-            color_pixel_img(e->img, i, e->size, get_color(e, e->data, i));
-        }
+        while(++i.y < HEIGHT)
+            color_pixel_img(e->img, i, e->size, get_color(e, e->data[(int)i.x][(int)i.y]));
+        i.x++; 
     }
+    pthread_exit(NULL);
+    return (NULL);
 }
 
-void            draw(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *))
+void            fractal_algo(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *))
 {
 
     f->c_r = (f->i.x / e->zoom) + e->x1 + e->offset.x;
@@ -55,7 +62,7 @@ void            *fractol_pixel_wheel(void *thread)
         f.i.y = -1;
         while(++f.i.y < HEIGHT)
         {
-            draw(e, &f, t->fractal);
+            fractal_algo(e, &f, t->fractal);
             e->data[(int)f.i.x][(int)f.i.y] = (t_pixel){.c.real = f.z_r, .c.imag = f.z_i,
              .i = f.iter};
         }
@@ -90,7 +97,7 @@ void            do_fractol(t_env *e)
     if (e->choix != 9)    
     {
         thread_start(e, fractol_pixel_wheel);
-        draw_pixel(e);
+        thread_start(e, draw_pixel);
     }
     else
         thread_start(e, buddhabrot_thread);

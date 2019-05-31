@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 04:47:29 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:24:00 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void        init_param(t_env *e)
     e->motion = 0;
     e->help = 0;
     e->switc = 0;
+    e->style_color = 0;
+    e->usr_color = 0;
 }
 
 void        julias_changes(t_env *e)
@@ -126,7 +128,6 @@ void        init_fractal(t_env *e)
         e->y1 = -1.2;
         e->x2 = 2;
         e->y2 = 0.6;
-        printf("chqnge\n");
     }
 }
 
@@ -155,8 +156,8 @@ void        whatfractal(t_env *e, char *name, int ac)
         else
         {
             ft_putendl("Not valids arguments.");
-            ft_putendl("[mandel] [julia] [lauren] [burningship]");
-            ft_putendl("[phoenix] [tricorn] [mandelflower] [bimandel]");
+            ft_putendl("[mandelbrot] [julia] [julia_cube] [lauren] [burningship]");
+            ft_putendl("[phoenix] [tricorn] [mandel_flower] [mandel_cube]");
             exit(EXIT_FAILURE);
         }
     }
@@ -176,42 +177,4 @@ void        *ptr_f_choose(t_env *e)
     e->choix == 7 ? f = &burning_ship : 0;
     e->choix == 8 ? f = &phoenix : 0;
     return(f); 
-}
-
-void        whatcolor(t_env *e, char *name, int ac)
-{
-    if (ac == 3)
-    {
-        if (ft_atoi(name) == 1)
-        {
-            e->usr_color = 0;
-            colorset0(e);
-        }
-        else if (ft_atoi(name) == 2)
-        {
-            e->usr_color = 1;
-            colorset1(e);
-        }
-        else if (ft_atoi(name) == 3)
-        {
-            e->usr_color = 2;
-            colorset2(e);
-        }
-        else if (ft_atoi(name) == 4)
-        {
-            e->usr_color = 3;
-            colorset2(e);
-        }
-        else
-        {
-            ft_putendl("5 colors set available");
-            exit(EXIT_FAILURE);
-        }
-    }
-    else
-    {
-        e->usr_color = 0;
-        colorset0(e); 
-    }
-    
 }

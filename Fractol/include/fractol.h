@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 18:32:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:21:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,10 @@
 # include <pthread.h>
 # include "../libft/includes/libft.h"
 
-# include <stdio.h>
-
 # define HEIGHT 720
 # define WIDTH  1200
 # define ZOOM   100
-# define THREADS 8
-# define PI         3.14159
+# define THREADS 32
 
 typedef struct s_rgba
 {
@@ -142,7 +139,6 @@ typedef struct  s_thread
     void        (*fractal)(t_fractol *, t_env *);
 }               t_thread;
 
-//int         do_test(t_fractol *f, t_env *e);
 /**main**/
 
 int         main(int ac, char **av);
@@ -163,10 +159,11 @@ void        init_param(t_env *e);
 void        do_fractol(t_env *e);
 void        thread_start(t_env *e, void *f(void *));
 void        *fractol_pixel_wheel(void *t);
-void        draw(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *));
+void        fractal_algo(t_env *e, t_fractol *f, void (*fract)(t_fractol *, t_env *));
 void		color_pixel_img(int *img, t_index i, t_index size, int color);
 void        *ptr_f_choose(t_env *e);
 void        *buddhabrot_thread(void *thread);
+void        *draw_pixel(void *thread);
 
 /**Algorythme**/
 
@@ -179,16 +176,15 @@ void        lauren(t_fractol *f, t_env *e);
 void	    phoenix(t_fractol *f, t_env *e);
 void        burning_ship(t_fractol *f, t_env *e);
 void        tricorn(t_fractol *f, t_env *e);
-void        shell(t_fractol *f, t_env *e);
 void        buddhabrot(t_fractol *f, t_env *e);
 
 /**Colors**/
 
 void            get_pal(t_env *e);
-int			    get_color(t_env *e, t_pixel p[WIDTH][HEIGHT], t_index i);
+int			    get_color(t_env *e, t_pixel p);
 t_color         smooth_color(t_env *e, t_pixel p, int *color);
 t_color			smooth_color_helper(t_env *e, double index, double mu, int *c);
-t_color         linear_color(t_env *e, double i, int *color);
+t_color         linear_color(t_env *e, t_pixel p, int *color);
 t_color         linear_color_helper(int c1, int c2, double a);
 void            colorset0(t_env *e);
 void            colorset1(t_env *e);
@@ -198,7 +194,6 @@ void            colorset4(t_env *e);
 void		    colorset5(t_env *e);
 int             color_rgb(t_env *e, t_pixel p);
 t_color		    color_rgb2(t_env *e, t_pixel p);
-int	            smooth_blue(t_pixel p, int iter_max);
 int		        fire(t_pixel p, int iter_max);
 t_color			color_gradiant(t_env *e, t_pixel p);
 int				rgb_to_hsv(int r, int g, int b);
@@ -211,7 +206,6 @@ int			    vasarely(t_pixel p);
 void        event(t_env *e);
 int         press_event(int key, t_env *e);
 int         deal_key(int key, t_env *e);
-void        change_la_couleur(t_env *e);//
 void        event_color(int key, t_env *e);
 void        zoom(t_env *e, int speed);
 void        change_julia_set(t_env *e);

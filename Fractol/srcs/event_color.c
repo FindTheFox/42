@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 19:00:55 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 19:02:20 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:27:18 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void        switch_pal(t_env *e)
 {
     e->usr_color == 5 ? e->usr_color = 0 : e->usr_color++;
-    get_pal(e);
     do_fractol(e);
 }
 
@@ -38,10 +37,7 @@ void        get_pal(t_env *e)
 void        event_color(int key, t_env *e)
 {
     if (key == 0)
-    {
-        get_pal(e);
         e->style_color = 0;
-    }
     else if (key == 1)
     {
         e->r = 0x0f;
