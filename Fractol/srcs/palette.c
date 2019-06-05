@@ -6,13 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 18:24:03 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 18:25:31 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 04:06:29 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void        colorset0(t_env *e)
+void        colorset1(t_env *e)
 {
     static int color[16] = {
         0xffff7d,
@@ -59,7 +59,7 @@ void        colorset3(t_env *e)
     e->color = color;
 }
 
-void	colorset1(t_env *e)
+void	colorset0(t_env *e)
 {
 	static int color[16] = {
 		65536 * 66 + 256 * 30 + 15,

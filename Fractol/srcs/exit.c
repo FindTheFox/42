@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/28 23:02:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 17:41:27 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 00:34:58 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int     ft_exit(t_env *e)
     return (0);
 }
 
-void		ft_clear_img(t_env *e, t_index winsize)
+void		ft_clear_img(t_index winsize, int *img)
 {
 	int i;
 
 	i = 0;
 	while (i < winsize.x * winsize.y)
 	{
-		if (e->img[i] != 0)
-			e->img[i] = 0;
+		if (img[i] != 0)
+			img[i] = 0;
 		i++;
 	}
 }

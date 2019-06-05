@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:22:14 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/31 10:15:09 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 00:42:37 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void            thread_start(t_env *e, void *f(void *))
 
 void            do_fractol(t_env *e)
 {
-    ft_clear_img(e, e->size);
+    ft_clear_img(e->size, e->img);
     if (e->choix != 9)    
     {
         thread_start(e, fractol_pixel_wheel);

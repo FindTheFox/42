@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 07:13:49 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 17:41:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 01:04:44 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,15 @@ void    display(t_env *e)
     char    *c;
 
     m = e->mlx_ptr;
-    ft_clear_img(e, e->d->size);
-    thread_start(e, backscreen);
+    ft_clear_img(e->d->size, e->d->tab);
+    thread_start_sec_win(e, backscreen);
     mlx_put_image_to_window(e->mlx_ptr, e->d->win, e->d->img, 0, 0);
     mlx_string_put(m, e->d->win, 10, 10, 0xFF0000, "*******Keys*******");
-    mlx_string_put(m, e->d->win, 15, 50, 0x000000, "1 -> 6 : Color STYLE         PAD NUM : Fractal choice");
+    mlx_string_put(m, e->d->win, 15, 50, 0x000000, "1 -> 7 : Color STYLE         PAD NUM : Fractal choice");
     mlx_string_put(m, e->d->win, 15, 70, 0x000000, "Arrows : Move");
     mlx_string_put(m, e->d->win, 15, 90, 0x000000, "+ & - : Cycle Color          Up & Down : Iteration max");
     mlx_string_put(m, e->d->win, 15, 110, 0x000000, "[JULIA] J : change julia set const");
-    mlx_string_put(m, e->d->win, 15, 130, 0x000000, "[JULIA] Space : Allow mouse motion");
+    mlx_string_put(m, e->d->win, 15, 130, 0x000000, "[JULIA] M : Allow mouse motion");
     mlx_string_put(m, e->d->win, 15, 150, 0x000000, "[STYLE 1->3] R - G - B : respectively r g b colors");
     mlx_string_put(m, e->d->win, 15, 170, 0x000000, "S : Smooth color             D : Set default"); 
     mlx_string_put(m, e->d->win, 10, 200, 0x000fff, "*******Current params*******");
@@ -91,9 +91,9 @@ void    *backscreen(void *thread)
     t_env       *e;
     
     e = ((t_thread*)thread)->e;
-    t = (t_thread *)thread; 
-    t->start = t->n * e->d->size.x / THREADS;
-    t->end = (t->n + 1) * e->d->size.x / THREADS;
+    t = (t_thread*)thread;
+    t->start = t->n * e->d->size.x / 8;
+    t->end = (t->n + 1) * e->d->size.x / 8;
     i.x = t->start;
     while (i.x < t->end)
     {
@@ -148,4 +148,22 @@ void    help_event(t_env *e)
         mlx_destroy_window(e->mlx_ptr, e->d->win);
     }
 
+}
+
+void            thread_start_sec_win(t_env *e, void *f(void *))
+{
+    int         i;
+    t_thread    thread[8];
+
+    i = 0;
+    while(i < 8)
+    {
+        thread[i].n = i;
+        thread[i].e = e;
+        pthread_create(&(thread[i]).id, NULL, f, &thread[i]);
+        i++;
+    }
+    i = -1;
+    while(++i < 8)
+        pthread_join(thread[i].id, NULL);
 }

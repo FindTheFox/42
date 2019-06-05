@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 01:12:21 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 18:26:45 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 04:22:57 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		color_rgb(t_env *e, t_pixel p)
 
 	color = 0;
 	mult = p.c.real * p.c.real + p.c.imag * p.c.imag;
-	nu = (p.i + 2 - log2(log2(sqrt(mult)))) / e->max_iter;
+	nu = (p.i + e->cycle - log2(log2(sqrt(mult)))) / e->max_iter;
 	nu_frac = nu - (int)nu;
 	r = ft_lerpi(e->r, e->r * p.i, nu_frac);
 	g = ft_lerpi(e->g, e->g * p.i, nu_frac);//(int)p.i * (e->g * nu_frac);
@@ -34,7 +34,6 @@ int		color_rgb(t_env *e, t_pixel p)
 	color += b;
 	return (color);
 }
-
 t_color		color_rgb2(t_env *e, t_pixel p)
 {
 	t_color color;
@@ -45,9 +44,9 @@ t_color		color_rgb2(t_env *e, t_pixel p)
 	mult = p.c.real * p.c.real + p.c.imag * p.c.imag;
 	nu = (p.i + e->cycle - log2(log2(sqrt(mult)))) / e->max_iter;
 	nu_frac = nu - (int)nu;
-	color.rgb.r = (nu_frac * e->r);
-	color.rgb.g = (nu_frac * e->g);
-	color.rgb.b = (nu_frac * e->b);
+	color.rgb.r = (nu_frac * 5) * e->r;
+	color.rgb.g = (255 - (nu_frac * 10)) * e->g;
+	color.rgb.b = (255 - (nu_frac * 2)) * e->b;
 	color.value = color.rgb.r << 16 | color.rgb.g << 8 | color.rgb.b;
 	return (color);
 }

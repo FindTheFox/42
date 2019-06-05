@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 19:01:58 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 03:41:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,55 @@
 
 int        deal_key(int key, t_env *e)
 {
-    ft_putnbr(key);
-    ft_putendl("");
-    key == /*104*/4 ? help_event(e) : 0;
-    key == /*65307*/53 ? ft_exit(e) : 0;
-    key == /*99*/8 ? switch_pal(e) : 0; 
-    key == /*106*/38 ? change_julia_set(e) : 0;
+    //ft_putnbr(key);
+    //ft_putendl("");
+    key == 104/*4*/ ? help_event(e) : 0;
+    key == 65307/*53*/ ? ft_exit(e) : 0;
+    key == 99/*8*/ ? switch_pal(e) : 0; 
+    key == 106/*38*/ ? change_julia_set(e) : 0;
     
-    key == /*38*/18 ? event_color(0, e) : 0;
-    key == /*233*/19 ? event_color(1, e) : 0;
-    key == /*34*/20 ? event_color(2, e) : 0;
-    key == /*39*/21 ? event_color(3, e) : 0;
-    key == /*40*/23 ? event_color(4, e) : 0;
-    key == /*45*/22 ? event_color(5, e) : 0;
-    key == /*232*/26 ? event_color(6, e) : 0;
-    if (key == /*116*/17)
+    key == 38/*18*/ ? event_color(0, e) : 0;
+    key == 233/*19*/ ? event_color(1, e) : 0;
+    key == 34/*20*/ ? event_color(2, e) : 0;
+    key == 39/*21*/ ? event_color(3, e) : 0;
+    key == 40/*23*/ ? event_color(4, e) : 0;
+    key == 45/*22*/ ? event_color(5, e) : 0;
+    key == 232/*26*/ ? event_color(6, e) : 0;
+    if (key == 116/*17*/)
         e->switc == 0 ? e->switc = 1 : (e->switc = 0);
-    key == /*65436*/83 ? switch_fractal(e, 0) : 0;
-    key == /*65433*/84 ? switch_fractal(e, 1) : 0;
-    key == /*65435*/85 ? switch_fractal(e, 2) : 0;
-    key == /*65430*/86 ? switch_fractal(e, 3) : 0;
-    key == /*65437*/87 ? switch_fractal(e, 4) : 0;
-    key == /*65432*/88 ? switch_fractal(e, 5) : 0;
-    key == /*65429*/89 ? switch_fractal(e, 6) : 0;
-    key == /*65431*/91 ? switch_fractal(e, 7) : 0;
-    key == /*65434*/92 ? switch_fractal(e, 8) : 0;
-    key == /*65438*/82 ? switch_fractal(e, 9) : 0;    
-    key == /*65293*/49 ? allow_motion_julia(e) : 0;
-    key == /*100*/2 ? reset_default(e) : 0;
-    if(key == 1)
+    key == 65436/*83*/ ? switch_fractal(e, 0) : 0;
+    key == 65433/*84*/ ? switch_fractal(e, 1) : 0;
+    key == 65435/*85*/ ? switch_fractal(e, 2) : 0;
+    key == 65430/*86*/ ? switch_fractal(e, 3) : 0;
+    key == 65437/*87*/ ? switch_fractal(e, 4) : 0;
+    key == 65432/*88*/ ? switch_fractal(e, 5) : 0;
+    key == 65429/*89*/ ? switch_fractal(e, 6) : 0;
+    key == 65431/*91*/ ? switch_fractal(e, 7) : 0;
+    key == 65434/*92*/ ? switch_fractal(e, 8) : 0;
+    key == 65438/*82*/ ? switch_fractal(e, 9) : 0;    
+    key == 109/*49*/ ? allow_motion_julia(e) : 0;
+    key == 100/*2*/ ? reset_default(e) : 0;
+    if(key == 115)
     {
         e->smooth == 0 ? e->smooth += 1 : (e->smooth = 0); 
         do_fractol(e);
     }
-    //do_fractol(e);
     return (0); 
 }
 
 int         press_event(int key, t_env *e)
 {
-    key == /*65451*/69 || key == /*65453*/78 ? cycle_usr(key, e) : 0;
-    key == /*114*/15 ? rgb_usr(e, 'r') : 0;
-    key == /*103*/5 ? rgb_usr(e, 'g') : 0;
-    key == /*98*/11 ? rgb_usr(e, 'b') : 0;
-    key == /*65361*/123 ? move(e, 'x', 0.05) : 0;
-    key == /*65363*/124 ? move(e, 'x', -0.05) : 0;
-    key == /*65361*/126 ? move(e, 'y', 0.05) : 0;
-    key == /*65364*/125 ? move(e, 'y', -0.05) : 0;
-    if (key == /*65365*/116 || key == /*65366*/121)
+    key == 65451/*69*/ || key == 65453/*78*/ ? cycle_usr(key, e) : 0;
+    key == 114/*15*/ ? rgb_usr(e, 'r') : 0;
+    key == 103/*5*/ ? rgb_usr(e, 'g') : 0;
+    key == 98/*11*/ ? rgb_usr(e, 'b') : 0;
+    key == 65361/*123*/ ? move(e, 'x', 0.05) : 0;
+    key == 65363/*124*/ ? move(e, 'x', -0.05) : 0;
+    key == 65362/*126*/ ? move(e, 'y', 0.05) : 0;
+    key == 65364/*125*/ ? move(e, 'y', -0.05) : 0;
+    if (key == 65365/*116*/ || key == 65366/*121*/)
     {
-        key == /*65365*/116 ? e->max_iter += 20 : (e->max_iter -= 20);
+        key == 65365/*116*/ ? e->max_iter += 42 : (e->max_iter -= 42);
         do_fractol(e);
     }    
     return (0);

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/31 10:21:50 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 04:50:25 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 # include <pthread.h>
 # include "../libft/includes/libft.h"
 
+#include <stdio.h>
+
 # define HEIGHT 720
 # define WIDTH  1200
 # define ZOOM   100
-# define THREADS 32
+# define THREADS 21
 
 typedef struct s_rgba
 {
@@ -127,6 +129,7 @@ typedef struct  s_env
     double         cycle;
     int         help;
     int         switc;
+    t_index     opos;
 }               t_env;
 
 typedef struct  s_thread
@@ -150,7 +153,7 @@ void        whatcolor(t_env *e, char *name, int ac);
 
 /**init prog**/
 
-void        setup(t_env *e);
+int         setup(t_env *e);
 void        init_fractal(t_env *e);
 void        init_param(t_env *e);
 
@@ -200,6 +203,7 @@ int				rgb_to_hsv(int r, int g, int b);
 t_color		    zebre_rgb_psyche(t_env *e, t_pixel p);
 t_rgba		    fill_rgb(int c);
 int			    vasarely(t_pixel p);
+int             buddhabrot_color(t_env *e, t_fractol *f);
 
 /**Events**/
 
@@ -228,11 +232,12 @@ void    display_helper2(t_env *e, char *c, void *m);
 void    *backscreen(void *thread);
 void    init_second_win(t_env *e);
 void    help_event(t_env *e);
+void    thread_start_sec_win(t_env *e, void *f(void *));
 
 /**exit**/
 
 int         ft_exit(t_env *e);
 void        error();
-void		ft_clear_img(t_env *e, t_index winsize);
+void		ft_clear_img(t_index winsize, int *img);
 
 #endif

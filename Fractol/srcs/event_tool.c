@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/22 21:02:50 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/29 02:17:02 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/05 04:06:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void        reset_default(t_env *e)
 {
     init_fractal(e);
     e->offset = (t_index) {.x = -0.5, .y = 0};
-    e->cycle = 2;
+    e->cycle = 20;
     do_fractol(e); 
     
 }

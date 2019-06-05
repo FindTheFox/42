@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 19:00:55 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/31 10:27:18 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/31 10:29:29 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ void        rgb_usr(t_env *e, char c)
 
 void        cycle_usr(int k, t_env *e)
 {
-    if (k == /*65453*/69)
+    if (k == 65453/*69*/)
         e->cycle <= 2 || e->cycle <= 5 ? e->cycle = 2 : (e->cycle -= 5);
-    else if (k == /*65451*/78)
+    else if (k == 65451/*78*/)
         e->cycle > 300 ? e->cycle = 0 : (e->cycle += 5);
     do_fractol(e);
 }
