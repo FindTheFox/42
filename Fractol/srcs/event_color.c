@@ -6,19 +6,19 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 19:00:55 by saneveu           #+#    #+#             */
-/*   Updated: 2019/05/31 10:29:29 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/06 16:15:48 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void        switch_pal(t_env *e)
+void switch_pal(t_env *e)
 {
     e->usr_color == 5 ? e->usr_color = 0 : e->usr_color++;
     do_fractol(e);
 }
 
-void        get_pal(t_env *e)
+void get_pal(t_env *e)
 {
     if (e->usr_color == 0)
         colorset0(e);
@@ -31,10 +31,10 @@ void        get_pal(t_env *e)
     else if (e->usr_color == 4)
         colorset4(e);
     else if (e->usr_color == 5)
-        colorset5(e);   
+        colorset5(e);
 }
 
-void        event_color(int key, t_env *e)
+void event_color(int key, t_env *e)
 {
     if (key == 0)
         e->style_color = 0;
@@ -68,12 +68,12 @@ void        event_color(int key, t_env *e)
     do_fractol(e);
 }
 
-void        rgb_usr(t_env *e, char c)
+void rgb_usr(t_env *e, char c)
 {
     if (e->switc == 0)
     {
         if (c == 'r')
-            e->r <= 255  ? e->r += 4 : (e->r = 0);
+            e->r <= 255 ? e->r += 4 : (e->r = 0);
         else if (c == 'g')
             e->g <= 255 ? e->g += 4 : (e->g = 0);
         else if (c == 'b')
@@ -82,7 +82,7 @@ void        rgb_usr(t_env *e, char c)
     else if (e->switc == 1 && e->style_color == 3)
     {
         if (c == 'r')
-            e->r2 <= 255  ? e->r2 += 4 : (e->r2 = 0);
+            e->r2 <= 255 ? e->r2 += 4 : (e->r2 = 0);
         else if (c == 'g')
             e->g2 <= 255 ? e->g2 += 4 : (e->g2 = 0);
         else if (c == 'b')
@@ -91,11 +91,11 @@ void        rgb_usr(t_env *e, char c)
     do_fractol(e);
 }
 
-void        cycle_usr(int k, t_env *e)
+void cycle_usr(int k, t_env *e)
 {
-    if (k == 65453/*69*/)
+    if (k == /*65453*/ 69)
         e->cycle <= 2 || e->cycle <= 5 ? e->cycle = 2 : (e->cycle -= 5);
-    else if (k == 65451/*78*/)
+    else if (k == /*65451*/ 78)
         e->cycle > 300 ? e->cycle = 0 : (e->cycle += 5);
     do_fractol(e);
 }

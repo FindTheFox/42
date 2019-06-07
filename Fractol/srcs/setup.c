@@ -6,30 +6,30 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 04:20:46 by saneveu           #+#    #+#             */
-/*   Updated: 2019/06/05 05:04:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/06 16:15:48 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int    setup(t_env *e)
+int setup(t_env *e)
 {
     e->mlx_ptr = mlx_init();
-    e->size = (t_index) {.x = WIDTH, .y = HEIGHT};
+    e->size = (t_index){.x = WIDTH, .y = HEIGHT};
     if (!(e->win_ptr = mlx_new_window(e->mlx_ptr, e->size.x, e->size.y, "Fractol")) ||
-    !(e->img_ptr = mlx_new_image(e->mlx_ptr, e->size.x, e->size.y)) ||
-    !(e->img = (int *)mlx_get_data_addr(e->img_ptr, &e->bpp, &e->s_l, &e->endian)))
+        !(e->img_ptr = mlx_new_image(e->mlx_ptr, e->size.x, e->size.y)) ||
+        !(e->img = (int *)mlx_get_data_addr(e->img_ptr, &e->bpp, &e->s_l, &e->endian)))
         return (1);
     init_param(e);
     init_fractal(e);
-    return(0);
+    return (0);
 }
 
-void        init_param(t_env *e)
+void init_param(t_env *e)
 {
     e->cycle = 20;
     e->smooth = 0;
-    e->offset = (t_index) {.x = -0.5, .y = 0};
+    e->offset = (t_index){.x = -0.5, .y = 0};
     e->rng = 0;
     e->motion = 0;
     e->help = 0;
@@ -38,25 +38,25 @@ void        init_param(t_env *e)
     e->usr_color = 0;
 }
 
-void        julias_changes(t_env *e)
+void julias_changes(t_env *e)
 {
-	if (!e->rng)
-		e->julia = (t_rng) {.real = -0.506667, .imag = 0.520000};
-	else if (e->rng == 1)
-		e->julia = (t_rng) {.real = 0.403333, .imag = 0.273333};
-	else if (e->rng == 2)
-		e->julia = (t_rng) {.real = 0.386667, .imag = 0.103333};
-	else if (e->rng == 3)
-		e->julia = (t_rng) {.real = -0.203333, .imag = -0.696667};
-	else if (e->rng == 4)
-		e->julia = (t_rng) {.real = 0.18, .imag = -0.566667};
-	else if (e->rng == 5)
-		e->julia = (t_rng) {.real = 0.371504, .imag = -0.153893};
+    if (!e->rng)
+        e->julia = (t_rng){.real = -0.506667, .imag = 0.520000};
+    else if (e->rng == 1)
+        e->julia = (t_rng){.real = 0.403333, .imag = 0.273333};
+    else if (e->rng == 2)
+        e->julia = (t_rng){.real = 0.386667, .imag = 0.103333};
+    else if (e->rng == 3)
+        e->julia = (t_rng){.real = -0.203333, .imag = -0.696667};
+    else if (e->rng == 4)
+        e->julia = (t_rng){.real = 0.18, .imag = -0.566667};
+    else if (e->rng == 5)
+        e->julia = (t_rng){.real = 0.371504, .imag = -0.153893};
     else if (e->rng == 6 || e->choix == 8)
-        e->julia = (t_rng) {.real = 0.566666, .imag = -0.5};
+        e->julia = (t_rng){.real = 0.566666, .imag = -0.5};
 }
 
-void        init_fractal(t_env *e)
+void init_fractal(t_env *e)
 {
     if (e->choix == 0)
     {
@@ -74,7 +74,7 @@ void        init_fractal(t_env *e)
         e->x1 = -1.9;
         e->x2 = 0.6;
         e->y1 = -1.4;
-        e->y2 = 1.2; 
+        e->y2 = 1.2;
     }
     else if (e->choix == 2)
     {
@@ -83,7 +83,7 @@ void        init_fractal(t_env *e)
         e->x1 = -2.5;
         e->x2 = 0.6;
         e->y1 = -1.9;
-        e->y2 = 1.2;   
+        e->y2 = 1.2;
     }
     else if (e->choix == 3)
     {
@@ -103,7 +103,7 @@ void        init_fractal(t_env *e)
         e->x2 = 1.15;
         e->y1 = -1.15;
         e->y2 = 1.25;
-        julias_changes(e); 
+        julias_changes(e);
     }
     else if (e->choix == 5)
     {
@@ -139,7 +139,7 @@ void        init_fractal(t_env *e)
         e->x1 = -2.1;
         e->x2 = 0.6;
         e->y1 = -1.35;
-        e->y2 = 1.2; 
+        e->y2 = 1.2;
         julias_changes(e);
     }
     else if (e->choix == 9)
@@ -152,7 +152,7 @@ void        init_fractal(t_env *e)
     }
 }
 
-void        whatfractal(t_env *e, char *name, int ac)
+void whatfractal(t_env *e, char *name, int ac)
 {
     if (ac >= 2)
     {
@@ -173,7 +173,7 @@ void        whatfractal(t_env *e, char *name, int ac)
         else if (!ft_strcmp(name, "burning_ship"))
             e->choix = 7;
         else if (!ft_strcmp(name, "phoenix"))
-            e->choix = 8; 
+            e->choix = 8;
         else
         {
             ft_putendl("Not valids arguments.");
@@ -184,11 +184,11 @@ void        whatfractal(t_env *e, char *name, int ac)
     }
 }
 
-void        *ptr_f_choose(t_env *e)
+void *ptr_f_choose(t_env *e)
 {
-    void    (*f)(t_fractol *, t_env *);
+    void (*f)(t_fractol *, t_env *);
 
-    e->choix == 0 ? f = &mandelbrot: 0;
+    e->choix == 0 ? f = &mandelbrot : 0;
     e->choix == 1 ? f = &mandel_cube : 0;
     e->choix == 2 ? f = &mandelbrot_flower : 0;
     e->choix == 3 ? f = &julia : 0;
@@ -197,5 +197,5 @@ void        *ptr_f_choose(t_env *e)
     e->choix == 6 ? f = &tricorn : 0;
     e->choix == 7 ? f = &burning_ship : 0;
     e->choix == 8 ? f = &phoenix : 0;
-    return(f); 
+    return (f);
 }
