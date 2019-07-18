@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 07:13:49 by saneveu           #+#    #+#             */
-/*   Updated: 2019/06/05 01:04:44 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/18 01:54:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void    *backscreen(void *thread)
         while (++i.y < e->d->size.y)
         {
             if (e->choix == 9)
-                color_pixel_img(e->d->tab, i, e->d->size, rgb_to_hsv(ft_lerpi(0x42, 0x45, i.x * i.y), ft_lerpi(0x86, 0xf4, i.x * i.y), ft_lerpi(0xf4, 42, i.x * i.y)));
+                color_pixel_img(e->d->tab, i, e->d->size, rgb_to_hsv(ft_lerpi(0x42, 0x45, i.x), ft_lerpi(0x86, 0xf4, i.x), ft_lerpi(0xf4, 42, i.x)));
             else if (e->style_color == 0)
                 color_pixel_img(e->d->tab, i, e->d->size, e->color[(int)((i.x * i.y) / 10000) % e->div]);
             else if (e->style_color == 1)

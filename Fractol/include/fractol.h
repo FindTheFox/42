@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 01:00:22 by saneveu           #+#    #+#             */
-/*   Updated: 2019/06/05 04:50:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/18 01:53:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 
 #include <stdio.h>
 
-# define HEIGHT 720
-# define WIDTH  1200
+# define HEIGHT 1080
+# define WIDTH  1920
 # define ZOOM   100
 # define THREADS 21
 

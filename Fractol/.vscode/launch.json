@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/home/samuel/Documents/42/Fractol/Fractol",
-            "args": ["Mandelbrot"],
+            "args": ["julia"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

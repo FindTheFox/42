@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 18:01:11 by saneveu           #+#    #+#             */
-/*   Updated: 2019/04/23 19:38:04 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/05/25 06:58:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int			rota_event(int key, t_env *e)
 {
-	key == 91 ? rotate(e, &e->rot_x, -V_ROT) : 0;
-	key == 84 ? rotate(e, &e->rot_x, V_ROT) : 0;
+	ft_putnbr(key);
+	ft_putendl("");
+	key == /*91*/65430 ? rotate(e, &e->rot_x, -V_ROT) : 0;
+	key == /*84*/65432 ? rotate(e, &e->rot_x, V_ROT) : 0;
 	key == 88 ? rotate(e, &e->rot_y, V_ROT) : 0;
 	key == 86 ? rotate(e, &e->rot_y, -V_ROT) : 0;
 	key == 89 ? rotate(e, &e->rot_z, -V_ROT_Z) : 0;
