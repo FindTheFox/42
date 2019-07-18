@@ -6,7 +6,11 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2019/06/18 01:55:18 by saneveu          ###   ########.fr        #
+=======
+#    Updated: 2019/06/07 16:19:57 by saneveu          ###   ########.fr        #
+>>>>>>> 2537d915459e80683e1594e09cfdc87228349656
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +38,13 @@ SRC		= 	main.c \
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
+<<<<<<< HEAD
 CC		= gcc -Ofast 
 CFLAGS	= -Wall -Wextra -Werror
+=======
+CC		= gcc -g 
+CFLAGS	= -Wall -Wextra -Werror -Ofast
+>>>>>>> 2537d915459e80683e1594e09cfdc87228349656
 
 # pthread lib
 	PTH_LIB = -lpthread -D_REENTRANT 
@@ -44,7 +53,7 @@ CFLAGS	= -Wall -Wextra -Werror
 MLX		= ./minilibx/
 MLX_LIB	= $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./minilibx
-MLX_LNK	= -L ./minilibx -l mlx -lXext -lX11 -L/usr/X11/lib#-framework OpenGL -framework AppKit
+MLX_LNK	= -L ./minilibx -l mlx -framework OpenGL -framework AppKit##-lXext -lX11 -L/usr/X11/lib
 
 # ft library
 FT		= ./libft/

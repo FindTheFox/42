@@ -6,17 +6,21 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/25 07:13:49 by saneveu           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/06/18 01:54:13 by saneveu          ###   ########.fr       */
+=======
+/*   Updated: 2019/06/06 16:15:48 by saneveu          ###   ########.fr       */
+>>>>>>> 2537d915459e80683e1594e09cfdc87228349656
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void    display_helper2(t_env *e, char *c, void *m)
+void display_helper2(t_env *e, char *c, void *m)
 {
     if (e->style_color == 3)
     {
-        mlx_string_put(m, e->d->win, 200, 290, 0xff0000, "[style 3] |T| to switch rgb");    
+        mlx_string_put(m, e->d->win, 200, 290, 0xff0000, "[style 3] |T| to switch rgb");
         mlx_string_put(m, e->d->win, 200, 310, 0xff0000, "-r2 =");
         c = ft_itoa(e->r2);
         mlx_string_put(m, e->d->win, 260, 310, 0x000000, c);
@@ -29,7 +33,7 @@ void    display_helper2(t_env *e, char *c, void *m)
     }
 }
 
-void    display_helper(t_env *e, char *c, void *m)
+void display_helper(t_env *e, char *c, void *m)
 {
     mlx_string_put(m, e->d->win, 440, 220, 0x000022, "Cycle =");
     c = ft_itoa(e->cycle);
@@ -56,10 +60,10 @@ void    display_helper(t_env *e, char *c, void *m)
         display_helper2(e, c, m);
 }
 
-void    display(t_env *e)
+void display(t_env *e)
 {
-    void    *m;
-    char    *c;
+    void *m;
+    char *c;
 
     m = e->mlx_ptr;
     ft_clear_img(e->d->size, e->d->tab);
@@ -72,7 +76,7 @@ void    display(t_env *e)
     mlx_string_put(m, e->d->win, 15, 110, 0x000000, "[JULIA] J : change julia set const");
     mlx_string_put(m, e->d->win, 15, 130, 0x000000, "[JULIA] M : Allow mouse motion");
     mlx_string_put(m, e->d->win, 15, 150, 0x000000, "[STYLE 1->3] R - G - B : respectively r g b colors");
-    mlx_string_put(m, e->d->win, 15, 170, 0x000000, "S : Smooth color             D : Set default"); 
+    mlx_string_put(m, e->d->win, 15, 170, 0x000000, "S : Smooth color             D : Set default");
     mlx_string_put(m, e->d->win, 10, 200, 0x000fff, "*******Current params*******");
     mlx_string_put(m, e->d->win, 15, 220, 0x000000, "[STYLE 0] Color panel =");
     c = ft_itoa(e->usr_color);
@@ -81,17 +85,17 @@ void    display(t_env *e)
     c = ft_itoa(e->smooth);
     mlx_string_put(m, e->d->win, 380, 220, 0x000022, c);
     display_helper(e, c, m);
-    free(c);  
+    free(c);
 }
 
-void    *backscreen(void *thread)
+void *backscreen(void *thread)
 {
-    t_index     i;
-    t_thread    *t;
-    t_env       *e;
-    
-    e = ((t_thread*)thread)->e;
-    t = (t_thread*)thread;
+    t_index i;
+    t_thread *t;
+    t_env *e;
+
+    e = ((t_thread *)thread)->e;
+    t = (t_thread *)thread;
     t->start = t->n * e->d->size.x / 8;
     t->end = (t->n + 1) * e->d->size.x / 8;
     i.x = t->start;
@@ -123,22 +127,22 @@ void    *backscreen(void *thread)
     return (NULL);
 }
 
-void    init_second_win(t_env *e)
+void init_second_win(t_env *e)
 {
-    e->d->size = (t_index) {.x = 600, .y = 500};
+    e->d->size = (t_index){.x = 600, .y = 500};
     e->d->win = mlx_new_window(e->mlx_ptr, e->d->size.x, e->d->size.y, "Assistant");
     e->d->img = mlx_new_image(e->mlx_ptr, e->d->size.x, e->d->size.y);
-    e->d->tab = (int*)mlx_get_data_addr(e->d->img, &e->d->bpp, &e->d->s_l, &e->d->endian);
+    e->d->tab = (int *)mlx_get_data_addr(e->d->img, &e->d->bpp, &e->d->s_l, &e->d->endian);
     e->d->i = 1;
 }
 
-void    help_event(t_env *e)
+void help_event(t_env *e)
 {
     e->help == 0 ? e->help = 1 : (e->help = 0);
     if (e->help == 1)
     {
         if (!(e->d = (t_dis *)malloc(sizeof(t_dis))))
-            return ;
+            return;
         init_second_win(e);
         display(e);
     }
@@ -147,16 +151,15 @@ void    help_event(t_env *e)
         mlx_destroy_image(e->mlx_ptr, e->d->img);
         mlx_destroy_window(e->mlx_ptr, e->d->win);
     }
-
 }
 
-void            thread_start_sec_win(t_env *e, void *f(void *))
+void thread_start_sec_win(t_env *e, void *f(void *))
 {
-    int         i;
-    t_thread    thread[8];
+    int i;
+    t_thread thread[8];
 
     i = 0;
-    while(i < 8)
+    while (i < 8)
     {
         thread[i].n = i;
         thread[i].e = e;
@@ -164,6 +167,6 @@ void            thread_start_sec_win(t_env *e, void *f(void *))
         i++;
     }
     i = -1;
-    while(++i < 8)
+    while (++i < 8)
         pthread_join(thread[i].id, NULL);
 }

@@ -6,16 +6,16 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 18:24:03 by saneveu           #+#    #+#             */
-/*   Updated: 2019/06/05 04:06:29 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/06/06 16:15:48 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void        colorset1(t_env *e)
+void colorset1(t_env *e)
 {
-    static int color[16] = {
-        0xffff7d,
+	static int color[16] = {
+		0xffff7d,
 		0xffee7d,
 		0xffdf7e,
 		0xffcf7e,
@@ -30,36 +30,35 @@ void        colorset1(t_env *e)
 		0xbe3f7f,
 		0xae2f7f,
 		0x9d1f7f,
-		0x8d0e7f
+		0x8d0e7f};
+	e->div = 16;
+	e->color = color;
+}
+
+void colorset3(t_env *e)
+{
+	static int color[16] = {
+		0xf06d89,
+		0xfeaebf,
+		0xfbc4d0,
+		0xa4ece9,
+		0x8fece8,
+		0xbeefed,
+		0x8fa6ec,
+		0xaebeef,
+		0xf9cb8a,
+		0xf6d19b,
+		0xfedfb3,
+		0xa39191,
+		0xa58d8d,
+		0xa17878,
+		0xa77070,
 	};
 	e->div = 16;
 	e->color = color;
 }
 
-void        colorset3(t_env *e)
-{
-    static int color[16] = {
-        0xf06d89,        
-        0xfeaebf,
-        0xfbc4d0,
-        0xa4ece9,
-        0x8fece8,
-        0xbeefed,
-        0x8fa6ec,
-        0xaebeef,
-        0xf9cb8a,
-        0xf6d19b,
-        0xfedfb3,
-        0xa39191,
-        0xa58d8d,
-        0xa17878,
-        0xa77070,
-    };
-	e->div = 16;
-    e->color = color;
-}
-
-void	colorset0(t_env *e)
+void colorset0(t_env *e)
 {
 	static int color[16] = {
 		65536 * 66 + 256 * 30 + 15,
@@ -77,13 +76,12 @@ void	colorset0(t_env *e)
 		65536 * 255 + 256 * 170 + 0,
 		65536 * 204 + 256 * 128 + 0,
 		65536 * 153 + 256 * 87 + 0,
-		65536 * 106 + 256 * 52 + 3
-	};
+		65536 * 106 + 256 * 52 + 3};
 	e->div = 16;
 	e->color = color;
 }
 
-void		colorset2(t_env *e)
+void colorset2(t_env *e)
 {
 	static int color[16] = {
 		0xffffff,
@@ -101,13 +99,12 @@ void		colorset2(t_env *e)
 		0x80,
 		0x60,
 		0x3f,
-		0x1f
-	};
+		0x1f};
 	e->div = 16;
 	e->color = color;
 }
 
-void		colorset4(t_env *e)
+void colorset4(t_env *e)
 {
 	static int color[16] = {
 		0xb2123e,
@@ -125,13 +122,13 @@ void		colorset4(t_env *e)
 		0x5c438d,
 		0x544794,
 		0x4d4b9a,
-		0x464fa1,	
+		0x464fa1,
 	};
 	e->div = 16;
 	e->color = color;
 }
 
-void		colorset5(t_env *e)
+void colorset5(t_env *e)
 {
 	static int color[13] = {
 		0x0ee2f5,
