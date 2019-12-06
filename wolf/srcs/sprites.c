@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maboye <maboye@student.42.fr>              +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/11/29 15:01:32 by maboye           ###   ########.fr       */
+/*   Updated: 2019/12/06 17:22:15 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void			sprites(t_wolf *data)
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 	if (!(data->sprite[19].img = SDL_LoadBMP("img/textures/wall4.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/ceiling.bmp")))
+	if (!(data->sprite[1].img = SDL_LoadBMP("img/textures/parquet.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[1].img = SDL_LoadBMP("img/textures/floor.bmp")))
+	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/blueprint.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 	if (!(data->sprite[2].img = SDL_LoadBMP("img/doom.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);

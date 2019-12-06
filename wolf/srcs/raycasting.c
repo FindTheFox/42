@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycastingMY.c                                     :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 14:46:06 by saneveu           #+#    #+#             */
-/*   Updated: 2019/12/06 01:48:37 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/06 20:08:51 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void            draw_wall(t_wolf *d, int x)
         d->ray.wallx = d->player.y + d->ray.perpWallDist * d->ray.diry;
     else
         d->ray.wallx = d->player.x + d->ray.perpWallDist * d->ray.dirx;
-    d->map.depth_buffer[x] = d->ray.wallx;
+    d->map.depth_buffer[x] = d->ray.perpWallDist;
     d->ray.wallx = d->ray.wallx - (int)d->ray.wallx;
     d->ray.wtx = (int)(d->ray.wallx * (double)d->sprite[d->ray.tex].img->w);   //texture size 80 a revoir
     if ((d->ray.wallside == 0 && d->ray.dirx > 0)

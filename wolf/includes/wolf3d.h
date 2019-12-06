@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 01:28:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/06 23:03:45 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <time.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include <math.h>
 # include "/usr/include/SDL2/SDL.h"
 # include "/usr/include/SDL2/SDL_ttf.h"
 # include "../libft/libft.h"
@@ -94,6 +95,16 @@ typedef struct	s_objdata
 	float		width;
 	float		samplex;
 	float		sampley;
+	double		invDet;
+	double		transformx;
+	double		transformy;
+	int			spriteScreenX;
+	int			spriteHeight;
+	int			spriteWidth;
+	int			drawStartY;
+	int			drawEndY;
+	int			drawEndX;
+	int			drawStartX;
 }				t_objdata;
 
 typedef struct	s_object
@@ -348,5 +359,6 @@ void			minimap2(t_wolf *data);
 
 uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex, float sampley);
 void            draw_floor_ceilling(t_wolf *d, int x);
+void			mouse(t_wolf *data, Sint16 xrel, int dir);
 
 #endif

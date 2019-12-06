@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 01:22:12 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/06 18:24:06 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,6 @@ void			wolf3d(t_wolf *data)
 	data->player.dirx = 1;
 	data->player.diry = 0;
 	data->player.planex = 0;
-	data->player.planey = -data->player.fov;
+	data->player.planey = data->player.fov;
 	launch_game(data);
 }

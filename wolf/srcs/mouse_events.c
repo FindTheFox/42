@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_events.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maboye <maboye@student.42.fr>              +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/11/29 16:34:01 by maboye           ###   ########.fr       */
+/*   Updated: 2019/12/06 22:13:51 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,31 @@ static void		change_weapon(t_wolf *data)
 			++data->player.weapon;
 		if (data->player.weapon > 3)
 			data->player.weapon = 0;
-		delay = 10;
+		delay = 5;
 		SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
 	}
 }
 
 static void		mouse_motion(t_wolf *data)
 {
-	data->player.angle += data->player.speed
-		* data->player.ms * data->mouse.xrel;
+	
+	double	olddirx;
+	double	oldplanex;
+	double	angle;
+	/*
+	data->player.dirx += data->player.speed * data->mouse.xrel;
+	data->player.diry += data->player.speed
+		* data->player.ms * data->mouse.yrel;
+	
+	angle = data->mouse.xrel * M_PI / 180;
+	olddirx = data->player.dirx;	
+	data->player.dirx = (data->player.dirx * cos(angle)) - (data->player.diry * sin(angle));
+	data->player.diry = (olddirx * sin(angle)) + (data->player.diry * cos(angle));
+	oldplanex = data->player.planex;
+	data->player.planex = (oldplanex * cos(angle)) - (data->player.planey * sin(angle));
+	data->player.planey = (oldplanex * sin(angle)) + (data->player.planey * cos(angle));
+	*/
+	mouse(data, data->mouse.xrel, 1);
 	if (ft_abs(data->mouse.xrel) > W_WIDTH / 2
 	|| data->mouse.x > data->wx + W_WIDTH
 	|| data->mouse.x < data->wx

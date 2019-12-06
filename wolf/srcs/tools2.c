@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 00:59:56 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/06 23:11:12 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ float			distance(float x1, float y1, float x2, float y2)
 	t_rsqrt	conv;
 
 	nb = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
-	i = nb * 0.5f;
+	/*i = nb * 0.5f;
 	threehalfs = 1.5f;
 	conv = (t_rsqrt){nb};
 	conv.i = 0x5f3759df - (conv.i >> 1);
 	conv.f *= (threehalfs - (i * conv.f * conv.f));
 	return (1 / conv.f);
+	*/
+	return (nb);
 }
 
 int				get_objhp(t_wolf *data, t_object *list)
