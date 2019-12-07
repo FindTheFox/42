@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 01:58:52 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/07 17:31:21 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void		draw_player_minimap(t_wolf *d, int x, int y)
 	d->raydata.eyey = d->player.diry + d->player.planey * d->ray.camera; //sinf(d->raydata.angle - 5 * 3.14159 / 6);
 	d->point[0].x = 10 * (d->raydata.eyex) + x;
 	d->point[0].y = 10 * (d->raydata.eyey) + y;
-	d->point[1].x = 10 * cosf(d->raydata.angle + 5 * 3.14159 / 6) + x;
-	d->point[1].y = 10 * sinf(d->raydata.angle + 5 * 3.14159 / 6) + y;
+	d->point[1].x = 10 * (d->ray.dirx + 5 * 3.14159 / 6) + x;
+	d->point[1].y = 10 * (d->ray.diry + 5 * 3.14159 / 6) + y;
 	SDL_SetRenderDrawColor(d->renderer, 0, 255, 0, 100);
 	SDL_RenderDrawLine(d->renderer, x, y, d->point[0].x, d->point[0].y);
 	SDL_RenderDrawLine(d->renderer, x, y, d->point[1].x, d->point[1].y);
@@ -41,9 +41,9 @@ static void		draw_ray_fov(t_wolf *data, int i, int x, int y)
 	SDL_RenderDrawLine(data->renderer, x, y,
 			data->map.depth_buffer[i]
 			* W_WIDTH / (data->map.sc_x * data->map.width)
-			* (cosf(data->raydata.angle)) + x, data->map.depth_buffer[i]
+			* (data->ray.dirx) + x, data->map.depth_buffer[i]
 			* W_HEIGHT / (data->map.sc_x * data->map.height)
-			* (sinf(data->raydata.angle)) + y);
+			* (data->ray.diry) + y);
 }
 
 static void		calc_player(t_wolf *d, int sc_x)

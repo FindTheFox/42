@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 23:03:45 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/07 17:51:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-# include "/usr/include/SDL2/SDL.h"
-# include "/usr/include/SDL2/SDL_ttf.h"
+//# include "/usr/include/SDL2/SDL.h"
+//# include "/usr/include/SDL2/SDL_ttf.h"
+
+# include "../SDL2.framework/Headers/SDL.h"
+# include "../SDL2.framework/Headers/SDL_ttf.h"
 # include "../libft/libft.h"
 
 # define W_WIDTH	1280
@@ -357,6 +360,7 @@ void			ft_mouse_motion_x(t_wolf *data);
 void			object_minimap(t_wolf *data, t_object *list);
 void			minimap2(t_wolf *data);
 
+uint32_t		get_pixel_obj(t_object *l, int si, int texX, int texY);
 uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex, float sampley);
 void            draw_floor_ceilling(t_wolf *d, int x);
 void			mouse(t_wolf *data, Sint16 xrel, int dir);

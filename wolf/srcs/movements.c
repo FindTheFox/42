@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 22:20:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/07 17:03:54 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		in_wall(t_wolf *data)
 			if (distance(data->player.x,
 					data->player.y,
 					data->pfdata.list[i].x + 0.5f,
-					data->pfdata.list[i].y + 0.5f) < 0.8f)
+					data->pfdata.list[i].y + 0.5f) < 0.55f)
 				return (1);
 		}
 	return (0);

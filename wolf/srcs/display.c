@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 01:23:28 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/07 18:36:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void			display(t_wolf *data)
 	monsters(data);
 	objects(data, data->monster);
 	objects(data, data->object);
-	remove_objects(data);
+	//remove_objects(data);
 	weapons(data);
 	textures(data);
 	cursor(data);
