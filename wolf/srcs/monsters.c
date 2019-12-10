@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/09 21:58:09 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/10 16:43:28 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void		monster_actions(t_wolf *data)
 		return ;
 	data->pfdata.start = &data->pfdata.list[data->monster->i];
 	data->pfdata.end = &data->pfdata.list[data->player.pos];
-	dst = distance(data->monster->x, data->monster->y,
+	dst = distance_calc(data->monster->x, data->monster->y,
 			data->pfdata.end->x, data->pfdata.end->y);
 	if (dst > 2.5f)
 	{
