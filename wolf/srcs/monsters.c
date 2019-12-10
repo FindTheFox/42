@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monsters.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maboye <maboye@student.42.fr>              +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/02 18:36:10 by maboye           ###   ########.fr       */
+/*   Updated: 2019/12/09 21:58:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void			monsters(t_wolf *data)
 	head = data->monster;
 	while (data->monster)
 	{
+		data->monster->i = (int)data->monster->x
+			+ data->map.width * (int)data->monster->y;
 		if (data->monster->type > 5 && data->monster->type < 10)
 			if (--data->monster->delay < 1)
 			{

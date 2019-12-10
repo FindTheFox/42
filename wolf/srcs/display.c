@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/07 18:36:02 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/09 17:24:42 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void		textures(t_wolf *data)
 	unsigned int	*pixels;
 	SDL_Rect		rect;
 
-	//skybox(data);
 	rect.h = W_HEIGHT / 2;
 	rect.w = W_WIDTH;
 	rect.x = 0;
@@ -126,10 +125,6 @@ static void		health(t_wolf *data)
 
 void			display(t_wolf *data)
 {
-	if (data->player.angle >= 6.3f)
-		data->player.angle = 0;
-	else if (data->player.angle < 0)
-		data->player.angle = 6.3f;
 	raycasting(data);
 	monsters(data);
 	objects(data, data->monster);

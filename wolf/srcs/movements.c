@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/07 17:03:54 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/09 17:33:17 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,21 +66,6 @@ static void		move_maker(t_wolf *data, double sx, double sy)
 	}
 	data->player.pos = (int)data->player.x
 		+ data->map.width * (int)data->player.y;
-}
-
-void			mouse(t_wolf *data, Sint16 xrel, int dir)
-{
-	double	olddirx;
-	double	oldplanex;
-	double	angle;
-	
-	angle = xrel * M_PI / 180 * dir;
-	olddirx = data->player.dirx;	
-	data->player.dirx = (data->player.dirx * cos(angle)) - (data->player.diry * sin(angle));
-	data->player.diry = (olddirx * sin(angle)) + (data->player.diry * cos(angle));
-	oldplanex = data->player.planex;
-	data->player.planex = (oldplanex * cos(angle)) - (data->player.planey * sin(angle));
-	data->player.planey = (oldplanex * sin(angle)) + (data->player.planey * cos(angle));
 }
 
 void			movements(t_wolf *data)

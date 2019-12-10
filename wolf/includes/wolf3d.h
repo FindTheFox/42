@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/07 17:51:04 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/09 20:14:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-//# include "/usr/include/SDL2/SDL.h"
-//# include "/usr/include/SDL2/SDL_ttf.h"
+# include "/usr/include/SDL2/SDL.h"
+# include "/usr/include/SDL2/SDL_ttf.h"
 
-# include "../SDL2.framework/Headers/SDL.h"
-# include "../SDL2.framework/Headers/SDL_ttf.h"
+//# include "../SDL2.framework/Headers/SDL.h"
+//# include "../SDL2.framework/Headers/SDL_ttf.h"
+
 # include "../libft/libft.h"
 
 # define W_WIDTH	1280
@@ -331,6 +332,7 @@ void			raycasting(t_wolf *data);
 void			minimap(t_wolf *data);
 
 float			distance(float x1, float y1, float x2, float y2);
+float			distance_calc(float x1, float y1, float x2, float y2);
 int				get_objhp(t_wolf *data, t_object *list);
 uint32_t		get_pixel(t_wolf *data, int si, float samplex, float sampley);
 SDL_Surface		*new_surface(int w, int h);

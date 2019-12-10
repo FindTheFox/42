@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grenada.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maboye <maboye@student.42.fr>              +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/04 20:18:42 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/12/09 20:10:54 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void			grenada(t_wolf *data)
 		grenada->type = 3;
 		grenada->si = 28;
 		grenada->sprite = data->sprite[grenada->si];
-		grenada->vx = cosf(data->player.angle);
-		grenada->vy = sinf(data->player.angle);
+		grenada->vx = data->player.dirx;
+		grenada->vy = data->player.diry;
 		grenada->speed = 0.5f;
 		lst_pushback(data->object, grenada);
 		if (data->object == NULL)

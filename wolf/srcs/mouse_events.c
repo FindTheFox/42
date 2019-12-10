@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/06 22:13:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/09 17:29:51 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,28 @@ static void		change_weapon(t_wolf *data)
 	}
 }
 
-static void		mouse_motion(t_wolf *data)
+void			mouse(t_wolf *data, Sint16 xrel, int dir)
 {
-	
 	double	olddirx;
 	double	oldplanex;
 	double	angle;
-	/*
-	data->player.dirx += data->player.speed * data->mouse.xrel;
-	data->player.diry += data->player.speed
-		* data->player.ms * data->mouse.yrel;
 	
-	angle = data->mouse.xrel * M_PI / 180;
+	angle = xrel * M_PI / 180 * dir;
 	olddirx = data->player.dirx;	
 	data->player.dirx = (data->player.dirx * cos(angle)) - (data->player.diry * sin(angle));
 	data->player.diry = (olddirx * sin(angle)) + (data->player.diry * cos(angle));
 	oldplanex = data->player.planex;
 	data->player.planex = (oldplanex * cos(angle)) - (data->player.planey * sin(angle));
 	data->player.planey = (oldplanex * sin(angle)) + (data->player.planey * cos(angle));
-	*/
+}
+
+static void		mouse_motion(t_wolf *data)
+{
+	
+	double	olddirx;
+	double	oldplanex;
+	double	angle;
+	
 	mouse(data, data->mouse.xrel, 1);
 	if (ft_abs(data->mouse.xrel) > W_WIDTH / 2
 	|| data->mouse.x > data->wx + W_WIDTH

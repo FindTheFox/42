@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2019/12/06 01:00:22 by saneveu          ###   ########.fr        #
+#    Updated: 2019/12/09 17:21:18 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ OBJDIR	=	./obj
 # src / obj files
 SRC		=	astar_list.c \
 			astar.c \
-			blockside.c \
 			datagame.c \
 			display.c \
 			events.c \
@@ -50,7 +49,6 @@ SRC		=	astar_list.c \
 			objects.c \
 			raycasting.c \
 			shoot.c \
-			skybox.c \
 			spawner.c \
 			sprites.c \
 			tools.c \
