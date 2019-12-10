@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shoot.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maboye <maboye@student.42.fr>              +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/02 17:54:51 by maboye           ###   ########.fr       */
+/*   Updated: 2019/12/10 16:41:03 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static int		hitbox(t_wolf *data)
 		return (0);
 	range = ms / data->monster->data.dst_fromplayer;
 	i = ms - range - 1;
+	printf("///%d\n", i);
 	if (data->monster->data.mid < ms + range
 		&& data->monster->data.mid > ms - range)
 	{
@@ -57,7 +58,6 @@ static void		shoot_impact(t_wolf *data)
 	while (data->monster)
 	{
 		if (data->monster->type > 6
-			&& fabs(data->monster->data.angle) < data->player.fov / 2
 			&& data->monster->data.dst_fromplayer < data->map.depth)
 			if (hitbox(data) == 1)
 			{

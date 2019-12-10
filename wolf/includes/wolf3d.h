@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/09 20:14:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/10 15:51:42 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-# include "/usr/include/SDL2/SDL.h"
-# include "/usr/include/SDL2/SDL_ttf.h"
+//# include "/usr/include/SDL2/SDL.h"
+//# include "/usr/include/SDL2/SDL_ttf.h"
 
-//# include "../SDL2.framework/Headers/SDL.h"
-//# include "../SDL2.framework/Headers/SDL_ttf.h"
+# include "../SDL2.framework/Headers/SDL.h"
+# include "../SDL2.framework/Headers/SDL_ttf.h"
 
 # include "../libft/libft.h"
 

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/09 17:33:17 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/10 16:04:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static int		in_wall(t_wolf *data)
 	while (++i < data->map.len)
 		if (data->pfdata.list[i].bobstacle == 1)
 		{
-			if (distance(data->player.x,
+			if (distance_calc(data->player.x,
 					data->player.y,
 					data->pfdata.list[i].x + 0.5f,
-					data->pfdata.list[i].y + 0.5f) < 0.55f)
+					data->pfdata.list[i].y + 0.5f) < 0.70f)
 				return (1);
 		}
 	return (0);
@@ -42,7 +42,7 @@ static int		is_outrange(t_wolf *data)
 	head = data->monster;
 	while (data->monster)
 	{
-		if (distance(data->player.x, data->player.y,
+		if (distance_calc(data->player.x, data->player.y,
 		data->monster->x, data->monster->y) < 1)
 		{
 			data->monster = head;
@@ -81,11 +81,8 @@ void			movements(t_wolf *data)
 	if (data->key[KQ])
 		mouse(data, 5, -1);
 	if (data->key[KW])
-	{
 		move_maker(data, data->player.dirx * data->player.speed * shift,
 			data->player.diry * data->player.speed * shift);
-	}
-	
 	if (data->key[KS])
 		move_maker(data,
 			-(data->player.dirx * data->player.speed * shift),
@@ -93,10 +90,10 @@ void			movements(t_wolf *data)
 	/*if (data->key[KA])
 		move_maker(data,
 			data->player.dirx * data->player.speed * shift,
-			-(data->player.diry * data->player.speed * shift));
+			-data->player.diry * data->player.speed * shift);
 	if (data->key[KD])
 		move_maker(data,
-			-(data->player.dirx * data->player.speed * shift),
+			-data->player.dirx * data->player.speed * shift,
 			data->player.diry * data->player.speed * shift);
 	*/
 }

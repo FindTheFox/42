@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/09 21:48:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/10 16:39:11 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ static void		get_objangle(t_wolf *data, t_object *list)
 		list->x, list->y);
 	spritex = list->x - data->player.x;
 	spritey = list->y - data->player.y;
+	
+	list->data.mid = (0.5 * (data->player.dirx
+		/ (data->player.fov / 2)) + 0.5) * W_WIDTH;
+	printf("%f\n", list->data.mid);
+	
 	list->data.invDet = 1.0 / ((data->player.planex * data->player.diry) - (data->player.dirx * data->player.planey)); 
 	list->data.transformx = list->data.invDet * (data->player.diry * spritex - data->player.dirx * spritey);
 	list->data.transformy = list->data.invDet * (-data->player.planey * spritex + data->player.planex * spritey);
@@ -85,6 +90,7 @@ void			objects(t_wolf *data, t_object *list)
 		return ;
 	while (list)
 	{
+		list->data.zpixel = get_pixel(data, list->si, 0, 0);
 		if (list->type > 2 && list->type < 10)
 		{
 			list->i = (int)list->x + data->map.width * (int)list->y;
