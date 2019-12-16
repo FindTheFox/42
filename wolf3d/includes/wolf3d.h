@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/14 01:07:52 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/16 19:18:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-# include "/usr/include/SDL2/SDL.h"
-# include "/usr/include/SDL2/SDL_ttf.h"
+//# include "/usr/include/SDL2/SDL.h"
+//# include "/usr/include/SDL2/SDL_ttf.h"
 
-//# include "../SDL2.framework/Headers/SDL.h"
-//# include "../SDL2.framework/Headers/SDL_ttf.h"
+# include "../SDL2.framework/Headers/SDL.h"
+# include "../SDL2.framework/Headers/SDL_mixer.h"
+# include "../SDL2.framework/Headers/SDL_ttf.h"
 
 # include "../libft/libft.h"
 
@@ -64,7 +65,7 @@ typedef struct	s_sprite
 {
 	SDL_Surface	*img;
 }				t_sprite;
-/*
+
 typedef struct	s_sound
 {
 	Mix_Chunk 	*walk;
@@ -85,7 +86,7 @@ typedef struct	s_sound
 	Mix_Chunk	*tic;
 	Uint8		token;
 }				t_sound;
-*/
+
 typedef struct	s_objdata
 {
 	int			column;
@@ -283,6 +284,7 @@ typedef struct	s_wolf
 	SDL_Rect					*rect;
 	SDL_Point					*pl;
 	SDL_Point					*point;
+	t_sound					sound;
 	SDL_MouseMotionEvent	mouse;
 	SDL_Event				event;
 	SDL_Renderer			*renderer;
@@ -356,5 +358,10 @@ uint32_t		get_pixel_obj(t_object *l, int si, int texX, int texY);
 uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex, float sampley);
 void            draw_floor_ceilling(t_wolf *d, int x);
 void			mouse(t_wolf *data, Sint16 xrel, int dir);
+
+void            audio_init(t_wolf *data);
+void            free_sound(t_wolf *data);
+void            play_sound(t_wolf *data, Mix_Chunk *chunk, int channel);
+void            play_music(t_wolf *data, Mix_Music *music);
 
 #endif

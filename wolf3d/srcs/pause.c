@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pause.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maboye <maboye@student.42.fr>              +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/12/04 18:24:24 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/12/16 19:19:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,15 @@ SDL_Color			ft_hex_to_rgb(int hexa)
 static int			move_cursor(t_wolf *data, int *cursor)
 {
 	if (data->event.key.keysym.sym == SDLK_UP && *cursor > 1)
+	{
+		play_sound(data, data->sound.tic, 5);
 		return (--*cursor);
+	}
 	else if (data->event.key.keysym.sym == SDLK_DOWN && *cursor < 2)
+	{
+		play_sound(data, data->sound.tic, 5);
 		return (++*cursor);
+	}
 	else
 		return (*cursor);
 }
@@ -79,13 +85,18 @@ void				w_pause(t_wolf *data)
 	SDL_FlushEvent(SDL_MOUSEMOTION);
 	cursor = 1;
 	draw_main_rect(data, cursor);
+	play_music(data, data->sound.PauseMusic);
 	while (data->key[KP])
 	{
 		SDL_PollEvent(&data->event);
 		if ((data->event.key.keysym.sym == SDLK_SPACE && cursor == 1)
 		|| (data->event.key.keysym.sym == SDLK_p
 		&& data->event.type == SDL_KEYDOWN))
+		{
 			data->key[KP] = 0;
+			play_sound(data, data->sound.PlayerSpawn, 1);
+			play_music(data, data->sound.InGmMusic);
+		}
 		else if (data->event.key.keysym.sym == SDLK_SPACE && cursor == 2)
 			clean_exit(data, NULL, 1);
 		else if (data->event.key.keysym.sym == SDLK_UP

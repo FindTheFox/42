@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/14 00:58:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/16 19:51:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		sprites_monsters(t_wolf *data)
 {
-	if (!(data->sprite[6].img = SDL_LoadBMP("img/monsters/golem.bmp")))
+	if (!(data->sprite[6].img = SDL_LoadBMP("img/portal.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 	if (!(data->sprite[7].img = SDL_LoadBMP("img/monsters/monster1.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);

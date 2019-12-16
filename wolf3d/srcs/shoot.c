@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/14 01:15:07 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/16 19:22:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void			deal_damage_tomonster(t_wolf *data, t_object *list, int damage)
 		++data->kill_score;
 		list->dead = 1;
 		list->si = 28;
+		play_sound(data, data->sound.NMIdeath, 3);
 	}
 	else
 	{
 		list->si = list->type + 6;
 		list->sprite = data->sprite[list->si];
+		play_sound(data, data->sound.NMIhit, 3);
 	}
 }
 
@@ -62,10 +64,8 @@ static void		shoot_impact(t_wolf *data)
 	{
 		if (data->monster->type > 6)
 			if (hitbox(data) == 1)
-			{
 				deal_damage_tomonster(data, data->monster,
 					data->player.wdata[data->player.weapon].damage);
-			}
 		data->monster = data->monster->next;
 	}
 	data->monster = head;
@@ -76,13 +76,25 @@ void			shoot(t_wolf *data)
 	if (data->key[ML] && data->fire_delay < 1)
 	{
 		if (data->player.weapon == 0)
+		{
 			data->player.wdata[data->player.weapon].si = 21;
+			play_sound(data, data->sound.hand, 2);
+		}
 		else if (data->player.weapon == 1)
+		{
 			data->player.wdata[data->player.weapon].si = 23;
+			play_sound(data, data->sound.gun, 2);
+		}
 		else if (data->player.weapon == 2)
+		{
 			data->player.wdata[data->player.weapon].si = 25;
+			play_sound(data, data->sound.fusil, 2);
+		}
 		else if (data->player.weapon == 3)
+		{
 			data->player.wdata[data->player.weapon].si = 27;
+			play_sound(data, data->sound.shotgun, 2);
+		}
 		shoot_impact(data);
 		data->fire_delay = data->player.wdata[data->player.weapon].delay;
 		data->skin_delay = 5;

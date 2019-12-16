@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/07 18:36:06 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/16 19:30:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ void			spawner(t_wolf *data)
 		data->monster->delay = data->monster->type * 320;
 		return ;
 	}
+	play_sound(data, data->sound.NMIspawn, 4);
 	create_newmonster(data);
 }

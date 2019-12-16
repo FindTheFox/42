@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/14 00:50:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/16 19:40:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ static void		init_sdl(t_wolf *data)
 	data->sdl_on = 1;
 	if (!(data = minimap_alloc(data)))
 		clean_exit(data, "wolf3d: error malloc minimap", 0);
-
+	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+		clean_exit(data, "wolf3d: error Mix_OpenAudio", 0);
+	else
+		audio_init(data);
 	if (TTF_Init() == -1)
 		clean_exit(data, "wolf3d: error TTF_init", 0);
-	data->pwindow = SDL_CreateWindow("maboye wolf3d",
+	data->pwindow = SDL_CreateWindow("saneveu wolf3d",
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
 			W_WIDTH, W_HEIGHT, 0);

@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2019/12/14 01:08:18 by saneveu          ###   ########.fr        #
+#    Updated: 2019/12/16 19:34:52 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ SRC		=	astar_list.c \
 			display.c \
 			events.c \
 			game_over.c \
-			grenada.c \
+			audio.c \
 			main.c \
 			minimap.c \
 			monsters.c \
@@ -74,7 +74,7 @@ ifeq ($(OS), Linux)
 	SDL		=	-lSDL2-2.0 -lSDL2_ttf
 	DIRSDL	=	
 else
-	SDL		=	-F ~/Library/Frameworks -framework SDL2 -framework SDL2_ttf
+	SDL		=	-F ~/Library/Frameworks -framework SDL2 -framework SDL2_ttf -framework SDL2_mixer
 	DIRSDL	=	./SDL2.framework/Headers
 endif 
 
