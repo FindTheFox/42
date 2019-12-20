@@ -99,7 +99,7 @@ typedef struct {
     Uint32  manufacturer;
     Uint32  product;
     Uint32  sample_period;
-    Uint32  MIDI_unity_note;
+    Uint32  MIDI_(W_HEIGHT / 10)_note;
     Uint32  MIDI_pitch_fraction;
     Uint32  SMTPE_format;
     Uint32  SMTPE_offset;

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/16 19:18:13 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 17:36:53 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <math.h>
-//# include "/usr/include/SDL2/SDL.h"
-//# include "/usr/include/SDL2/SDL_ttf.h"
 
 # include "../SDL2.framework/Headers/SDL.h"
 # include "../SDL2.framework/Headers/SDL_mixer.h"
@@ -29,15 +27,10 @@
 # define W_WIDTH	1280
 # define W_HEIGHT	720
 
-# define nTHREAD	8
-
 # define FPS		60
 
 # define SNB		30
 # define WNB		4
-
-# define UNITX		W_WIDTH / 16
-# define UNITY		W_HEIGHT / 10
 
 # define KQ			0
 # define KE			1
@@ -68,20 +61,19 @@ typedef struct	s_sprite
 
 typedef struct	s_sound
 {
-	Mix_Chunk 	*walk;
-	Mix_Music 	*InGmMusic;
-	Mix_Music	*PauseMusic;
+	Mix_Music	*ingmusic;
+	Mix_Music	*pausemusic;
 	Mix_Chunk	*gun;
 	Mix_Chunk	*shotgun;
 	Mix_Chunk	*fusil;
 	Mix_Chunk	*hand;
-	Mix_Chunk	*NMIhit;
-	Mix_Chunk	*NMIdeath;
-	Mix_Chunk	*NMIspawn;
-	Mix_Chunk	*NMIatk;
-	Mix_Chunk	*PlayerHit;
-	Mix_Chunk	*PlayerDeath;
-	Mix_Chunk	*PlayerSpawn;
+	Mix_Chunk	*nmihit;
+	Mix_Chunk	*nmideath;
+	Mix_Chunk	*nmispawn;
+	Mix_Chunk	*nmiatk;
+	Mix_Chunk	*playerhit;
+	Mix_Chunk	*playerdeath;
+	Mix_Chunk	*playerspawn;
 	Mix_Chunk	*switchgun;
 	Mix_Chunk	*tic;
 	Uint8		token;
@@ -101,16 +93,16 @@ typedef struct	s_objdata
 	float		width;
 	float		samplex;
 	float		sampley;
-	double		invDet;
+	double		invdet;
 	double		transformx;
 	double		transformy;
-	int			spriteScreenX;
-	int			spriteHeight;
-	int			spriteWidth;
-	int			drawStartY;
-	int			drawEndY;
-	int			drawEndX;
-	int			drawStartX;
+	int			spritescreenx;
+	int			spriteheight;
+	int			spritewidth;
+	int			drawstarty;
+	int			drawendy;
+	int			drawendx;
+	int			drawstartx;
 }				t_objdata;
 
 typedef struct	s_object
@@ -179,7 +171,7 @@ typedef struct	s_ray
 	int			walltop;
 	int			wallbot;
 	double		wallx;
-	double		perpWallDist;
+	double		perpwalldist;
 	double		distwall;
 	int			maposx;
 	int			maposy;
@@ -281,16 +273,16 @@ typedef struct	s_wolf
 	t_object				*monster;
 	t_object				*object;
 	t_sprite				sprite[SNB];
-	SDL_Rect					*rect;
-	SDL_Point					*pl;
-	SDL_Point					*point;
+	SDL_Rect				*rect;
+	SDL_Point				*pl;
+	SDL_Point				*point;
 	t_sound					sound;
 	SDL_MouseMotionEvent	mouse;
 	SDL_Event				event;
 	SDL_Renderer			*renderer;
 	SDL_Surface				*screen;
 	SDL_Surface				*surf_write;
-	SDL_Texture 			*text_write;
+	SDL_Texture				*text_write;
 	SDL_Texture				*bgc;
 	SDL_Texture				*bgf;
 	SDL_Texture				*window;
@@ -318,8 +310,8 @@ void			wolf3d(t_wolf *data);
 t_wolf			*minimap_alloc(t_wolf *data);
 void			get_blockside(t_wolf *data, int testx, int testy);
 void			raycasting(t_wolf *data);
-void            draw_wall(t_wolf *d, int x);
-void            get_tex(t_wolf *d);
+void			draw_wall(t_wolf *d, int x);
+void			get_tex(t_wolf *d);
 
 void			minimap(t_wolf *data);
 
@@ -354,14 +346,19 @@ void			ft_mouse_motion_x(t_wolf *data);
 void			object_minimap(t_wolf *data, t_object *list);
 void			minimap2(t_wolf *data);
 
-uint32_t		get_pixel_obj(t_object *l, int si, int texX, int texY);
-uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex, float sampley);
-void            draw_floor_ceilling(t_wolf *d, int x);
+uint32_t		get_pixel_obj(t_object *l, int si, int texx, int texy);
+uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex,
+	float sampley);
+void			draw_floor_ceilling(t_wolf *d, int x);
 void			mouse(t_wolf *data, Sint16 xrel, int dir);
 
-void            audio_init(t_wolf *data);
-void            free_sound(t_wolf *data);
-void            play_sound(t_wolf *data, Mix_Chunk *chunk, int channel);
-void            play_music(t_wolf *data, Mix_Music *music);
+void			audio_init(t_wolf *data);
+void			free_sound(t_wolf *data);
+void			play_sound(t_wolf *data, Mix_Chunk *chunk, int channel);
+void			play_music(t_wolf *data, Mix_Music *music);
+
+void			cursor(t_wolf *data);
+void			health(t_wolf *data);
+void			help_pause(t_wolf *data);
 
 #endif

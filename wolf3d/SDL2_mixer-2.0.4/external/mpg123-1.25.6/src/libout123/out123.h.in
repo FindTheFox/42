@@ -536,7 +536,7 @@ MPG123_EXPORT
 void out123_drain(out123_handle *ao);
 
 /** Drain the output, but only partially up to the given number of
- *  bytes. This gives you the opportunity to do something while
+ *  bytes. This gives you the opport(W_HEIGHT / 10) to do something while
  *  the optional buffer is writing remaining data instead of having
  *  one atomic API call for it all.
  *

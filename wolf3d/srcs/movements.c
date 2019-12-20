@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/13 02:30:09 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 17:05:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void		move_maker(t_wolf *data, double sx, double sy)
 	{
 		data->player.x -= sx;
 		data->player.y -= sy;
-		SDL_FlushEvent(SDL_KEYDOWN);		
+		SDL_FlushEvent(SDL_KEYDOWN);
 	}
 	data->player.pos = (int)data->player.x
 		+ data->map.width * (int)data->player.y;
@@ -76,9 +76,9 @@ void			movements(t_wolf *data)
 	double	angle;
 
 	shift = data->key[SHIFT] ? 1.5f : 1;
-	if (data->key[KE])
+	if (data->key[KD])
 		mouse(data, 5, 1);
-	if (data->key[KQ])
+	if (data->key[KA])
 		mouse(data, 5, -1);
 	if (data->key[KW])
 		move_maker(data, data->player.dirx * data->mv_speed * shift,
@@ -87,13 +87,4 @@ void			movements(t_wolf *data)
 		move_maker(data,
 			-(data->player.dirx * data->mv_speed * shift),
 			-(data->player.diry * data->mv_speed * shift));
-	/*if (data->key[KA])
-		move_maker(data,
-			data->player.dirx * data->player.speed * shift,
-			-data->player.diry * data->player.speed * shift);
-	if (data->key[KD])
-		move_maker(data,
-			-data->player.dirx * data->player.speed * shift,
-			data->player.diry * data->player.speed * shift);
-	*/
 }

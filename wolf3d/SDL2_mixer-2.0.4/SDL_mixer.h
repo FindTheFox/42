@@ -596,7 +596,7 @@ extern DECLSPEC void SDLCALL Mix_Resume(int channel);
 extern DECLSPEC int SDLCALL Mix_Paused(int channel);
 
 /* Pause/Resume the music stream */
-extern DECLSPEC void SDLCALL Mix_PauseMusic(void);
+extern DECLSPEC void SDLCALL Mix_pausemusic(void);
 extern DECLSPEC void SDLCALL Mix_ResumeMusic(void);
 extern DECLSPEC void SDLCALL Mix_RewindMusic(void);
 extern DECLSPEC int SDLCALL Mix_PausedMusic(void);

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/13 23:34:38 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 15:33:40 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void			events(t_wolf *data)
 	&& data->event.type == SDL_KEYDOWN)
 	{
 		data->style == 0 ? sprites_textures(data) : sprites_textures1(data);
-		data->style == 0 ? data->style = 1 : (data->style = 0);
+		if (data->style == 0)
+			data->style = 1;
+		else
+			data->style = 0;
 	}
 	else
 		get_events(data);

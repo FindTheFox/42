@@ -1086,7 +1086,7 @@ static opus_int64 op_predict_link_start(const OpusSeekRecord *_sr,int _nsr,
       /*Oh, and also make sure these came from the same stream.*/
       if(_sr[srj].serialno!=serialno1)continue;
       offset2=_sr[srj].offset;
-      /*For once, we can subtract with impunity.*/
+      /*For once, we can subtract with imp(W_HEIGHT / 10).*/
       den=gp2-gp1;
       ipart=gp2/den;
       num=offset2-offset1;

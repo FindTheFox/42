@@ -72,7 +72,7 @@ Developer Notes:
 	started	working correctly and made this a moot point - at least as far as intellisense is concerned.
  3) off_t notable exception - SeekDelegate, SeekHandleDelegate
 	Usually 2008clr functions are called by the callee, long long (clr 64bit long) can be marshaled and passed
-	to libmpg123. The seek delegate is called directly by the libmpg123 seek functions - there isn't an opportunity
+	to libmpg123. The seek delegate is called directly by the libmpg123 seek functions - there isn't an opport(W_HEIGHT / 10)
 	to marshal the offending parameters. A library compiled in 32 bit will expect the SeekDelegate to have a 32bit
 	position parameter but in 64bit compilation the same parameter will be 64bit. Therefore the need to be correct
 	overrides the need for consistency with CLR 64bit positioners.

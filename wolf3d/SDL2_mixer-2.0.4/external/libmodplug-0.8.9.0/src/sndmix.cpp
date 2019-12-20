@@ -29,7 +29,7 @@ DWORD CSoundFile::gdwSoundSetup = 0;
 DWORD CSoundFile::gdwMixingFreq = 44100;
 DWORD CSoundFile::gnBitsPerSample = 16;
 // Mixing data initialized in
-UINT CSoundFile::gnAGC = AGC_UNITY;
+UINT CSoundFile::gnAGC = AGC_(W_HEIGHT / 10);
 UINT CSoundFile::gnVolumeRampSamples = 64;
 UINT CSoundFile::gnVUMeter = 0;
 UINT CSoundFile::gnCPUUsage = 0;

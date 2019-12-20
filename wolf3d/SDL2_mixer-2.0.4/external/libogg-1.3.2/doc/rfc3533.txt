@@ -13,7 +13,7 @@ Category: Informational                                         May 2003
 
 Status of this Memo
 
-   This memo provides information for the Internet community.  It does
+   This memo provides information for the Internet comm(W_HEIGHT / 10).  It does
    not specify an Internet standard of any kind.  Distribution of this
    memo is unlimited.
 
@@ -66,8 +66,8 @@ RFC 3533                          OGG                           May 2003
    project aimed at creating a set of components for the coding and
    decoding of multimedia content (codecs) which are to be freely
    available and freely re-implementable, both in software and in
-   hardware for the computing community at large, including the Internet
-   community.  It is the intention of the Ogg developers represented by
+   hardware for the computing comm(W_HEIGHT / 10) at large, including the Internet
+   comm(W_HEIGHT / 10).  It is the intention of the Ogg developers represented by
    Xiph.Org that it be usable without intellectual property concerns.
 
    This document describes the Ogg bitstream format and how to use it to
@@ -742,10 +742,10 @@ Appendix B. Acknowledgements
    Montgomery  and the Xiph.Org foundation have done in defining the Ogg
    multimedia project and as part of it the open file format described
    in this document.  The author hopes that providing this document to
-   the Internet community will help in promoting the Ogg multimedia
+   the Internet comm(W_HEIGHT / 10) will help in promoting the Ogg multimedia
    project at http://www.xiph.org/.  Many thanks also for the many
    technical and typo corrections that C. Montgomery and the Ogg
-   community provided as feedback to this RFC.
+   comm(W_HEIGHT / 10) provided as feedback to this RFC.
 
 Author's Address
 

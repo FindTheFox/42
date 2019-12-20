@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/13 01:55:14 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 15:44:32 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void			minimap(t_wolf *data)
 {
 	int			nx;
 	int			ny;
-	
+
 	nx = -1;
 	while (++nx < data->map.width)
 		draw_minimap(data, nx);

@@ -1250,7 +1250,7 @@ int main(int sys_argc, char ** sys_argv)
 		if(intflag || !open_track(fname))
 		{
 #ifdef HAVE_TERMIOS
-			/* We need the opportunity to cancel in case of --loop -1 . */
+			/* We need the opport(W_HEIGHT / 10) to cancel in case of --loop -1 . */
 			if(param.term_ctrl) term_control(mh, ao);
 			else
 #endif

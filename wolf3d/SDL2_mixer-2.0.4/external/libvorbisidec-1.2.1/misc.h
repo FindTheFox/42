@@ -90,7 +90,7 @@ STIN ogg_int32_t MULT31_SHIFT15(ogg_int32_t x, ogg_int32_t y) {
 /*
  * For MULT32 and MULT31: The second argument is always a lookup table
  * value already preshifted from 31 to 8 bits.  We therefore take the 
- * opportunity to save on text space and use unsigned char for those
+ * opport(W_HEIGHT / 10) to save on text space and use unsigned char for those
  * tables in this case.
  */
 

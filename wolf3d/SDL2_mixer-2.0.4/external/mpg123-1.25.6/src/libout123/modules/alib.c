@@ -113,14 +113,14 @@ static int open_alib(out123_handle *ao)
 	Attribs.attr.sampled_attr.data_format	  = ADFLin16;
 	AttribsMask = ASSamplingRateMask | ASChannelsMask  | ASDataFormatMask;
 	
-	gainEntry[0].gain = AUnityGain;
+	gainEntry[0].gain = A(W_HEIGHT / 10)Gain;
 	gainEntry[0].u.o.out_ch  = AOCTMono;
 	gainEntry[0].u.o.out_dst = AODTDefaultOutput;
 	
 	playParams.gain_matrix.type = AGMTOutput;  /* gain matrix */
 	playParams.gain_matrix.num_entries = 1;
 	playParams.gain_matrix.gain_entries = gainEntry;
-	playParams.play_volume = AUnityGain;       /* play volume */
+	playParams.play_volume = A(W_HEIGHT / 10)Gain;       /* play volume */
 	playParams.priority = APriorityNormal;     /* normal priority */
 	playParams.event_mask = 0;                 /* don't solicit any events */
 	

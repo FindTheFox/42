@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools2.c                                           :+:      :+:    :+:   */
+/*   tool2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/13 00:13:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 17:12:51 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,61 +50,6 @@ int				get_objhp(t_wolf *data, t_object *list)
 	return (hp + data->kill_score);
 }
 
-uint32_t		get_pixel(t_wolf *data, int si, float samplex, float sampley)
-{
-	int				sx;
-	int				sy;
-	uint8_t			*p;
-	t_sprite		surface;
-
-	surface = data->sprite[si];
-	sx = samplex * surface.img->w;
-	sy = sampley * surface.img->h;
-	p = (uint8_t *)surface.img->pixels + sy * surface.img->pitch
-		+ sx * surface.img->format->BytesPerPixel;
-	return (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
-}
-
-uint32_t		get_pixel_obj(t_object *l, int si, int texX, int texY)
-{
-	int				sx;
-	int				sy;
-	uint8_t		*p;
-	t_sprite		surface;
-
-	surface	= l->sprite;
-	p = (uint8_t *)surface.img->pixels + texY * surface.img->pitch
-		+ texX * surface.img->format->BytesPerPixel;
-	return (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);	
-}
-
-uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex, float sampley)
-{
-	int				sx;
-	int				sy;
-	uint8_t			*p;
-	t_sprite		surface;
-
-	surface = data->sprite[si];
-	sx = samplex;
-	sy = sampley;
-	p = (uint8_t *)surface.img->pixels + sy * surface.img->pitch
-		+ sx * surface.img->format->BytesPerPixel;
-	return (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
-}
-
-SDL_Surface		*new_surface(int w, int h)
-{
-	Uint32	color[4];
-
-	color[0] = 0x000000ff;
-	color[1] = 0x0000ff00;
-	color[2] = 0x00ff0000;
-	color[3] = 0xff000000;
-	return (SDL_CreateRGBSurface(0, w, h, 32,
-				color[0], color[1], color[2], color[3]));
-}
-
 void			put_pixel(SDL_Surface *surface, int x, int y, uint32_t color)
 {
 	unsigned int	*pixels;
@@ -113,4 +58,22 @@ void			put_pixel(SDL_Surface *surface, int x, int y, uint32_t color)
 		return ;
 	pixels = (unsigned int *)surface->pixels;
 	pixels[x + (y * W_WIDTH)] = color;
+}
+
+void			sprites_textures1(t_wolf *data)
+{
+	if (!(data->sprite[16].img = SDL_LoadBMP("img/textures/metal1.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[17].img = SDL_LoadBMP("img/textures/metal2.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[18].img = SDL_LoadBMP("img/textures/metal3.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[19].img = SDL_LoadBMP("img/textures/metal4.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/bluefloor.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[1].img = SDL_LoadBMP("img/textures/water.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[2].img = SDL_LoadBMP("img/doom.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
 }

@@ -76,7 +76,7 @@ void Menu(void)
     if (scanf("%s",buf) == 1) {
         switch(buf[0]){
         case 'p': case 'P':
-            Mix_PauseMusic();
+            Mix_pausemusic();
             break;
         case 'r': case 'R':
             Mix_ResumeMusic();

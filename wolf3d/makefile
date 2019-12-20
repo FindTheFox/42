@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2019/12/16 19:34:52 by saneveu          ###   ########.fr        #
+#    Updated: 2019/12/20 16:16:47 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ OBJDIR	=	./obj
 SRC		=	astar_list.c \
 			astar.c \
 			datagame.c \
+			hud.c \
 			display.c \
 			events.c \
 			game_over.c \
@@ -51,8 +52,9 @@ SRC		=	astar_list.c \
 			shoot.c \
 			spawner.c \
 			sprites.c \
-			tools.c \
-			tools2.c\
+			tool.c \
+			tool2.c \
+			tool3.c \
 			weapons.c \
 			wolf3d.c  \
 			pause.c \

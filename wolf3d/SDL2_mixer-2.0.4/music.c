@@ -911,7 +911,7 @@ Mix_Fading Mix_FadingMusic(void)
 }
 
 /* Pause/Resume the music stream */
-void Mix_PauseMusic(void)
+void Mix_pausemusic(void)
 {
     Mix_LockAudio();
     if (music_playing) {

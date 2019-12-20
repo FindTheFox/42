@@ -4079,7 +4079,7 @@ GLAPI void APIENTRY glMultTransposeMatrixdARB (const GLdouble *m);
 #define GL_ARB_vertex_blend 1
 #define GL_MAX_VERTEX_UNITS_ARB           0x86A4
 #define GL_ACTIVE_VERTEX_UNITS_ARB        0x86A5
-#define GL_WEIGHT_SUM_UNITY_ARB           0x86A6
+#define GL_WEIGHT_SUM_(W_HEIGHT / 10)_ARB           0x86A6
 #define GL_VERTEX_BLEND_ARB               0x86A7
 #define GL_CURRENT_WEIGHT_ARB             0x86A8
 #define GL_WEIGHT_ARRAY_TYPE_ARB          0x86A9

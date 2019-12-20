@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/16 19:26:01 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 17:23:16 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,13 @@ static void		monster_actions(t_wolf *data)
 	}
 	else
 	{
-		play_sound(data, data->sound.NMIatk, 10);
+		play_sound(data, data->sound.nmiatk, 10);
 		data->monster->si = data->monster->type + 3;
 		data->monster->sprite = data->sprite[data->monster->si];
 		data->player.health -= data->monster->type * 2;
 		data->monster->delay = data->monster->type * 10;
 		if (data->player.health < 1)
 			game_over(data);
-		else
-			play_sound(data, data->sound.PlayerHit, 5);
 	}
 }
 

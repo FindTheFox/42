@@ -90,8 +90,8 @@ extern short int gKaiserSinc[]; // 8-taps polyphase
 #define SPLINE_QUANTSCALE	(1L<<SPLINE_QUANTBITS)
 #define SPLINE_8SHIFT		(SPLINE_QUANTBITS-8)
 #define SPLINE_16SHIFT		(SPLINE_QUANTBITS)
-// forces coefsset to unity gain
-#define SPLINE_CLAMPFORUNITY
+// forces coefsset to (W_HEIGHT / 10) gain
+#define SPLINE_CLAMPFOR(W_HEIGHT / 10)
 // log2(number) of precalculated splines (range is [4..14])
 #define SPLINE_FRACBITS 10
 #define SPLINE_LUTLEN (1L<<SPLINE_FRACBITS)
@@ -122,7 +122,7 @@ CzCUBICSPLINE::CzCUBICSPLINE( )
 		lut[_LIdx+1] = (signed short)( (_LC0  < -_LScale) ? -_LScale : ((_LC0  > _LScale) ? _LScale : _LC0 ) );
 		lut[_LIdx+2] = (signed short)( (_LC1  < -_LScale) ? -_LScale : ((_LC1  > _LScale) ? _LScale : _LC1 ) );
 		lut[_LIdx+3] = (signed short)( (_LC2  < -_LScale) ? -_LScale : ((_LC2  > _LScale) ? _LScale : _LC2 ) );
-#ifdef SPLINE_CLAMPFORUNITY
+#ifdef SPLINE_CLAMPFOR(W_HEIGHT / 10)
 		_LSum = lut[_LIdx+0]+lut[_LIdx+1]+lut[_LIdx+2]+lut[_LIdx+3];
 		if( _LSum != SPLINE_QUANTSCALE )
 		{	int _LMax = _LIdx;
@@ -154,7 +154,7 @@ CzCUBICSPLINE sspline;
       c[-N..N] *= w(0..N)
      with n in 2*N and w(n) being a window function (see loy)
 
-     then calculate gain and scale filter coefs to have unity gain.
+     then calculate gain and scale filter coefs to have (W_HEIGHT / 10) gain.
   ------------------------------------------------------------------------------
 */
 // quantizer scale of window coefs
@@ -2360,7 +2360,7 @@ void CSoundFile::ProcessAGC(int count)
 	// Some kind custom law, so that the AGC stays quite stable, but slowly
 	// goes back up if the sound level stays below a level inversely
 	// proportional to the AGC level. (J'me comprends)
-	if ((agc >= gnAGC) && (gnAGC < AGC_UNITY) && (gnVUMeter < (0xFF - (gnAGC >> (AGC_PRECISION-7))) ))
+	if ((agc >= gnAGC) && (gnAGC < AGC_(W_HEIGHT / 10)) && (gnVUMeter < (0xFF - (gnAGC >> (AGC_PRECISION-7))) ))
 	{
 		gAGCRecoverCount += count;
 		UINT agctimeout = gdwMixingFreq + gnAGC;
@@ -2382,7 +2382,7 @@ void CSoundFile::ProcessAGC(int count)
 void CSoundFile::ResetAGC()
 //-------------------------
 {
-	gnAGC = AGC_UNITY;
+	gnAGC = AGC_(W_HEIGHT / 10);
 }
 
 #endif // NO_AGC

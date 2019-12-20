@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/12/16 19:19:46 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 17:37:49 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ static void			draw_cursor(t_wolf *data, int cursor, SDL_Rect rect)
 	x = 7;
 	while (x < 11)
 	{
-		(*(data->rect)) = (SDL_Rect){x * UNITX, (6.5 + cursor)
-			* UNITY, UNITX / 6, UNITY / 6};
+		(*(data->rect)) = (SDL_Rect){x * (W_WIDTH / 16), (6.5 + cursor)
+			* (W_HEIGHT / 10), (W_WIDTH / 16) / 6, (W_HEIGHT / 10) / 6};
 		set_rect_to_screen(data, data->rect, 0);
 		x++;
 	}
-	(*(data->rect)) = (SDL_Rect){x * UNITX, (6 + cursor)
-		* UNITY, UNITX / 2, UNITY / 2};
+	(*(data->rect)) = (SDL_Rect){x * (W_WIDTH / 16), (6 + cursor)
+		* (W_HEIGHT / 10), (W_WIDTH / 16) / 2, (W_HEIGHT / 10) / 2};
 	set_rect_to_screen(data, data->rect, 0);
 }
 
@@ -66,10 +66,12 @@ static void			draw_main_rect(t_wolf *data, int cursor)
 	(*(data->rect)) = (SDL_Rect){0, 0, 0, 0};
 	data->policep = data->police;
 	set_write_to_screen(data, (*(data->rect)), 0, "DOOM");
-	(*(data->rect)) = (SDL_Rect){2 * UNITX, 7 * UNITY, 2 * UNITX, 0.75 * UNITY};
+	(*(data->rect)) = (SDL_Rect){2 * (W_WIDTH / 16), 7 * (W_HEIGHT / 10), 2
+		* (W_WIDTH / 16), 0.75 * (W_HEIGHT / 10)};
 	data->policep = data->police2;
 	set_write_to_screen(data, (*(data->rect)), 0, "CONTINUE");
-	(*(data->rect)) = (SDL_Rect){2 * UNITX, 8 * UNITY, 2 * UNITX, 0.75 * UNITY};
+	(*(data->rect)) = (SDL_Rect){2 * (W_WIDTH / 16), 8 * (W_HEIGHT / 10), 2
+		* (W_WIDTH / 16), 0.75 * (W_HEIGHT / 10)};
 	set_write_to_screen(data, (*(data->rect)), 0, "QUIT");
 	draw_cursor(data, cursor, (*(data->rect)));
 	SDL_RenderPresent(data->renderer);
@@ -85,18 +87,14 @@ void				w_pause(t_wolf *data)
 	SDL_FlushEvent(SDL_MOUSEMOTION);
 	cursor = 1;
 	draw_main_rect(data, cursor);
-	play_music(data, data->sound.PauseMusic);
+	play_music(data, data->sound.pausemusic);
 	while (data->key[KP])
 	{
 		SDL_PollEvent(&data->event);
 		if ((data->event.key.keysym.sym == SDLK_SPACE && cursor == 1)
 		|| (data->event.key.keysym.sym == SDLK_p
 		&& data->event.type == SDL_KEYDOWN))
-		{
-			data->key[KP] = 0;
-			play_sound(data, data->sound.PlayerSpawn, 1);
-			play_music(data, data->sound.InGmMusic);
-		}
+			help_pause(data);
 		else if (data->event.key.keysym.sym == SDLK_SPACE && cursor == 2)
 			clean_exit(data, NULL, 1);
 		else if (data->event.key.keysym.sym == SDLK_UP

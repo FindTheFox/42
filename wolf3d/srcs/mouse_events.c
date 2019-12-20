@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/16 19:29:36 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 17:42:23 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,24 @@
 
 static void		change_weapon(t_wolf *data)
 {
-	if (data->player.weapon < 4)
+	static int	delay;
+
+	delay = 0;
+	if (--delay < 0)
 	{
-		++data->player.weapon;
-		play_sound(data, data->sound.switchgun, 7);
+		if (data->player.weapon < 4)
+		{
+			++data->player.weapon;
+			play_sound(data, data->sound.switchgun, 7);
+		}
+		if (data->player.weapon > 3)
+		{
+			data->player.weapon = 0;
+			play_sound(data, data->sound.hand, 7);
+		}
+		delay = 10;
+		SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
 	}
-	if (data->player.weapon > 3)
-	{
-		data->player.weapon = 0;
-		play_sound(data, data->sound.hand, 7);
-	}	
-	SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
 }
 
 void			mouse(t_wolf *data, Sint16 xrel, int dir)
@@ -32,23 +39,26 @@ void			mouse(t_wolf *data, Sint16 xrel, int dir)
 	double	olddirx;
 	double	oldplanex;
 	double	angle;
-	
+
 	angle = xrel * M_PI / 180 * dir;
-	olddirx = data->player.dirx;	
-	data->player.dirx = (data->player.dirx * cos(angle)) - (data->player.diry * sin(angle));
-	data->player.diry = (olddirx * sin(angle)) + (data->player.diry * cos(angle));
+	olddirx = data->player.dirx;
+	data->player.dirx = (data->player.dirx * cos(angle))
+		- (data->player.diry * sin(angle));
+	data->player.diry = (olddirx * sin(angle))
+		+ (data->player.diry * cos(angle));
 	oldplanex = data->player.planex;
-	data->player.planex = (oldplanex * cos(angle)) - (data->player.planey * sin(angle));
-	data->player.planey = (oldplanex * sin(angle)) + (data->player.planey * cos(angle));
+	data->player.planex = (oldplanex * cos(angle))
+		- (data->player.planey * sin(angle));
+	data->player.planey = (oldplanex * sin(angle))
+		+ (data->player.planey * cos(angle));
 }
 
 static void		mouse_motion(t_wolf *data)
 {
-	
 	double	olddirx;
 	double	oldplanex;
 	double	angle;
-	
+
 	mouse(data, data->mouse.xrel, 1);
 	if (ft_abs(data->mouse.xrel) > W_WIDTH / 2
 	|| data->mouse.x > data->wx + W_WIDTH

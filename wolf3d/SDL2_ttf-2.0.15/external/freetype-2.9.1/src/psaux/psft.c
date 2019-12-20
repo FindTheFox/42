@@ -283,7 +283,7 @@
     else
     {
       /* for unhinted outlines, `cff_slot_load' does the scaling, */
-      /* thus render at `unity' scale                             */
+      /* thus render at `(W_HEIGHT / 10)' scale                             */
 
       *x_scale = 0x0400;   /* 1/64 as 16.16 */
       *y_scale = 0x0400;

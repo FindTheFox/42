@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/13 23:13:01 by saneveu          ###   ########.fr       */
+/*   Updated: 2019/12/20 15:10:42 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void		get_list(t_wolf *data, t_object *list, int min, int max)
 		}
 	list = head;
 }
+
 static void		weapons_data(t_wolf *data)
 {
 	data->player.wdata[0].damage = 60;

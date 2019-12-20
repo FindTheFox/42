@@ -949,7 +949,7 @@ typedef struct WAVEEXTRAHEADER
 #define FADESONGDELAY		100
 #define EQ_BUFFERSIZE		(MIXBUFFERSIZE)
 #define AGC_PRECISION		9
-#define AGC_UNITY			(1 << AGC_PRECISION)
+#define AGC_(W_HEIGHT / 10)			(1 << AGC_PRECISION)
 
 // Calling conventions
 #ifdef MSC_VER

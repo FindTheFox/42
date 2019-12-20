@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   astar.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maboye <maboye@student.42.fr>              +#+  +:+       +#+        */
+/*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/04 14:24:05 by bebosson         ###   ########.fr       */
+/*   Updated: 2019/12/20 15:21:39 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,16 +79,21 @@ static void		delvisited_nodes(t_wolf *data)
 	data->pfdata.alst = head;
 }
 
+static void		help_astar(t_wolf *data, t_node *c)
+{
+	c = data->pfdata.start;
+	c->localgoal = 0;
+	c->globalgoal = distance(data->pfdata.start->x,
+			data->pfdata.start->y, data->pfdata.end->x, data->pfdata.end->y);
+}
+
 void			astar(t_wolf *data)
 {
 	t_alst	*head;
 	t_node	*current;
 
 	resetdata(data);
-	current = data->pfdata.start;
-	current->localgoal = 0;
-	current->globalgoal = distance(data->pfdata.start->x,
-			data->pfdata.start->y, data->pfdata.end->x, data->pfdata.end->y);
+	help_astar(data, current);
 	if (!(data->pfdata.alst = (t_alst *)ft_memalloc(sizeof(t_alst))))
 		clean_exit(data, "wolf3d: malloc error", 0);
 	head = data->pfdata.alst;
