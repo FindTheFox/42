@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2019/12/20 17:37:49 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/02 14:56:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void				w_pause(t_wolf *data)
 {
 	int	cursor;
 
-	if (data->key[KP] == 0)
-		return ;
 	SDL_FlushEvent(SDL_KEYDOWN);
 	SDL_FlushEvent(SDL_MOUSEMOTION);
 	cursor = 1;
@@ -95,7 +93,8 @@ void				w_pause(t_wolf *data)
 		|| (data->event.key.keysym.sym == SDLK_p
 		&& data->event.type == SDL_KEYDOWN))
 			help_pause(data);
-		else if (data->event.key.keysym.sym == SDLK_SPACE && cursor == 2)
+		else if ((data->event.key.keysym.sym == SDLK_SPACE && cursor == 2)
+			|| data->event.window.event == SDL_WINDOWEVENT_CLOSE)
 			clean_exit(data, NULL, 1);
 		else if (data->event.key.keysym.sym == SDLK_UP
 				|| data->event.key.keysym.sym == SDLK_DOWN)
