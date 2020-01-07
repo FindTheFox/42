@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/02 14:51:53 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/07 19:15:53 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,46 @@ static void		get_events(t_wolf *data)
 	}
 }
 
-void			events(t_wolf *data)
+void			switch_texture(t_wolf *data)
 {
-	SDL_PollEvent(&data->event);
-	if ((data->event.key.keysym.sym == SDLK_ESCAPE
-	&& data->event.type == SDL_KEYDOWN)
-	|| data->event.type == SDL_QUIT)
-		clean_exit(data, NULL, 1);
-	else if (data->event.key.keysym.sym == SDLK_b
-	|| data->event.key.keysym.sym == SDLK_n)
-		add_sc_x(data);
-	else if (data->key[KP])
-		w_pause(data);
-	else if (data->event.key.keysym.sym == SDLK_t
-	&& data->event.type == SDL_KEYDOWN)
+	if (data->style == 0)
 	{
-		data->style == 0 ? sprites_textures(data) : sprites_textures1(data);
-		if (data->style == 0)
-			data->style = 1;
-		else
-			data->style = 0;
+		data->style = 1;
+		sprites_textures1(data);
+	}
+	else if (data->style == 1)
+	{
+		data->style = 2;
+		sprites_textures2(data);
 	}
 	else
-		get_events(data);
-	if (data->event.key.keysym.sym == SDLK_LSHIFT)
-		data->key[SHIFT] = data->event.type == SDL_KEYDOWN ? 1 : 0;
+	{
+		data->style = 0;
+		sprites_textures(data);
+	}
+}
+
+void			events(t_wolf *data)
+{
+	while (SDL_PollEvent(&data->event))
+	{
+		if ((data->event.key.keysym.sym == SDLK_ESCAPE
+		&& data->event.type == SDL_KEYDOWN)
+		|| data->event.type == SDL_QUIT)
+			clean_exit(data, NULL, 1);
+		else if (data->event.key.keysym.sym == SDLK_b
+		|| data->event.key.keysym.sym == SDLK_n)
+			add_sc_x(data);
+		else if (data->key[KP])
+			w_pause(data);
+		else if (data->event.key.keysym.sym == SDLK_t
+		&& data->event.type == SDL_KEYDOWN)
+			switch_texture(data);
+		else
+			get_events(data);
+		if (data->event.key.keysym.sym == SDLK_LSHIFT)
+			data->key[SHIFT] = data->event.type == SDL_KEYDOWN ? 1 : 0;
+	}
 	mouse_events(data);
 	movements(data);
 }

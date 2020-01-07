@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/20 17:36:53 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/07 19:21:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,13 +250,12 @@ typedef struct	s_wolf
 	int						sdl_on;
 	int						shoot;
 	int						skin_delay;
+	int						wdelay;
 	int						wx;
 	int						wy;
 	int						key[KNB];
 	char					*str;
 	float					cdst;
-	float					etime;
-	float					frame_start;
 	float					frametime;
 	float					oldtime;
 	float					time;
@@ -305,6 +304,7 @@ void			spawner(t_wolf *data);
 void			sprites(t_wolf *data);
 void			sprites_textures(t_wolf *data);
 void			sprites_textures1(t_wolf *data);
+void			sprites_textures2(t_wolf *data);
 void			weapons(t_wolf *data);
 void			wolf3d(t_wolf *data);
 t_wolf			*minimap_alloc(t_wolf *data);

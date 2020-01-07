@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/20 17:12:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/07 18:18:17 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,4 @@ void			put_pixel(SDL_Surface *surface, int x, int y, uint32_t color)
 		return ;
 	pixels = (unsigned int *)surface->pixels;
 	pixels[x + (y * W_WIDTH)] = color;
-}
-
-void			sprites_textures1(t_wolf *data)
-{
-	if (!(data->sprite[16].img = SDL_LoadBMP("img/textures/metal1.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[17].img = SDL_LoadBMP("img/textures/metal2.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[18].img = SDL_LoadBMP("img/textures/metal3.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[19].img = SDL_LoadBMP("img/textures/metal4.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/bluefloor.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[1].img = SDL_LoadBMP("img/textures/water.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[2].img = SDL_LoadBMP("img/doom.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
 }

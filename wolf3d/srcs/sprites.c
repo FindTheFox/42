@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/20 17:41:42 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/07 18:23:49 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,6 @@ static void		sprites_weapons(t_wolf *data)
 	if (!(data->sprite[26].img = SDL_LoadBMP("img/weapons/autogun1.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 	if (!(data->sprite[27].img = SDL_LoadBMP("img/weapons/autogun2.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error", 0);
-}
-
-void			sprites_textures(t_wolf *data)
-{
-	if (!(data->sprite[16].img = SDL_LoadBMP("img/textures/wall1.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[17].img = SDL_LoadBMP("img/textures/wall2.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[18].img = SDL_LoadBMP("img/textures/wall3.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[19].img = SDL_LoadBMP("img/textures/wall4.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[1].img = SDL_LoadBMP("img/textures/blueprint.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/ceil.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[2].img = SDL_LoadBMP("img/doom.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 }
 

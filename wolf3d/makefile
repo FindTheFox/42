@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2019/12/20 16:16:47 by saneveu          ###   ########.fr        #
+#    Updated: 2020/01/07 18:23:54 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ SRC		=	astar_list.c \
 			tool_render.c \
 			minimap_monster.c \
 			floor.c \
-			draw_ray.c
+			draw_ray.c \
+			texture.c
 
 INC		=	wolf3d.h
 

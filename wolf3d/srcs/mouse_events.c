@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/20 17:42:23 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/07 19:22:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 static void		change_weapon(t_wolf *data)
 {
-	static int	delay;
-
-	delay = 0;
-	if (--delay < 0)
+	if (--data->wdelay < 0)
 	{
 		if (data->player.weapon < 4)
 		{
@@ -29,7 +26,7 @@ static void		change_weapon(t_wolf *data)
 			data->player.weapon = 0;
 			play_sound(data, data->sound.hand, 7);
 		}
-		delay = 10;
+		data->wdelay = 2;
 		SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
 	}
 }
