@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/07 18:11:30 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/08 15:40:03 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void		init_sdl(t_wolf *data)
 
 static void		launch_game(t_wolf *data)
 {
-	double time;
-
 	init_sdl(data);
 	if (data->pwindow)
 	{

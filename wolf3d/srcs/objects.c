@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/02 14:32:31 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/08 15:39:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static void				help_display(t_wolf *d, t_object *l, int sx, int sy)
 
 	p = (sy) * 256 - W_HEIGHT * 128 + l->data.spriteheight * 128;
 	d->ray.wty = ((p * l->sprite.img->h) / l->data.spriteheight) / 256;
-	pixel = get_pixel_obj(l, l->si, d->ray.wtx, d->ray.wty);
+	pixel = get_pixel_obj(l, d->ray.wtx, d->ray.wty);
 	if (pixel != l->data.zpixel)
 		put_pixel(d->screen, sx, sy, pixel);
 	l->data.dst_fromplayer = distance(d->player.x, d->player.y,
@@ -69,8 +69,6 @@ static void				display_object(t_wolf *d, t_object *l)
 {
 	int			sx;
 	int			sy;
-	int			p;
-	uint32_t	pixel;
 
 	sx = l->data.drawstartx;
 	while (sx < l->data.drawendx)

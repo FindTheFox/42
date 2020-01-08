@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2020/01/07 18:23:54 by saneveu          ###   ########.fr        #
+#    Updated: 2020/01/08 15:35:39 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,13 +71,13 @@ HEADER	=	$(addprefix $(INCDIR)/,$(INC))
 
 # compiler
 CC		=	gcc
-CFLAGS	=	#-Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror -Ofast
 
 ifeq ($(OS), Linux)
 	SDL		=	-lSDL2-2.0 -lSDL2_ttf
 	DIRSDL	=	
 else
-	SDL		=	-F ~/Library/Frameworks -framework SDL2 -framework SDL2_ttf -framework SDL2_mixer
+	SDL		=	-F ./Frameworks -framework SDL2 -framework SDL2_ttf -framework SDL2_mixer
 	DIRSDL	=	./SDL2.framework/Headers
 endif 
 

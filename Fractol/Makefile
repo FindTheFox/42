@@ -6,11 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/08 16:19:27 by saneveu           #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2019/06/18 01:55:18 by saneveu          ###   ########.fr        #
-=======
-#    Updated: 2019/06/07 16:19:57 by saneveu          ###   ########.fr        #
->>>>>>> 2537d915459e80683e1594e09cfdc87228349656
+#    Updated: 2020/01/06 16:05:40 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,13 +34,8 @@ SRC		= 	main.c \
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
-<<<<<<< HEAD
 CC		= gcc -Ofast 
 CFLAGS	= -Wall -Wextra -Werror
-=======
-CC		= gcc -g 
-CFLAGS	= -Wall -Wextra -Werror -Ofast
->>>>>>> 2537d915459e80683e1594e09cfdc87228349656
 
 # pthread lib
 	PTH_LIB = -lpthread -D_REENTRANT 

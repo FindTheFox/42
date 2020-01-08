@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/07 19:22:59 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/08 15:37:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ void			mouse(t_wolf *data, Sint16 xrel, int dir)
 
 static void		mouse_motion(t_wolf *data)
 {
-	double	olddirx;
-	double	oldplanex;
-	double	angle;
-
 	mouse(data, data->mouse.xrel, 1);
 	if (ft_abs(data->mouse.xrel) > W_WIDTH / 2
 	|| data->mouse.x > data->wx + W_WIDTH

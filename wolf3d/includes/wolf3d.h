@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/07 19:21:50 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/08 15:39:25 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <unistd.h>
 # include <math.h>
 
-# include "../SDL2.framework/Headers/SDL.h"
-# include "../SDL2.framework/Headers/SDL_mixer.h"
-# include "../SDL2.framework/Headers/SDL_ttf.h"
+# include "../Frameworks/SDL2.framework/Headers/SDL.h"
+# include "../Frameworks/SDL2.framework/Headers/SDL_mixer.h"
+# include "../Frameworks/SDL2.framework/Headers/SDL_ttf.h"
 
 # include "../libft/libft.h"
 
@@ -346,7 +346,7 @@ void			ft_mouse_motion_x(t_wolf *data);
 void			object_minimap(t_wolf *data, t_object *list);
 void			minimap2(t_wolf *data);
 
-uint32_t		get_pixel_obj(t_object *l, int si, int texx, int texy);
+uint32_t		get_pixel_obj(t_object *l, int texx, int texy);
 uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex,
 	float sampley);
 void			draw_floor_ceilling(t_wolf *d, int x);

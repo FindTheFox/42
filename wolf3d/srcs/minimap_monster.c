@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:38:46 by bebosson          #+#    #+#             */
-/*   Updated: 2019/12/20 15:43:41 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/08 15:45:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void			object_minimap(t_wolf *data, t_object *list)
 {
 	int			i;
-	SDL_Rect	rect;
 
 	i = 0;
 	if (list == NULL)

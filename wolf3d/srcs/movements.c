@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/06 18:10:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/08 15:37:43 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,6 @@ static void		move_maker(t_wolf *data, double sx, double sy)
 void			movements(t_wolf *data)
 {
 	float	shift;
-	double	olddirx;
-	double	oldplanex;
-	double	angle;
 
 	shift = data->key[SHIFT] ? 1.5f : 1;
 	if (data->key[KD])

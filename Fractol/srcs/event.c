@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 05:34:34 by saneveu           #+#    #+#             */
-/*   Updated: 2019/06/07 16:23:30 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/06 16:16:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int deal_key(int key, t_env *e)
 {
-    ft_putnbr(key);
-    ft_putendl("");
     key == 4 ? help_event(e) : 0;
     key == 53 ? ft_exit(e) : 0;
     key == 8 ? switch_pal(e) : 0;

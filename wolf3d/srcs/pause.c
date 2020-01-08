@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/02 14:56:59 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/08 15:44:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int			move_cursor(t_wolf *data, int *cursor)
 		return (*cursor);
 }
 
-static void			draw_cursor(t_wolf *data, int cursor, SDL_Rect rect)
+static void			draw_cursor(t_wolf *data, int cursor)
 {
 	int			x;
 
@@ -58,9 +58,6 @@ static void			draw_cursor(t_wolf *data, int cursor, SDL_Rect rect)
 
 static void			draw_main_rect(t_wolf *data, int cursor)
 {
-	int			unit_x;
-	int			unit_y;
-
 	(*(data->rect)) = (SDL_Rect){0, 0, W_WIDTH, W_HEIGHT};
 	set_rect_to_screen(data, data->rect, 0xff0000);
 	(*(data->rect)) = (SDL_Rect){0, 0, 0, 0};
@@ -73,7 +70,7 @@ static void			draw_main_rect(t_wolf *data, int cursor)
 	(*(data->rect)) = (SDL_Rect){2 * (W_WIDTH / 16), 8 * (W_HEIGHT / 10), 2
 		* (W_WIDTH / 16), 0.75 * (W_HEIGHT / 10)};
 	set_write_to_screen(data, (*(data->rect)), 0, "QUIT");
-	draw_cursor(data, cursor, (*(data->rect)));
+	draw_cursor(data, cursor);
 	SDL_RenderPresent(data->renderer);
 }
 
