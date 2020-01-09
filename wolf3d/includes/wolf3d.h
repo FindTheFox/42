@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/08 15:39:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/09 16:41:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include <unistd.h>
 # include <math.h>
 
-# include "../Frameworks/SDL2.framework/Headers/SDL.h"
-# include "../Frameworks/SDL2.framework/Headers/SDL_mixer.h"
-# include "../Frameworks/SDL2.framework/Headers/SDL_ttf.h"
+# include "../SDL/SDL.h"
+# include "../SDL/SDL_mixer.h"
+# include "../SDL/SDL_ttf.h"
 
 # include "../libft/libft.h"
 

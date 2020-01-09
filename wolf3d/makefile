@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2020/01/08 15:35:39 by saneveu          ###   ########.fr        #
+#    Updated: 2020/01/09 17:29:17 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,8 +77,8 @@ ifeq ($(OS), Linux)
 	SDL		=	-lSDL2-2.0 -lSDL2_ttf
 	DIRSDL	=	
 else
-	SDL		=	-F ./Frameworks -framework SDL2 -framework SDL2_ttf -framework SDL2_mixer
-	DIRSDL	=	./SDL2.framework/Headers
+	SDL		=	-F ~/Library/Frameworks -framework SDL2 -framework SDL2_ttf -framework SDL2_mixer
+	DIRSDL	=	-I ./SDL
 endif 
 
 # ft library
@@ -92,8 +92,7 @@ obj:
 
 $(OBJDIR)/%.o:$(SRCDIR)/%.c $(HEADER)
 			@echo "${TUR}compiling [$@] ...${END}"
-			@$(CC) $(CFLAGS) -I $(INCDIR) -c -o $@ $<
-			#-I $(DIRSDL)
+			@$(CC) $(CFLAGS) -I $(INCDIR) -c -o $@ $< $(DIRSDL)
 			@printf "$(UP)$(CUT)"
 
 $(FT_LIB):
@@ -109,8 +108,6 @@ clean:
 			@$(MAKE) -C $(FT) clean
 			@echo "${PURPLE}[.o deleted]${END}"
 
-#$(MAKE) -C $(MLX) clean
-
 fclean:		clean
 			@/bin/rm -rf $(NAME)
 			@$(MAKE) -C $(FT) fclean
@@ -118,5 +115,16 @@ fclean:		clean
 			@echo "${RED}[$(LIB) deleted]${END}"
 
 re:			fclean all
+
+SDL2:
+			brew install sdl2
+			brew link sdl2
+			brew install sdl2_ttf
+			brew link sdl2_ttf
+			brew install sdl2_mixer
+			brew link sdl2_mixer
+			cp -rf framework/SDL2_mixer.framework ~/Library/Frameworks
+			cp -rf framework/SDL2_ttf.framework ~/Library/Frameworks
+			cp -rf framework/SDL2.framework ~/Library/Frameworks
 
 .PHONY:		all clean fclean re

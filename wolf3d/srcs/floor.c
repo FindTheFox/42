@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:26:54 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/02 14:41:44 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/09 16:42:49 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		floor_calcul(t_wolf *d, int x)
 	if (d->ray.wallbot < 0)
 		d->ray.wallbot = W_HEIGHT;
 	y = d->ray.wallbot - 1;
-	while (++y < W_HEIGHT)
+	while (++y <= W_HEIGHT)
 	{
 		d->ray.distcurrent = W_HEIGHT / (2.0 * y - W_HEIGHT);
 		d->ray.weight = d->ray.distcurrent / d->ray.distwall;
