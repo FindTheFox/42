@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/08 15:40:03 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/12 20:36:49 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static void		init_sdl(t_wolf *data)
 	data->sdl_on = 1;
 	if (!(data = minimap_alloc(data)))
 		clean_exit(data, "wolf3d: error malloc minimap", 0);
-	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+	/*if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
 		clean_exit(data, "wolf3d: error Mix_OpenAudio", 0);
 	else
-		audio_init(data);
+		audio_init(data);*/
 	if (TTF_Init() == -1)
 		clean_exit(data, "wolf3d: error TTF_init", 0);
 	data->pwindow = SDL_CreateWindow("saneveu wolf3d",
@@ -42,7 +42,8 @@ static void		launch_game(t_wolf *data)
 	init_sdl(data);
 	if (data->pwindow)
 	{
-		if (!(data->renderer = SDL_CreateRenderer(data->pwindow, -1, 0)))
+		if (!(data->renderer = SDL_CreateRenderer(data->pwindow, -1,
+			SDL_RENDERER_ACCELERATED)))
 			clean_exit(data, "wolf3d: SDL_CreateRenderer fail", 0);
 		load_datagame(data);
 		while (1)
@@ -72,5 +73,10 @@ void			wolf3d(t_wolf *data)
 	data->player.diry = 0;
 	data->player.planex = 0;
 	data->player.planey = data->player.fov;
+	data->floorstyle = 0;
+	data->nmistyle = 0;
+	data->key[MOUSE] = 1;
+	data->obj_intens = 0.8;
+	data->fog = 1;
 	launch_game(data);
 }

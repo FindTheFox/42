@@ -6,11 +6,29 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 01:04:10 by saneveu           #+#    #+#             */
-/*   Updated: 2019/12/20 17:29:23 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/12 20:34:35 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+uint32_t		get_pixel_ray(t_wolf *data, int si, float x, float y)
+{
+	int				sx;
+	int				sy;
+	uint8_t			*p;
+	t_sprite		surface;
+	uint32_t		pixel;
+
+	surface = data->sprite[si];
+	sx = x;
+	sy = y;
+	p = (uint8_t *)surface.img->pixels + sy * surface.img->pitch
+		+ sx * surface.img->format->BytesPerPixel;
+	pixel = (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24); 
+	data->rgb = fill_rgb(pixel);
+	return (fog(data, data->rgb, 0));
+}
 
 void			draw_wall(t_wolf *d, int x)
 {

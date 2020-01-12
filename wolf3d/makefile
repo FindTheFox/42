@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2020/01/09 17:29:17 by saneveu          ###   ########.fr        #
+#    Updated: 2020/01/12 21:09:51 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ SRC		=	astar_list.c \
 			tool.c \
 			tool2.c \
 			tool3.c \
+			tool4.c \
 			weapons.c \
 			wolf3d.c  \
 			pause.c \
@@ -62,7 +63,8 @@ SRC		=	astar_list.c \
 			minimap_monster.c \
 			floor.c \
 			draw_ray.c \
-			texture.c
+			texture.c \
+			fog.c
 
 INC		=	wolf3d.h
 
@@ -71,7 +73,7 @@ HEADER	=	$(addprefix $(INCDIR)/,$(INC))
 
 # compiler
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -Ofast
+CFLAGS	=	-Wall -Wextra -Werror -pipe -O3
 
 ifeq ($(OS), Linux)
 	SDL		=	-lSDL2-2.0 -lSDL2_ttf

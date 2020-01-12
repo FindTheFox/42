@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/08 15:46:52 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/11 14:37:27 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static void		help_astar(t_wolf *data, t_node *c)
 
 void			astar(t_wolf *data)
 {
-	t_alst	*head;
 	t_node	*current;
 
 	resetdata(data);
@@ -97,7 +96,6 @@ void			astar(t_wolf *data)
 	help_astar(data, current);
 	if (!(data->pfdata.alst = (t_alst *)ft_memalloc(sizeof(t_alst))))
 		clean_exit(data, "wolf3d: malloc error", 0);
-	head = data->pfdata.alst;
 	data->pfdata.alst->node = data->pfdata.start;
 	while (current != data->pfdata.end)
 	{

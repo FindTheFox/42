@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:38:46 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/08 15:45:04 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/12 18:08:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,20 @@ void			object_minimap(t_wolf *data, t_object *list)
 void			draw_fps(t_wolf *data)
 {
 	char		*fps;
+	char		*kill;
 
 	fps = ft_strfjoin("fps ", ft_itoa(data->fps), 2);
 	(*(data->rect)) = (SDL_Rect){0, W_HEIGHT / data->map.sc_x - 5,
 		10 * data->map.sc_x, 3 * data->map.sc_x};
 	data->policep = data->police3;
 	set_write_to_screen(data, (*(data->rect)), 0, fps);
+	kill = ft_strjoin("kill ", ft_itoa(data->kill_score));
+	(*(data->rect)) = (SDL_Rect){W_WIDTH / data->map.sc_x - 50,
+		W_HEIGHT / data->map.sc_x - 5,
+			10 * data->map.sc_x, 3 * data->map.sc_x};
+	set_write_to_screen(data, (*(data->rect)), 0, kill);
 	ft_strdel(&fps);
+	ft_strdel(&kill);
 }
 
 t_wolf			*minimap_alloc(t_wolf *data)

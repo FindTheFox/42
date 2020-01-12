@@ -6,11 +6,21 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/20 17:22:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/11 19:46:42 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+static void		depth_monster(t_object *monster)
+{
+	if (monster->type == 7)
+		monster->depth = 1.05f;
+	else if (monster->type == 8)
+		monster->depth = 2.0f;
+	else if (monster->type == 9)
+		monster->depth = 2.0f;
+}
 
 static void		create_newmonster(t_wolf *data)
 {
@@ -27,6 +37,7 @@ static void		create_newmonster(t_wolf *data)
 	if (data->kill_score > 20)
 		skin = 9;
 	newmonster->type = skin;
+	depth_monster(newmonster);
 	newmonster->si = skin;
 	newmonster->delay = newmonster->type * 10;
 	newmonster->hp = get_objhp(data, newmonster);
@@ -56,6 +67,6 @@ void			spawner(t_wolf *data)
 		data->monster->delay = data->monster->type * 320;
 		return ;
 	}
-	play_sound(data, data->sound.nmispawn, 4);
+	//play_sound(data, data->sound.nmispawn, 4);
 	create_newmonster(data);
 }

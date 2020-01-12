@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/09 16:41:02 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/12 20:33:06 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,16 @@
 # define ML			11
 # define MR			12
 # define SHIFT		13
-# define KNB		14
+# define MOUSE		14
+# define KNB		15
+
+typedef struct	s_rgba
+{
+	int			r;
+	int			g;
+	int			b;
+	int			a;
+}				t_rgba;
 
 typedef union	u_rsqrt
 {
@@ -119,6 +128,7 @@ typedef struct	s_object
 	float			y;
 	float			vx;
 	float			vy;
+	float			depth;
 	t_sprite		sprite;
 	t_objdata		data;
 	struct s_object	*next;
@@ -244,6 +254,8 @@ typedef struct	s_pf
 typedef struct	s_wolf
 {
 	int						style;
+	int						floorstyle;
+	int						nmistyle;
 	int						fire_delay;
 	int						fps;
 	int						kill_score;
@@ -261,6 +273,8 @@ typedef struct	s_wolf
 	float					time;
 	double					mv_speed;
 	double					rot_speed;
+	double					obj_intens;
+	int						fog;
 	TTF_Font				*police;
 	TTF_Font				*police2;
 	TTF_Font				*police3;
@@ -272,6 +286,7 @@ typedef struct	s_wolf
 	t_object				*monster;
 	t_object				*object;
 	t_sprite				sprite[SNB];
+	t_rgba					rgb;
 	SDL_Rect				*rect;
 	SDL_Point				*pl;
 	SDL_Point				*point;
@@ -295,6 +310,7 @@ void			game_over(t_wolf *data);
 void			load_datagame(t_wolf *data);
 void			monsters(t_wolf *data);
 void			mouse_events(t_wolf *data);
+void			mouse_motion(t_wolf *data);
 void			movements(t_wolf *data);
 void			objects(t_wolf *data, t_object *list);
 void			object_actions(t_wolf *data, t_object *list);
@@ -305,7 +321,12 @@ void			sprites(t_wolf *data);
 void			sprites_textures(t_wolf *data);
 void			sprites_textures1(t_wolf *data);
 void			sprites_textures2(t_wolf *data);
+void        	switch_monster(t_wolf *d);
+void			switch_floor(t_wolf *d);
+void			sprites_monsters(t_wolf *data);
+void			sprites_monsters2(t_wolf *data);
 void			weapons(t_wolf *data);
+void			change_weapon(t_wolf *data);
 void			wolf3d(t_wolf *data);
 t_wolf			*minimap_alloc(t_wolf *data);
 void			get_blockside(t_wolf *data, int testx, int testy);
@@ -349,6 +370,8 @@ void			minimap2(t_wolf *data);
 uint32_t		get_pixel_obj(t_object *l, int texx, int texy);
 uint32_t		get_pixel_ray(t_wolf *data, int si, float samplex,
 	float sampley);
+uint32_t		get_pixel_floor(t_wolf *data, int si, float samplex,
+	float sampley);
 void			draw_floor_ceilling(t_wolf *d, int x);
 void			mouse(t_wolf *data, Sint16 xrel, int dir);
 
@@ -360,5 +383,10 @@ void			play_music(t_wolf *data, Mix_Music *music);
 void			cursor(t_wolf *data);
 void			health(t_wolf *data);
 void			help_pause(t_wolf *data);
+
+t_rgba			fill_rgb(int c);
+int				rgb_to_hsv(int r, int g, int b);
+int             fog(t_wolf *d, t_rgba rgb, int flag);
+void        	switch_fog(t_wolf *d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/20 17:23:16 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/11 19:02:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void		monster_actions(t_wolf *data)
 	data->pfdata.end = &data->pfdata.list[data->player.pos];
 	dst = distance(data->monster->x, data->monster->y,
 			data->pfdata.end->x, data->pfdata.end->y);
-	if (dst > 0.95f)
+	if (dst > data->monster->depth)
 	{
 		data->monster->si = data->monster->type;
 		data->monster->sprite = data->sprite[data->monster->si];
@@ -99,7 +99,7 @@ static void		monster_actions(t_wolf *data)
 	}
 	else
 	{
-		play_sound(data, data->sound.nmiatk, 10);
+		//play_sound(data, data->sound.nmiatk, 10);
 		data->monster->si = data->monster->type + 3;
 		data->monster->sprite = data->sprite[data->monster->si];
 		data->player.health -= data->monster->type * 2;

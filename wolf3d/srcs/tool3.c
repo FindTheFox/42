@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:07:10 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/08 15:38:56 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/12 20:35:48 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void			help_pause(t_wolf *data)
 {
 	data->key[KP] = 0;
-	play_sound(data, data->sound.playerspawn, 1);
-	play_music(data, data->sound.ingmusic);
+	//play_sound(data, data->sound.playerspawn, 1);
+	//play_music(data, data->sound.ingmusic);
 }
 
 uint32_t		get_pixel(t_wolf *data, int si, float samplex, float sampley)
@@ -45,19 +45,24 @@ uint32_t		get_pixel_obj(t_object *l, int tx, int ty)
 	return (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
 }
 
-uint32_t		get_pixel_ray(t_wolf *data, int si, float x, float y)
+uint32_t		get_pixel_floor(t_wolf *data, int si, float x, float y)
 {
 	int				sx;
 	int				sy;
 	uint8_t			*p;
 	t_sprite		surface;
+	uint32_t		pixel;
 
 	surface = data->sprite[si];
 	sx = x;
 	sy = y;
 	p = (uint8_t *)surface.img->pixels + sy * surface.img->pitch
 		+ sx * surface.img->format->BytesPerPixel;
-	return (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
+	pixel = (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24); 
+	data->rgb = fill_rgb(pixel);
+	//pixel = fog(data, data->rgb);
+	//return (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
+	return (fog(data, data->rgb, 1));
 }
 
 SDL_Surface		*new_surface(int w, int h)

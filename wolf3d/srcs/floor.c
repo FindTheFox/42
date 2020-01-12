@@ -6,25 +6,48 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 17:26:54 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/09 16:42:49 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/12 19:50:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
+static int		checktexture(t_wolf *d)
+{
+	int t;
+	int c;
+
+	c = 0;
+	t = 0;
+	if (d->floorstyle == 0)
+		t = 1;
+	else
+	{
+		if (d->floorstyle == 2)
+			c = ((int)(d->ray.currentfloorx + d->ray.currentfloory)) % 2;
+		else
+			c = ((int)d->ray.currentfloorx + (int)d->ray.currentfloory) % 2;
+		if (c == 0)
+			t = 0;
+		else
+			t = 1;
+	}
+	return (t);
+}
+
 static void		pxl_add(t_wolf *d, int y, int x, int tx)
 {
 	int tex;
 
-	if (tx == 0)
-		tex = 1;
-	else
+	if (tx == 1)
 		tex = 0;
+	else
+		tex = checktexture(d);
 	d->ray.wtx = (int)(d->ray.currentfloorx * d->sprite[tex].img->w)
 		% d->sprite[tex].img->w;
 	d->ray.wty = (int)(d->ray.currentfloory * d->sprite[tex].img->h)
 		% d->sprite[tex].img->h;
-	put_pixel(d->screen, x, y, get_pixel_ray(d, tex, d->ray.wtx, d->ray.wty));
+	put_pixel(d->screen, x, y, get_pixel_floor(d, tex, d->ray.wtx, d->ray.wty));
 }
 
 static void		floor_calcul(t_wolf *d, int x)

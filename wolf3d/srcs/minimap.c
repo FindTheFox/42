@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by maboye            #+#    #+#             */
-/*   Updated: 2019/12/20 15:44:32 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/12 17:57:40 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void		draw_minimap(t_wolf *data, int nx)
 		data->rect->x = nx * W_WIDTH / (data->map.sc_x * data->map.width);
 		data->rect->y = ny * W_HEIGHT / (data->map.sc_x * data->map.height);
 		if (data->map.map[ny * data->map.width + nx] == 1)
-			SDL_SetRenderDrawColor(data->renderer, 255, 0, 0, 100);
+			SDL_SetRenderDrawColor(data->renderer, 100, 0, 100, 100);
 		else
 			SDL_SetRenderDrawColor(data->renderer, 75, 100, 100, 100);
 		SDL_RenderFillRect(data->renderer, data->rect);

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/07 18:18:17 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:59:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,12 @@ void			put_pixel(SDL_Surface *surface, int x, int y, uint32_t color)
 		return ;
 	pixels = (unsigned int *)surface->pixels;
 	pixels[x + (y * W_WIDTH)] = color;
+}
+
+void			switch_floor(t_wolf *d)
+{
+	if (d->floorstyle < 2)
+		d->floorstyle++;
+	else
+		d->floorstyle = 0;
 }
