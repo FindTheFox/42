@@ -6,13 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/13 18:23:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 19:23:24 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-static void		remove_objects(t_wolf *data)
+void			remove_objects(t_wolf *data)
 {
 	t_object	*tmp;
 	t_object	*head;

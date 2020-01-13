@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/13 18:29:11 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 19:21:57 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ void			clean_exit(t_wolf *data, char *str, int token)
 		lst_free(data->object);
 		lst_free(data->monster);
 		ft_memdel((void **)&data->pfdata.list);
+		data = NULL;
 	}
 	if (str)
 		ft_putendl_fd(str, 2);
