@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2020/01/12 21:09:51 by saneveu          ###   ########.fr        #
+#    Updated: 2020/01/13 17:15:59 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ HEADER	=	$(addprefix $(INCDIR)/,$(INC))
 
 # compiler
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -pipe -O3
+CFLAGS	=	-Wall -Wextra -Werror -pipe -Ofast
 
 ifeq ($(OS), Linux)
 	SDL		=	-lSDL2-2.0 -lSDL2_ttf

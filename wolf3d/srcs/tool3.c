@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:07:10 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/12 20:35:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 18:44:04 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void			help_pause(t_wolf *data)
 {
 	data->key[KP] = 0;
-	//play_sound(data, data->sound.playerspawn, 1);
-	//play_music(data, data->sound.ingmusic);
+	play_sound(data, data->sound.playerspawn, 1);
+	play_music(data, data->sound.ingmusic);
 }
 
 uint32_t		get_pixel(t_wolf *data, int si, float samplex, float sampley)
@@ -60,8 +60,6 @@ uint32_t		get_pixel_floor(t_wolf *data, int si, float x, float y)
 		+ sx * surface.img->format->BytesPerPixel;
 	pixel = (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24); 
 	data->rgb = fill_rgb(pixel);
-	//pixel = fog(data, data->rgb);
-	//return (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
 	return (fog(data, data->rgb, 1));
 }
 

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 19:50:05 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/12 20:33:21 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 19:02:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,9 @@ void            switch_monster(t_wolf *d)
     }
 }
 
-t_rgba          fill_rgb(int c)
+void            free_minimap(t_wolf *d)
 {
-	t_rgba rgb;
-	rgb.r = c / (256 * 256);
-	rgb.g = (c / 256) % 256;
-	rgb.b = c % 256;
-	return (rgb);
-}
-
-int             rgb_to_hsv(int r, int g, int b)
-{
-	return ((r * 256 * 256) + (g * 256) + b);
+    int i;
+    free(d->rect);
+    i = 0;
 }

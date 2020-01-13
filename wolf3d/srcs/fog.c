@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 20:30:08 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/12 21:01:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 17:34:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int             fog(t_wolf *d, t_rgba rgb, int flag)
     double intensity;
 
     if (flag == 0)
-        intensity = d->obj_intens / d->ray.perpwalldist * 10;
+        intensity = d->obj_intens / d->ray.perpwalldist * 5;
     else
-        intensity = d->obj_intens / d->ray.distcurrent * 10;
+        intensity = d->obj_intens / d->ray.distcurrent * 5;
     if (intensity <= 1 && d->fog)
     {
         rgb.r *= intensity;
@@ -35,4 +35,18 @@ int             fog(t_wolf *d, t_rgba rgb, int flag)
         rgb.b *= intensity;
     }
     return (rgb_to_hsv(rgb.r, rgb.g, rgb.b));
+}
+
+t_rgba          fill_rgb(int c)
+{
+	t_rgba rgb;
+	rgb.r = c / (256 * 256);
+	rgb.g = (c / 256) % 256;
+	rgb.b = c % 256;
+	return (rgb);
+}
+
+int             rgb_to_hsv(int r, int g, int b)
+{
+	return ((r * 256 * 256) + (g * 256) + b);
 }

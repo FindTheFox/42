@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/11 15:13:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 18:29:11 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,24 @@ void			clean_exit(t_wolf *data, char *str, int token)
 			if (data->pwindow)
 				SDL_DestroyWindow(data->pwindow);
 			free_surfaces(data);
-			/*if (data->sound.token == 1)
+			if (data->sound.token == 1)
 				free_sound(data);
-			Mix_CloseAudio();*/
+			Mix_CloseAudio();
 			TTF_Quit();
 			if (data->renderer)
 				SDL_DestroyRenderer(data->renderer);
 			SDL_Quit();
 		}
+		free_minimap(data);
 		ft_strdel(&data->str);
 		ft_memdel((void **)&data->map.map);
 		lst_free(data->object);
 		lst_free(data->monster);
 		ft_memdel((void **)&data->pfdata.list);
-		data = NULL;
 	}
 	if (str)
 		ft_putendl_fd(str, 2);
+	while (1)
+		{}
 	exit(token ? EXIT_SUCCESS : EXIT_FAILURE);
 }

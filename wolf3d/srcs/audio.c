@@ -6,14 +6,14 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 22:09:50 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/11 14:38:41 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 17:18:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
 
-/*static void		check_load(t_wolf *data)
+static void		check_load(t_wolf *data)
 {
 	if (data->sound.fusil == NULL || data->sound.gun == NULL
 			|| data->sound.hand == NULL || data->sound.nmiatk == NULL
@@ -92,4 +92,3 @@ void			play_music(t_wolf *data, Mix_Music *music)
 			clean_exit(data, "wolf3d: Mix_PlayMusic fail", 0);
 	}
 }
-*/

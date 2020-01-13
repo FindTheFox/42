@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/12 20:33:06 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 19:02:12 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,7 +288,6 @@ typedef struct	s_wolf
 	t_sprite				sprite[SNB];
 	t_rgba					rgb;
 	SDL_Rect				*rect;
-	SDL_Point				*pl;
 	SDL_Point				*point;
 	t_sound					sound;
 	SDL_MouseMotionEvent	mouse;
@@ -335,6 +334,7 @@ void			draw_wall(t_wolf *d, int x);
 void			get_tex(t_wolf *d);
 
 void			minimap(t_wolf *data);
+void            free_minimap(t_wolf *d);
 
 float			distance(float x1, float y1, float x2, float y2);
 float			distance_calc(float x1, float y1, float x2, float y2);

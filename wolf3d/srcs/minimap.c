@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/12 17:57:40 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/13 19:10:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,33 @@ static void		draw_ray_fov(t_wolf *data, int i, int x, int y)
 static void		calc_player(t_wolf *d)
 {
 	int			i;
+	SDL_Point	pl;
 
-	d->pl->x = d->player.x * W_WIDTH / (d->map.sc_x * d->map.width);
-	d->pl->y = d->player.y * W_HEIGHT / (d->map.sc_x * d->map.height);
+	pl.x = d->player.x * W_WIDTH / (d->map.sc_x * d->map.width);
+	pl.y = d->player.y * W_HEIGHT / (d->map.sc_x * d->map.height);
 	SDL_SetRenderDrawColor(d->renderer, 0, 0xFF, 0, 0);
 	i = -1;
 	while (++i < W_WIDTH)
-		draw_ray_fov(d, i, d->pl->x, d->pl->y);
+		draw_ray_fov(d, i, pl.x, pl.y);
 }
 
 static void		draw_minimap(t_wolf *data, int nx)
 {
 	int			ny;
+	SDL_Rect	rect;
 
 	ny = -1;
-	data->rect->h = 2 * W_HEIGHT / (data->map.sc_x * data->map.height);
-	data->rect->w = 2 * W_WIDTH / (data->map.sc_x * data->map.width);
+	rect.h = 2 * W_HEIGHT / (data->map.sc_x * data->map.height);
+	rect.w = 2 * W_WIDTH / (data->map.sc_x * data->map.width);
 	while (++ny < data->map.height)
 	{
-		data->rect->x = nx * W_WIDTH / (data->map.sc_x * data->map.width);
-		data->rect->y = ny * W_HEIGHT / (data->map.sc_x * data->map.height);
+		rect.x = nx * W_WIDTH / (data->map.sc_x * data->map.width);
+		rect.y = ny * W_HEIGHT / (data->map.sc_x * data->map.height);
 		if (data->map.map[ny * data->map.width + nx] == 1)
 			SDL_SetRenderDrawColor(data->renderer, 100, 0, 100, 100);
 		else
 			SDL_SetRenderDrawColor(data->renderer, 75, 100, 100, 100);
-		SDL_RenderFillRect(data->renderer, data->rect);
+		SDL_RenderFillRect(data->renderer, &rect);
 	}
 }
 
