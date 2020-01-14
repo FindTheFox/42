@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 17:30:19 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/13 18:49:07 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/14 22:29:20 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_write_to_screen(t_wolf *data, SDL_Rect rect, int c, char *str)
 	SDL_QueryTexture(data->text_write, 0, 0, &(rect.w), &(rect.h));
 	SDL_RenderCopy(data->renderer, data->text_write, NULL, &rect);
 	SDL_FreeSurface(data->surf_write);
-	SDL_DestroyTexture(data->text_write);
+	//SDL_DestroyTexture(data->text_write);
 }
 
 void	set_rect_to_screen(t_wolf *data, SDL_Rect *rect, int c)

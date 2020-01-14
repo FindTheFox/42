@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/11 18:05:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/14 21:18:03 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int				main(int ac, char **av)
 	if (ac == 2)
 	{
 		ft_memset(&data, 0, sizeof(t_wolf));
-		if (get_map(&data, open(av[1], O_RDONLY)) == 1)
+		if (get_map(&data, open(av[1], O_NOCTTY | O_RDONLY
+			| O_NONBLOCK)) == 1)
 		{
 			wolf3d(&data);
 			clean_exit(&data, NULL, 1);

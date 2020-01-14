@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/31 12:01:33 by maboye            #+#    #+#              #
-#    Updated: 2020/01/13 17:15:59 by saneveu          ###   ########.fr        #
+#    Updated: 2020/01/14 20:29:40 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror -pipe -Ofast
 
 ifeq ($(OS), Linux)
-	SDL		=	-lSDL2-2.0 -lSDL2_ttf
+	SDL		=	-lSDL2-2.0 -lSDL2_ttf -lSDL2_mixer
 	DIRSDL	=	
 else
 	SDL		=	-F ~/Library/Frameworks -framework SDL2 -framework SDL2_ttf -framework SDL2_mixer
