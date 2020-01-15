@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/15 16:55:28 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 21:29:31 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ SDL_Color			ft_hex_to_rgb(int hexa)
 	color.r = hexa >> 24;
 	color.g = hexa >> 16;
 	color.b = hexa >> 8;
-	color.a = 0xff;;
+	color.a = 0xff;
 	return (color);
 }
 
@@ -43,7 +43,7 @@ static void			draw_cursor(t_wolf *data, int cursor)
 {
 	int			x;
 	SDL_Rect	rect;
-	
+
 	x = 7;
 	rect = (SDL_Rect){x * (W_WIDTH / 16), (6 + cursor)
 		* (W_HEIGHT / 10), (W_WIDTH / 16) / 2, (W_HEIGHT / 10) / 2};
@@ -54,7 +54,7 @@ static void			draw_main_rect(t_wolf *data, int cursor)
 {
 	SDL_Texture *font;
 	SDL_Rect	rect;
-	
+
 	rect = (SDL_Rect){0, 0, W_WIDTH, W_HEIGHT};
 	font = SDL_CreateTextureFromSurface(data->renderer, data->sprite[2].img);
 	SDL_RenderCopy(data->renderer, font, NULL, &rect);

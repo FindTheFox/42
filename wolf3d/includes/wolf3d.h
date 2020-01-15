@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 19:32:09 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 21:53:00 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,7 +287,6 @@ typedef struct	s_wolf
 	t_object				*object;
 	t_sprite				sprite[SNB];
 	t_rgba					rgb;
-	SDL_Rect				*rect;
 	SDL_Point				*point;
 	t_sound					sound;
 	SDL_MouseMotionEvent	mouse;
@@ -387,5 +386,6 @@ t_rgba			fill_rgb(int c);
 int				rgb_to_hsv(int r, int g, int b);
 int             fog(t_wolf *d, t_rgba rgb, int flag);
 void        	switch_fog(t_wolf *d);
+void			free_surfaces(t_wolf *data, int flag);
 
 #endif

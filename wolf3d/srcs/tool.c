@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 19:49:14 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 22:02:55 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,25 @@ void			lst_pushback(t_object *list, t_object *node)
 	}
 }
 
-void			free_surfaces(t_wolf *data)
+void			free_surfaces(t_wolf *data, int flag)
 {
 	int	i;
 
 	i = SNB;
-	while (i--)
+	while (i-- && flag == 0)
 		if (data->sprite[i].img)
 			SDL_FreeSurface(data->sprite[i].img);
-	if (data->screen)
+	if (data->screen && flag == 0)
 		SDL_FreeSurface(data->screen);
+	else if (flag == 1)
+	{
+		SDL_FreeSurface(data->sprite[16].img);
+		SDL_FreeSurface(data->sprite[17].img);
+		SDL_FreeSurface(data->sprite[18].img);
+		SDL_FreeSurface(data->sprite[19].img);
+		SDL_FreeSurface(data->sprite[1].img);
+		SDL_FreeSurface(data->sprite[0].img);
+	}
 }
 
 void			clean_exit(t_wolf *data, char *str, int token)
@@ -80,18 +89,21 @@ void			clean_exit(t_wolf *data, char *str, int token)
 	{
 		if (data->sdl_on)
 		{
+	// printf("1\n");
+	// system("leaks wolf3d");
 			if (data->renderer)
 				SDL_DestroyRenderer(data->renderer);
 			if (data->pwindow)
 				SDL_DestroyWindow(data->pwindow);
-			free_surfaces(data);
+			free_surfaces(data, 0);
 			if (data->sound.token == 1)
 				free_sound(data);
 			Mix_CloseAudio();
 			TTF_Quit();
 			SDL_Quit();
 		}
-		free_minimap(data);
+	// printf("2\n");
+	// system("leaks wolf3d");
 		ft_strdel(&data->str);
 		ft_memdel((void **)&data->map.map);
 		lst_free(data->object);
@@ -99,9 +111,11 @@ void			clean_exit(t_wolf *data, char *str, int token)
 		ft_memdel((void **)&data->pfdata.list);
 		data = NULL;
 	}
+	// printf("3\n");
+	// system("leaks wolf3d");
 	if (str)
 		ft_putendl_fd(str, 2);
-	while (1)
-		;
+	// printf("4\n");
+	system("leaks wolf3d");
 	exit(token ? EXIT_SUCCESS : EXIT_FAILURE);
 }

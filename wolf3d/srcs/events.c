@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/12 21:02:23 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 21:53:36 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void		get_events(t_wolf *data)
 
 void			switch_texture(t_wolf *data)
 {
+	free_surfaces(data, 1);
 	if (data->style == 0)
 	{
 		data->style = 1;
