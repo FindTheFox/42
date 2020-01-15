@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/14 21:05:04 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:38:23 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void			change_weapon(t_wolf *data)
 		if (data->player.weapon < 4)
 		{
 			++data->player.weapon;
-			//play_sound(data, data->sound.switchgun, 7);
+			play_sound(data, data->sound.switchgun, 7);
 		}
 		if (data->player.weapon > 3)
 		{
 			data->player.weapon = 0;
-			//play_sound(data, data->sound.hand, 7);
+			play_sound(data, data->sound.hand, 7);
 		}
 		data->wdelay = 2;
 		SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
@@ -53,7 +53,7 @@ void			mouse(t_wolf *data, Sint16 xrel, int dir)
 void			mouse_motion(t_wolf *data)
 {
 	mouse(data, data->mouse.xrel, 1);
-	if (ft_abs(data->mouse.xrel) > W_WIDTH / 2
+	if (abs(data->mouse.xrel) > W_WIDTH / 2
 	|| data->mouse.x > data->wx + W_WIDTH
 	|| data->mouse.x < data->wx
 	|| data->mouse.y > data->wy + W_HEIGHT

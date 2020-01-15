@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/12 21:04:18 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 17:24:26 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void		sprites_object(t_wolf *data)
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 }
 
-static void		sprites_weapons(t_wolf *data)
+void			sprites_weapons(t_wolf *data)
 {
 	if (!(data->sprite[20].img = SDL_LoadBMP("img/weapons/hand.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
@@ -92,7 +92,7 @@ void			sprites(t_wolf *data)
 {
 	if (!(data->sprite[2].img = SDL_LoadBMP("img/asylum.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	sprites_textures(data);
+	sprites_textures1(data);
 	sprites_object(data);
 	sprites_monsters2(data);
 	sprites_weapons(data);

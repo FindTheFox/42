@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 20:38:46 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/13 19:16:15 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:52:24 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void			draw_fps(t_wolf *data)
 
 t_wolf			*minimap_alloc(t_wolf *data)
 {
-	if (!(data->rect = malloc(sizeof(SDL_Rect))))
-		return (0);
+	//if (!(data->rect = malloc(sizeof(SDL_Rect))))
+	//	return (0);
 	return (data);
 }

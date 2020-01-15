@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/14 21:05:23 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:55:28 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int			move_cursor(t_wolf *data, int *cursor)
 {
 	if (data->event.key.keysym.sym == SDLK_UP && *cursor > 1)
 	{
-		//play_sound(data, data->sound.tic, 5);
+		play_sound(data, data->sound.tic, 5);
 		return (--*cursor);
 	}
 	else if (data->event.key.keysym.sym == SDLK_DOWN && *cursor < 2)
 	{
-		//play_sound(data, data->sound.tic, 5);
+		play_sound(data, data->sound.tic, 5);
 		return (++*cursor);
 	}
 	else
@@ -42,30 +42,32 @@ static int			move_cursor(t_wolf *data, int *cursor)
 static void			draw_cursor(t_wolf *data, int cursor)
 {
 	int			x;
-
+	SDL_Rect	rect;
+	
 	x = 7;
-	(*(data->rect)) = (SDL_Rect){x * (W_WIDTH / 16), (6 + cursor)
+	rect = (SDL_Rect){x * (W_WIDTH / 16), (6 + cursor)
 		* (W_HEIGHT / 10), (W_WIDTH / 16) / 2, (W_HEIGHT / 10) / 2};
-	set_rect_to_screen(data, data->rect, 0xdf2727);
+	set_rect_to_screen(data, &rect, 0xdf2727);
 }
 
 static void			draw_main_rect(t_wolf *data, int cursor)
 {
 	SDL_Texture *font;
-
-	(*(data->rect)) = (SDL_Rect){0, 0, W_WIDTH, W_HEIGHT};
+	SDL_Rect	rect;
+	
+	rect = (SDL_Rect){0, 0, W_WIDTH, W_HEIGHT};
 	font = SDL_CreateTextureFromSurface(data->renderer, data->sprite[2].img);
-	SDL_RenderCopy(data->renderer, font, NULL, data->rect);
-	(*(data->rect)) = (SDL_Rect){W_WIDTH / 3, W_HEIGHT / 4, 0, 0};
+	SDL_RenderCopy(data->renderer, font, NULL, &rect);
+	rect = (SDL_Rect){W_WIDTH / 3, W_HEIGHT / 4, 0, 0};
 	data->policep = data->police;
-	set_write_to_screen(data, (*(data->rect)), 0xffffff, "ASYLUM");
-	(*(data->rect)) = (SDL_Rect){2 * (W_WIDTH / 16), 7 * (W_HEIGHT / 10), 2
+	set_write_to_screen(data, rect, 0xffffff, "ASYLUM");
+	rect = (SDL_Rect){2 * (W_WIDTH / 16), 7 * (W_HEIGHT / 10), 2
 		* (W_WIDTH / 16), 0.75 * (W_HEIGHT / 10)};
 	data->policep = data->police2;
-	set_write_to_screen(data, (*(data->rect)), 0xffffff, "PLAY");
-	(*(data->rect)) = (SDL_Rect){2 * (W_WIDTH / 16), 8 * (W_HEIGHT / 10), 2
+	set_write_to_screen(data, rect, 0xffffff, "PLAY");
+	rect = (SDL_Rect){2 * (W_WIDTH / 16), 8 * (W_HEIGHT / 10), 2
 		* (W_WIDTH / 16), 0.75 * (W_HEIGHT / 10)};
-	set_write_to_screen(data, (*(data->rect)), 0xffffff, "QUIT");
+	set_write_to_screen(data, rect, 0xffffff, "QUIT");
 	draw_cursor(data, cursor);
 	SDL_RenderPresent(data->renderer);
 	SDL_DestroyTexture(font);
@@ -79,7 +81,7 @@ void				w_pause(t_wolf *data)
 	SDL_FlushEvent(SDL_MOUSEMOTION);
 	cursor = 1;
 	draw_main_rect(data, cursor);
-	//play_music(data, data->sound.pausemusic);
+	play_music(data, data->sound.pausemusic);
 	while (data->key[KP])
 	{
 		SDL_PollEvent(&data->event);

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/14 21:18:03 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:45:28 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,17 @@ static int		get_map(t_wolf *data, int file)
 	return (parse_map(data));
 }
 
+int				check_dotwolf(char *str)
+{
+	int i;
+
+	i = ft_strlen(str);
+	if (!ft_strequ((str + i - 5), ".wolf"))
+		return (0);
+	else
+		return (1);
+}
+
 int				main(int ac, char **av)
 {
 	t_wolf	data;
@@ -85,7 +96,9 @@ int				main(int ac, char **av)
 	if (ac == 2)
 	{
 		ft_memset(&data, 0, sizeof(t_wolf));
-		if (get_map(&data, open(av[1], O_NOCTTY | O_RDONLY
+		if (!check_dotwolf(av[1]))
+			clean_exit(&data, "wolf3d: not valid format\nuse .wolf file", 0);
+		else if (get_map(&data, open(av[1], O_NOCTTY | O_RDONLY
 			| O_NONBLOCK)) == 1)
 		{
 			wolf3d(&data);

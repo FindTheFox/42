@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/14 21:06:33 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:32:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../SDL/SDL_mixer.h"
 # include "../SDL/SDL_ttf.h"
 
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
 
 # define W_WIDTH	1280
 # define W_HEIGHT	720
@@ -296,7 +296,6 @@ typedef struct	s_wolf
 	SDL_Surface				*screen;
 	SDL_Surface				*surf_write;
 	SDL_Texture				*text_write;
-	SDL_Texture				*bgc;
 	SDL_Texture				*bgf;
 	SDL_Texture				*window;
 	SDL_Window				*pwindow;

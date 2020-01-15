@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/14 22:29:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:49:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void			clean_exit(t_wolf *data, char *str, int token)
 			if (data->pwindow)
 				SDL_DestroyWindow(data->pwindow);
 			free_surfaces(data);
-			/*if (data->sound.token == 1)
+			if (data->sound.token == 1)
 				free_sound(data);
-			Mix_CloseAudio();*/
+			Mix_CloseAudio();
 			TTF_Quit();
 			SDL_Quit();
 		}
@@ -101,5 +101,7 @@ void			clean_exit(t_wolf *data, char *str, int token)
 	}
 	if (str)
 		ft_putendl_fd(str, 2);
+	while (1)
+		;
 	exit(token ? EXIT_SUCCESS : EXIT_FAILURE);
 }

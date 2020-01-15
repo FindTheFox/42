@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/14 21:05:04 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:44:23 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			game_over(t_wolf *data)
 {
-	//play_sound(data, data->sound.playerdeath, 5);
+	play_sound(data, data->sound.playerdeath, 5);
 	(void)data;
 	ft_putstr("GAME OVER\n");
 }

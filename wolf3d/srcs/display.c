@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/14 23:01:18 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 17:41:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		textures(t_wolf *data)
 	int				i;
 	unsigned int	*pixels;
 	SDL_Rect		rect;
-
+	
 	rect.h = W_HEIGHT / 2;
 	rect.w = W_WIDTH;
 	rect.x = 0;

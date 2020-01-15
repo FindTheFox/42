@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 01:04:10 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/12 20:34:35 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 17:32:07 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 uint32_t		get_pixel_ray(t_wolf *data, int si, float x, float y)
 {
-	int				sx;
-	int				sy;
 	uint8_t			*p;
 	t_sprite		surface;
-	uint32_t		pixel;
 
 	surface = data->sprite[si];
-	sx = x;
-	sy = y;
-	p = (uint8_t *)surface.img->pixels + sy * surface.img->pitch
-		+ sx * surface.img->format->BytesPerPixel;
-	pixel = (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24); 
-	data->rgb = fill_rgb(pixel);
-	return (fog(data, data->rgb, 0));
+	p = (uint8_t *)surface.img->pixels + (int)y * surface.img->pitch
+		+ (int)x * surface.img->format->BytesPerPixel;
+	if (data->fog == 0)
+		return(p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
+	else
+	{
+		data->rgb = fill_rgb(p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
+		return (fog(data, data->rgb, 0));
+	}
 }
 
 void			draw_wall(t_wolf *d, int x)

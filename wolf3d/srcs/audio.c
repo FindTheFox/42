@@ -6,14 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/26 22:09:50 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/14 21:06:11 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/15 20:03:55 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-
-static void		check_load(t_wolf *data)
+void			check_load(t_wolf *data)
 {
 	if (data->sound.fusil == NULL || data->sound.gun == NULL
 			|| data->sound.hand == NULL || data->sound.nmiatk == NULL
@@ -30,22 +29,22 @@ void			audio_init(t_wolf *data)
 {
 	data->sound.token = 1;
 	Mix_AllocateChannels(16);
-	data->sound.hand = Mix_LoadWAV("sound/chunk/PUNCH.wav");
-	data->sound.gun = Mix_LoadWAV("sound/chunk/shoot2.wav");
-	data->sound.fusil = Mix_LoadWAV("sound/chunk/shoot.wav");
-	data->sound.shotgun = Mix_LoadWAV("sound/chunk/shotgun.wav");
-	data->sound.nmihit = Mix_LoadWAV("sound/chunk/HITmonster.wav");
-	data->sound.nmideath = Mix_LoadWAV("sound/chunk/DEATHmonster.wav");
-	data->sound.nmispawn = Mix_LoadWAV("sound/chunk/SpawnMonster.wav");
-	data->sound.nmiatk = Mix_LoadWAV("sound/chunk/ATTACKmonster.wav");
-	data->sound.playerhit = Mix_LoadWAV("sound/chunk/playerhit.wav");
-	data->sound.playerdeath = Mix_LoadWAV("sound/chunk/playerdeath.wav");
-	data->sound.playerspawn = Mix_LoadWAV("sound/chunk/playerspawn.wav");
-	data->sound.switchgun = Mix_LoadWAV("sound/chunk/SWITCHgun.wav");
-	data->sound.tic = Mix_LoadWAV("sound/chunk/tic.wav");
-	data->sound.ingmusic = Mix_LoadMUS("sound/music/SignOfEvil.wav");
-	data->sound.pausemusic = Mix_LoadMUS("sound/music/AtDoomsGate.wav");
-	check_load(data);
+	data->sound.hand = Mix_LoadWAV("../sound/chunk/punch.wav");
+	data->sound.gun = Mix_LoadWAV("../sound/chunk/shoot2.wav");
+	data->sound.fusil = Mix_LoadWAV("../sound/chunk/shoot.wav");
+	data->sound.shotgun = Mix_LoadWAV("../sound/chunk/shotgun.wav");
+	data->sound.nmihit = Mix_LoadWAV("../sound/chunk/hitmonster.wav");
+	data->sound.nmideath = Mix_LoadWAV("../sound/chunk/dthmonster.wav");
+	data->sound.nmispawn = Mix_LoadWAV("../sound/chunk/spawnmonster.wav");
+	data->sound.nmiatk = Mix_LoadWAV("../sound/chunk/atkmonster.wav");
+	data->sound.playerhit = Mix_LoadWAV("../sound/chunk/playerhit.wav");
+	data->sound.playerdeath = Mix_LoadWAV("../sound/chunk/playerdeath.wav");
+	data->sound.playerspawn = Mix_LoadWAV("../sound/chunk/playerspawn.wav");
+	data->sound.switchgun = Mix_LoadWAV("../sound/chunk/switchgun.wav");
+	data->sound.tic = Mix_LoadWAV("../sound/chunk/tic.wav");
+	data->sound.ingmusic = Mix_LoadMUS("../sound/music/SignOfEvil.wav");
+	data->sound.pausemusic = Mix_LoadMUS("../sound/music/AtDoomsGate.wav");
+	// check_load(data);
 }
 
 void			free_sound(t_wolf *data)
@@ -73,7 +72,10 @@ void			free_sound(t_wolf *data)
 void			play_sound(t_wolf *data, Mix_Chunk *chunk, int channel)
 {
 	if (Mix_PlayChannelTimed(channel, chunk, 0, 500) == -1)
+	{
+		printf("%s\n", (char *)chunk);
 		clean_exit(data, "Wolf3d: Play sound fail", 0);
+	}
 }
 
 void			play_music(t_wolf *data, Mix_Music *music)
