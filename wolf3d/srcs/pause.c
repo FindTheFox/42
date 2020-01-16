@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/15 21:29:31 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:33:58 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void			draw_main_rect(t_wolf *data, int cursor)
 	SDL_RenderCopy(data->renderer, font, NULL, &rect);
 	rect = (SDL_Rect){W_WIDTH / 3, W_HEIGHT / 4, 0, 0};
 	data->policep = data->police;
-	set_write_to_screen(data, rect, 0xffffff, "ASYLUM");
+	set_write_to_screen(data, rect, 0xffffff, data->strgame);
 	rect = (SDL_Rect){2 * (W_WIDTH / 16), 7 * (W_HEIGHT / 10), 2
 		* (W_WIDTH / 16), 0.75 * (W_HEIGHT / 10)};
 	data->policep = data->police2;

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 19:45:28 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:08:06 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,10 @@ int				main(int ac, char **av)
 {
 	t_wolf	data;
 
-	if (ac == 2)
+	if (ac == 2 || ac == 3)
 	{
 		ft_memset(&data, 0, sizeof(t_wolf));
+		choose_game(&data, av[2]);
 		if (!check_dotwolf(av[1]))
 			clean_exit(&data, "wolf3d: not valid format\nuse .wolf file", 0);
 		else if (get_map(&data, open(av[1], O_NOCTTY | O_RDONLY
@@ -108,6 +109,9 @@ int				main(int ac, char **av)
 			clean_exit(&data, "wolf3d: map error (parse error)", 0);
 	}
 	else
+	{
 		ft_putstr_fd("wolf3d: usage: ./wolf3d [ valid_map ]\n", 2);
+		ft_putstr_fd("choose the game with arg [asylum][maze][test]\n", 2);
+	}
 	return (EXIT_FAILURE);
 }

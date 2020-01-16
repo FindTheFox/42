@@ -6,13 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 18:17:01 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/12 21:01:07 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:06:32 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-void			sprites_textures(t_wolf *data)
+void			sprites_textures_maze(t_wolf *data)
 {
 	if (!(data->sprite[16].img = SDL_LoadBMP("img/textures/wall.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
@@ -26,9 +26,11 @@ void			sprites_textures(t_wolf *data)
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/ceilling.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
+	if (!(data->sprite[2].img = SDL_LoadBMP("img/maze.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
 }
 
-void			sprites_textures1(t_wolf *data)
+void			sprites_textures_asylum(t_wolf *data)
 {
 	if (!(data->sprite[16].img = SDL_LoadBMP("img/textures/capwall.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
@@ -42,20 +44,24 @@ void			sprites_textures1(t_wolf *data)
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
 	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/capwall2.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[2].img = SDL_LoadBMP("img/asylum.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
 }
 
-void			sprites_textures2(t_wolf *data)
+void			sprites_textures(t_wolf *data)
 {
-	if (!(data->sprite[16].img = SDL_LoadBMP("img/textures/mossy.bmp")))
+	if (!(data->sprite[16].img = SDL_LoadBMP("img/textures/evil-eye.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[17].img = SDL_LoadBMP("img/textures/redbrick.bmp")))
+	if (!(data->sprite[17].img = SDL_LoadBMP("img/textures/magic.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[18].img = SDL_LoadBMP("img/textures/purplestone.bmp")))
+	if (!(data->sprite[18].img = SDL_LoadBMP("img/textures/magic-star.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[19].img = SDL_LoadBMP("img/textures/bluestone.bmp")))
+	if (!(data->sprite[19].img = SDL_LoadBMP("img/textures/unicorn.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	if (!(data->sprite[1].img = SDL_LoadBMP("img/textures/colorstone.bmp")))
+	if (!(data->sprite[1].img = SDL_LoadBMP("img/textures/water.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
 	if (!(data->sprite[0].img = SDL_LoadBMP("img/textures/wood.bmp")))
+		clean_exit(data, "wolf3d: load_sprites error\n", 0);
+	if (!(data->sprite[2].img = SDL_LoadBMP("img/test.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error\n", 0);
 }

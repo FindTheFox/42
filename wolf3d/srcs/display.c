@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 21:16:25 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:34:30 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,10 @@ static void		textures(t_wolf *data)
 {
 	int				i;
 	unsigned int	*pixels;
-	SDL_Rect		rect;
 
-	rect.h = W_HEIGHT / 2;
-	rect.w = W_WIDTH;
-	rect.x = 0;
-	rect.y = W_HEIGHT / 2;
-	SDL_RenderCopy(data->renderer, data->bgf, NULL, &rect);
-	rect.h = W_HEIGHT;
-	rect.y = 0;
 	SDL_LockSurface(data->screen);
 	data->window = SDL_CreateTextureFromSurface(data->renderer, data->screen);
-	SDL_RenderCopy(data->renderer, data->window, NULL, &rect);
+	SDL_RenderCopy(data->renderer, data->window, NULL, NULL);
 	pixels = (unsigned int *)data->screen->pixels;
 	i = -1;
 	while (++i < W_WIDTH * W_HEIGHT)

@@ -6,13 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 17:24:26 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 18:30:38 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-void			sprites_monsters(t_wolf *data)
+void			sprites_monsters_maze(t_wolf *data)
 {
 	if (!(data->sprite[7].img = SDL_LoadBMP("img/monsters/monster1.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
@@ -34,7 +34,7 @@ void			sprites_monsters(t_wolf *data)
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 }
 
-void			sprites_monsters2(t_wolf *data)
+void			sprites_monsters_asylum(t_wolf *data)
 {
 	if (!(data->sprite[8].img = SDL_LoadBMP("img/monsters/soldat.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
@@ -90,10 +90,21 @@ void			sprites_weapons(t_wolf *data)
 
 void			sprites(t_wolf *data)
 {
-	if (!(data->sprite[2].img = SDL_LoadBMP("img/asylum.bmp")))
-		clean_exit(data, "wolf3d: load_sprites error\n", 0);
-	sprites_textures1(data);
+	if (data->game == 1)
+	{
+		sprites_monsters_asylum(data);
+		sprites_textures_asylum(data);
+	}
+	else if (data->game == 2)
+	{
+		sprites_textures_maze(data);
+		sprites_monsters_maze(data);
+	}
+	else
+	{
+		sprites_textures(data);
+		sprites_monsters_asylum(data);
+	}
 	sprites_object(data);
-	sprites_monsters2(data);
 	sprites_weapons(data);
 }

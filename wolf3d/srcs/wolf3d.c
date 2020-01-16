@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 21:28:18 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 18:34:13 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void			wolf3d(t_wolf *data)
 	data->player.diry = 0;
 	data->player.planex = 0;
 	data->player.planey = data->player.fov;
-	data->floorstyle = 0;
-	data->nmistyle = 0;
 	data->key[MOUSE] = 1;
 	data->obj_intens = 0.8;
 	data->fog = 1;

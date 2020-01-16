@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 21:53:00 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 18:33:01 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,9 +253,10 @@ typedef struct	s_pf
 
 typedef struct	s_wolf
 {
+	int						game;
+	char					*strgame;
 	int						style;
 	int						floorstyle;
-	int						nmistyle;
 	int						fire_delay;
 	int						fps;
 	int						kill_score;
@@ -295,7 +296,6 @@ typedef struct	s_wolf
 	SDL_Surface				*screen;
 	SDL_Surface				*surf_write;
 	SDL_Texture				*text_write;
-	SDL_Texture				*bgf;
 	SDL_Texture				*window;
 	SDL_Window				*pwindow;
 }				t_wolf;
@@ -316,12 +316,11 @@ void			skybox(t_wolf *data);
 void			spawner(t_wolf *data);
 void			sprites(t_wolf *data);
 void			sprites_textures(t_wolf *data);
-void			sprites_textures1(t_wolf *data);
-void			sprites_textures2(t_wolf *data);
-void        	switch_monster(t_wolf *d);
+void			sprites_textures_asylum(t_wolf *data);
+void			sprites_textures_maze(t_wolf *data);
 void			switch_floor(t_wolf *d);
-void			sprites_monsters(t_wolf *data);
-void			sprites_monsters2(t_wolf *data);
+void			sprites_monsters_asylum(t_wolf *data);
+void			sprites_monsters_maze(t_wolf *data);
 void			weapons(t_wolf *data);
 void			change_weapon(t_wolf *data);
 void			wolf3d(t_wolf *data);
@@ -387,5 +386,6 @@ int				rgb_to_hsv(int r, int g, int b);
 int             fog(t_wolf *d, t_rgba rgb, int flag);
 void        	switch_fog(t_wolf *d);
 void			free_surfaces(t_wolf *data, int flag);
+void			choose_game(t_wolf *data, char *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 21:53:36 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/16 18:00:20 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ static void		get_events(t_wolf *data)
 	else if (data->event.key.keysym.sym == SDLK_y
 		&& data->event.type == SDL_KEYDOWN)
 		switch_floor(data);
-	else if (data->event.key.keysym.sym == SDLK_u
-		&& data->event.type == SDL_KEYDOWN)
-		switch_monster(data);
 	else if (data->event.key.keysym.sym == SDLK_f
 		&& data->event.type == SDL_KEYDOWN)
 		switch_fog(data);
@@ -66,17 +63,17 @@ void			switch_texture(t_wolf *data)
 	if (data->style == 0)
 	{
 		data->style = 1;
-		sprites_textures1(data);
+		sprites_textures_maze(data);
 	}
 	else if (data->style == 1)
 	{
 		data->style = 2;
-		sprites_textures2(data);
+		sprites_textures(data);
 	}
 	else
 	{
 		data->style = 0;
-		sprites_textures(data);
+		sprites_textures_asylum(data);
 	}
 }
 
