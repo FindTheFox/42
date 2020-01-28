@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/08 15:39:46 by saneveu          ###   ########.fr       */
+/*   Created: 2019/08/27 16:48:08 by saneveu           #+#    #+#             */
+/*   Updated: 2020/01/28 22:01:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void				help_display(t_wolf *d, t_object *l, int sx, int sy)
 	d->ray.wty = ((p * l->sprite.img->h) / l->data.spriteheight) / 256;
 	pixel = get_pixel_obj(l, d->ray.wtx, d->ray.wty);
 	if (pixel != l->data.zpixel)
-		put_pixel(d->screen, sx, sy, pixel);
+		put_pixel(d->screen, sx, sy, fog(d, pixel, l->data.dst_fromplayer));
 	l->data.dst_fromplayer = distance(d->player.x, d->player.y,
 		l->x, l->y);
 }

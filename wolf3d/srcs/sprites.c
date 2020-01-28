@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/16 18:30:38 by saneveu          ###   ########.fr       */
+/*   Created: 2019/08/28 17:52:38 by saneveu           #+#    #+#             */
+/*   Updated: 2020/01/28 18:52:31 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void		sprites_object(t_wolf *data)
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 	if (!(data->sprite[5].img = SDL_LoadBMP("img/table.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
-	if (!(data->sprite[6].img = SDL_LoadBMP("img/circle.bmp")))
+	if (!(data->sprite[6].img = SDL_LoadBMP("img/rickportal.bmp")))
 		clean_exit(data, "wolf3d: load_sprites error", 0);
 }
 

@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/27 16:48:08 by maboye            #+#    #+#             */
+/*   Created: 2019/08/27 16:48:08 by saneveu            #+#    #+#             */
 /*   Updated: 2020/01/16 18:33:01 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -312,7 +312,6 @@ void			movements(t_wolf *data);
 void			objects(t_wolf *data, t_object *list);
 void			object_actions(t_wolf *data, t_object *list);
 void			shoot(t_wolf *data);
-void			skybox(t_wolf *data);
 void			spawner(t_wolf *data);
 void			sprites(t_wolf *data);
 void			sprites_textures(t_wolf *data);
@@ -339,6 +338,7 @@ int				get_objhp(t_wolf *data, t_object *list);
 uint32_t		get_pixel(t_wolf *data, int si, float samplex, float sampley);
 SDL_Surface		*new_surface(int w, int h);
 void			put_pixel(SDL_Surface *surface, int x, int y, uint32_t color);
+Uint32			light_shade(Uint32 hexa, float distance);
 
 void			draw_fps(t_wolf *data);
 void			add_sc_x(t_wolf *data);
@@ -383,7 +383,7 @@ void			help_pause(t_wolf *data);
 
 t_rgba			fill_rgb(int c);
 int				rgb_to_hsv(int r, int g, int b);
-int             fog(t_wolf *d, t_rgba rgb, int flag);
+int             fog(t_wolf *d, Uint32 pixel, float distance);
 void        	switch_fog(t_wolf *d);
 void			free_surfaces(t_wolf *data, int flag);
 void			choose_game(t_wolf *data, char *game);

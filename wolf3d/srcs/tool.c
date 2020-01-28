@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/29 15:05:22 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/16 19:27:24 by saneveu          ###   ########.fr       */
+/*   Created: 2019/08/29 15:05:22 by saneveu           #+#    #+#             */
+/*   Updated: 2020/01/28 19:35:02 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,17 @@ void			clean_exit(t_wolf *data, char *str, int token)
 			SDL_DestroyRenderer(data->renderer);
 			if (data->pwindow)
 				SDL_DestroyWindow(data->pwindow);
-			if (data->sound.token == 1)
-				free_sound(data);
-			Mix_CloseAudio();
+			//if (data->sound.token == 1)
+			//	free_sound(data);
+			//Mix_CloseAudio();
+			TTF_CloseFont(data->police);
+			TTF_CloseFont(data->police2);
+			TTF_CloseFont(data->police3);
 			TTF_Quit();
 			SDL_Quit();
 		}
-		system("leaks wolf3d");
-		printf("%p\n", data->renderer);
+		//system("leaks wolf3d");
+		//printf("%p\n", data->renderer);
 		ft_strdel(&data->str);
 		ft_memdel((void **)&data->map.map);
 		lst_free(data->object);

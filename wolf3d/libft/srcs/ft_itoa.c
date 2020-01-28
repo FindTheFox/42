@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 06:45:01 by saneveu           #+#    #+#             */
-/*   Updated: 2018/11/15 17:34:33 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/17 16:35:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int		len_init(int nb)
 
 char			*ft_itoa(int nb)
 {
-	int		i;
 	int		len;
 	int		neg;
 	char	*dest;
@@ -42,7 +41,6 @@ char			*ft_itoa(int nb)
 	itoa_is_neg(&nb, &neg);
 	if (nb == -2147483648)
 		return (ft_strdup("-2147483648"));
-	i = nb;
 	len = len_init(nb);
 	len += neg;
 	if (!(dest = (char *)malloc(sizeof(char) * len)))

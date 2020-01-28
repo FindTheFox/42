@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/16 18:34:13 by saneveu          ###   ########.fr       */
+/*   Created: 2019/08/28 17:52:38 by saneveu           #+#    #+#             */
+/*   Updated: 2020/01/28 22:09:55 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void		init_sdl(t_wolf *data)
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		clean_exit(data, "wolf3d: SDL_Init fail", 0);
 	data->sdl_on = 1;
-	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+	/*if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
 		clean_exit(data, "wolf3d: error Mix_OpenAudio", 0);
 	else
-		audio_init(data);
+		audio_init(data);*/
 	if (TTF_Init() == -1)
 		clean_exit(data, "wolf3d: error TTF_init", 0);
 	data->pwindow = SDL_CreateWindow("saneveu wolf3d",

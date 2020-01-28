@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/28 17:52:38 by maboye            #+#    #+#             */
-/*   Updated: 2020/01/15 16:44:23 by saneveu          ###   ########.fr       */
+/*   Created: 2019/08/28 17:52:38 by saneveu           #+#    #+#             */
+/*   Updated: 2020/01/28 18:52:31 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void			deal_damage_tomonster(t_wolf *data, t_object *list, int damage)
 		++data->kill_score;
 		list->dead = 1;
 		list->si = 28;
-		play_sound(data, data->sound.nmideath, 3);
+		//play_sound(data, data->sound.nmideath, 3);
 	}
 	else
 	{
 		list->si = list->type + 6;
 		list->sprite = data->sprite[list->si];
-		play_sound(data, data->sound.nmihit, 3);
+		//play_sound(data, data->sound.nmihit, 3);
 	}
 }
 
@@ -76,12 +76,12 @@ static void		shoot2(t_wolf *data)
 	if (data->player.weapon == 2)
 	{
 		data->player.wdata[data->player.weapon].si = 25;
-		play_sound(data, data->sound.fusil, 2);
+		//play_sound(data, data->sound.fusil, 2);
 	}
 	else if (data->player.weapon == 3)
 	{
 		data->player.wdata[data->player.weapon].si = 27;
-		play_sound(data, data->sound.shotgun, 2);
+		//play_sound(data, data->sound.shotgun, 2);
 	}
 }
 
@@ -92,17 +92,17 @@ void			shoot(t_wolf *data)
 		if (data->player.weapon == 0)
 		{
 			data->player.wdata[data->player.weapon].si = 21;
-			play_sound(data, data->sound.hand, 2);
+			//play_sound(data, data->sound.hand, 2);
 		}
 		else if (data->player.weapon == 1)
 		{
 			data->player.wdata[data->player.weapon].si = 23;
-			play_sound(data, data->sound.gun, 2);
+			//play_sound(data, data->sound.gun, 2);
 		}
 		else if (data->player.weapon == 2 || data->player.weapon == 3)
 			shoot2(data);
 		shoot_impact(data);
 		data->fire_delay = data->player.wdata[data->player.weapon].delay;
-		data->skin_delay = 5;
+		data->skin_delay = 7;
 	}
 }

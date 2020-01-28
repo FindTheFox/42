@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 16:33:16 by bebosson          #+#    #+#             */
-/*   Updated: 2020/01/16 19:33:58 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/17 16:43:34 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int			move_cursor(t_wolf *data, int *cursor)
 {
 	if (data->event.key.keysym.sym == SDLK_UP && *cursor > 1)
 	{
-		play_sound(data, data->sound.tic, 5);
+		//play_sound(data, data->sound.tic, 5);
 		return (--*cursor);
 	}
 	else if (data->event.key.keysym.sym == SDLK_DOWN && *cursor < 2)
 	{
-		play_sound(data, data->sound.tic, 5);
+		//play_sound(data, data->sound.tic, 5);
 		return (++*cursor);
 	}
 	else
@@ -81,7 +81,7 @@ void				w_pause(t_wolf *data)
 	SDL_FlushEvent(SDL_MOUSEMOTION);
 	cursor = 1;
 	draw_main_rect(data, cursor);
-	play_music(data, data->sound.pausemusic);
+	//play_music(data, data->sound.pausemusic);
 	while (data->key[KP])
 	{
 		SDL_PollEvent(&data->event);
