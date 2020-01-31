@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 18:48:48 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/31 20:42:43 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void		get_list(t_wolf *data, t_object *list, int min, int max)
 	while (++i < data->map.len)
 		if (data->map.map[i] >= min && data->map.map[i] <= max)
 		{
+			data->map.map[i] == 28 ? set_end_pt(data, i) : 0;
 			list->y = i / data->map.width;
 			list->x = i - (list->y * data->map.width) + 1;
 			list->type = data->map.map[i];
@@ -33,6 +34,8 @@ static void		get_list(t_wolf *data, t_object *list, int min, int max)
 			list->si = list->type;
 			list->i = list->x + data->map.width * list->y;
 			list->sprite = data->sprite[list->si];
+			list->x -= 0.5;
+			list->y += 0.5;
 			lst_pushback(list, (t_object *)ft_memalloc(sizeof(t_object)));
 			if (list == NULL)
 				clean_exit(data, "wolf3d: malloc error", 0);
@@ -69,8 +72,11 @@ void			load_datagame(t_wolf *data)
 		clean_exit(data, "wolf3d: malloc error", 0);
 	if (!(data->monster = (t_object *)ft_memalloc(sizeof(t_object))))
 		clean_exit(data, "wolf3d: malloc error", 0);
+	if (!(data->end_flag = (t_object *)ft_memalloc(sizeof(t_object))))
+		clean_exit(data, "wolf3d: malloc error", 0);
 	get_list(data, data->object, 3, 5);
 	get_list(data, data->monster, 6, 9);
+	get_list(data, data->end_flag, 28, 28);
 	if (!(data->screen = new_surface(W_WIDTH, W_HEIGHT)))
 		clean_exit(data, "wolf3d: error creating RGB surface", 0);
 	get_nodes(data);

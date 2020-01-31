@@ -29,7 +29,7 @@
 
 # define FPS		60
 
-# define SNB		30
+# define SNB		29
 # define WNB		4
 
 # define KQ			0
@@ -253,6 +253,7 @@ typedef struct	s_pf
 
 typedef struct	s_wolf
 {
+	t_point					end;
 	int						game;
 	char					*strgame;
 	int						style;
@@ -286,6 +287,7 @@ typedef struct	s_wolf
 	t_ray					ray;
 	t_object				*monster;
 	t_object				*object;
+	t_object				*end_flag;
 	t_sprite				sprite[SNB];
 	t_rgba					rgb;
 	SDL_Point				*point;
@@ -385,7 +387,12 @@ t_rgba			fill_rgb(int c);
 int				rgb_to_hsv(int r, int g, int b);
 int             fog(t_wolf *d, Uint32 pixel, float distance);
 void        	switch_fog(t_wolf *d);
+void			switch_texture(t_wolf *data);
 void			free_surfaces(t_wolf *data, int flag);
 void			choose_game(t_wolf *data, char *game);
+void			set_end_pt(t_wolf *d, int i);
+void			end_screen(t_wolf *d, char *str);
+int				move_cursor(t_wolf *data, int *cursor);
+void			draw_cursor(t_wolf *data, int cursor);
 
 #endif

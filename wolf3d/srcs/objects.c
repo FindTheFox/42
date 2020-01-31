@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 22:01:50 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/31 18:36:00 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void					objects(t_wolf *data, t_object *list)
 	while (list)
 	{
 		list->data.zpixel = get_pixel(data, list->si, 0, 0);
-		if (list->type > 2 && list->type < 10)
+		if ((list->type > 2 && list->type < 10) || list->type == 28)
 		{
 			list->i = (int)list->x + data->map.width * (int)list->y;
 			get_obj_calc(data, list);

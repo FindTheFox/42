@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 20:02:17 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/30 20:10:59 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,6 @@ static void		get_events(t_wolf *data)
 	else if (data->event.key.keysym.sym == SDLK_f
 		&& data->event.type == SDL_KEYDOWN)
 		switch_fog(data);
-}
-
-void			switch_texture(t_wolf *data)
-{
-	free_surfaces(data, 1);
-	if (data->style == 0)
-	{
-		data->style = 1;
-		sprites_textures_maze(data);
-	}
-	else if (data->style == 1)
-	{
-		data->style = 2;
-		sprites_textures(data);
-	}
-	else
-	{
-		data->style = 0;
-		sprites_textures_asylum(data);
-	}
 }
 
 void			events(t_wolf *data)

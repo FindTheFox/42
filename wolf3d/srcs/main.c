@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:47:19 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 18:52:31 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/31 19:12:33 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 static int		is_goodvalue(t_wolf *data, char c, int i)
 {
-	if (c >= '0' && c <= '6')
+	if (c >= '0' && c <= '7')
 	{
-		if (data->player.pos == -1 && c == '2')
-			data->player.pos = i;
-		data->map.map[i] = c - '0';
+		if (c == '7')
+			data->map.map[i] = 28;
+		else
+		{
+			if (data->player.pos == -1 && c == '2')
+				data->player.pos = i;
+			data->map.map[i] = c - '0';
+		}
 		return (1);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:49:23 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 18:52:31 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/31 18:28:31 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void			display(t_wolf *data)
 	monsters(data);
 	objects(data, data->monster);
 	objects(data, data->object);
+	objects(data, data->end_flag);
 	remove_objects(data);
 	weapons(data);
 	textures(data);
@@ -81,6 +82,8 @@ void			display(t_wolf *data)
 	if (data->key[KM])
 		minimap(data);
 	SDL_RenderPresent(data->renderer);
+	SDL_SetRenderDrawColor(data->renderer, 0, 0, 0, 0);
+	SDL_RenderClear(data->renderer);
 	SDL_DestroyTexture(data->window);
 	get_fps(data);
 }

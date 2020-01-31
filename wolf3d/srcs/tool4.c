@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/11 19:50:05 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/16 19:12:44 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/30 19:50:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void            choose_game(t_wolf *d, char *game)
         d->style = 0;
         d->strgame = game;
         d->floorstyle = 2;
+        d->fog = 3;
     }
     else if (ft_strequ(game, "maze"))
     {
@@ -27,6 +28,7 @@ void            choose_game(t_wolf *d, char *game)
         d->style = 1;
         d->strgame = game;
         d->floorstyle = 0;
+        d->fog = 1;
     }
     else
     {
@@ -34,5 +36,6 @@ void            choose_game(t_wolf *d, char *game)
         d->style = 2;
         d->strgame = "wolf3d";
         d->floorstyle = 1;
+        d->fog = 2;
     }
 }

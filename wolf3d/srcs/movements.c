@@ -6,27 +6,44 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 20:32:49 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/31 22:07:27 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-static int		in_wall(t_wolf *data)
+static int		in_wall(t_wolf *d)
 {
+/*
 	int	i;
 
 	i = -1;
-	while (++i < data->map.len)
-		if (data->pfdata.list[i].bobstacle == 1)
+	while (++i < d->map.len)
+		if (d->pfdata.list[i].bobstacle == 1)
 		{
-			if (distance_calc(data->player.x,
-					data->player.y,
-					data->pfdata.list[i].x + 0.5f,
-					data->pfdata.list[i].y + 0.5f) < 0.55f)
-				return (1);
+			if (distance_calc(d->player.x,
+					d->player.y,
+					d->pfdata.list[i].x + 0.5f,
+					d->pfdata.list[i].y + 0.5f) < 0.50f)
+				return (0);
 		}
-	return (0);
+	return (1);*/
+	
+	float x;
+	float y;
+
+	printf("pxf %f pyf %f\n", d->player.x, d->player.y);
+	printf("px %d py %d\n", (int)d->player.x, (int)d->player.y);
+	x = round(d->player.x - 0.5);
+	y = round(d->player.y - 0.5);
+	printf("map %d\n", d->map.map[(int)d->player.y * d->map.width + (int)d->player.x]);
+	printf("xf %f yf %f\n", x, y);
+	printf("x %d y %d\n", (int)x, (int)y);
+	printf("map %d\n\n", d->map.map[(int)y * d->map.width + (int)x]);
+	if (d->map.map[(int)y * d->map.width + (int)x] == 1)
+		return (1);
+	else
+		return (0);
 }
 
 static int		is_outrange(t_wolf *data)
@@ -56,16 +73,17 @@ static int		is_outrange(t_wolf *data)
 
 static void		move_maker(t_wolf *data, double sx, double sy)
 {
-	data->player.x += sx;
-	data->player.y += sy;
-	if (is_outrange(data) == 1)
+	if (is_outrange(data) == 0)
 	{
-		data->player.x -= sx;
-		data->player.y -= sy;
+		data->player.x += sx;
+		data->player.y += sy;
 		SDL_FlushEvent(SDL_KEYDOWN);
 	}
 	data->player.pos = (int)data->player.x
 		+ data->map.width * (int)data->player.y;
+	if ((int)data->player.x == data->end.x
+		&& (int)data->player.y == data->end.y)
+		end_screen(data, "YOU WIN");
 }
 
 static void		move_lateral(t_wolf *d, int lat)
@@ -83,6 +101,9 @@ static void		move_lateral(t_wolf *d, int lat)
 		d->player.pos = (int)d->player.x
 			+ d->map.width * (int)d->player.y;
 	}
+	if ((int)d->player.x == d->end.x
+		&& (int)d->player.y == d->end.y)
+		end_screen(d, "YOU WIN");
 }
 
 void			movements(t_wolf *data)

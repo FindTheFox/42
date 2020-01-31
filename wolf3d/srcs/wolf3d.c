@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 22:09:55 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/01/31 19:15:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void		init_sdl(t_wolf *data)
 	if (SDL_Init(SDL_INIT_VIDEO) == -1)
 		clean_exit(data, "wolf3d: SDL_Init fail", 0);
 	data->sdl_on = 1;
-	/*if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+	if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
 		clean_exit(data, "wolf3d: error Mix_OpenAudio", 0);
 	else
-		audio_init(data);*/
+		audio_init(data);
 	if (TTF_Init() == -1)
 		clean_exit(data, "wolf3d: error TTF_init", 0);
 	data->pwindow = SDL_CreateWindow("saneveu wolf3d",
@@ -60,7 +60,9 @@ void			wolf3d(t_wolf *data)
 	data->map.depth = data->map.width > data->map.height
 		? data->map.width : data->map.height;
 	data->player.y = data->player.pos / data->map.width;
-	data->player.x = data->player.pos - (data->player.y * data->map.width) + 1;
+	data->player.x = data->player.pos - (data->player.y * data->map.width);
+	data->player.y += 0.5;
+	data->player.x += 0.5;
 	data->player.fov = 3.14159f / 4;
 	data->player.health = 200;
 	data->player.health_max = 200;
@@ -72,7 +74,6 @@ void			wolf3d(t_wolf *data)
 	data->player.planex = 0;
 	data->player.planey = data->player.fov;
 	data->key[MOUSE] = 1;
-	data->obj_intens = 0.8;
-	data->fog = 1;
+	data->obj_intens = 0.7;
 	launch_game(data);
 }

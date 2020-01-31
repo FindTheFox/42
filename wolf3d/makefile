@@ -64,7 +64,9 @@ SRC		=	astar_list.c \
 			floor.c \
 			draw_ray.c \
 			texture.c \
-			fog.c
+			fog.c \
+			color.c \
+			switch_event.c
 
 INC		=	wolf3d.h
 
@@ -73,7 +75,7 @@ HEADER	=	$(addprefix $(INCDIR)/,$(INC))
 
 # compiler
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -pipe -Ofast
+CFLAGS	=	-Wall -Wextra -Werror -pipe -Ofast -march=native
 
 ifeq ($(OS), Linux)
 	SDL		=	-lSDL2-2.0 -lSDL2_ttf -lSDL2_mixer
