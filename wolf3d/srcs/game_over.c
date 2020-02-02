@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 16:48:08 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/31 19:05:00 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/02 20:21:19 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void			end_screen(t_wolf *data, char *str)
 		if ((data->event.key.keysym.sym == SDLK_SPACE)
 			|| data->event.window.event == SDL_WINDOWEVENT_CLOSE
 			|| data->event.key.keysym.sym == SDLK_ESCAPE)
-		{	
+		{
 			clean_exit(data, NULL, 1);
 			flag = 0;
 		}

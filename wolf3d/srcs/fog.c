@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/12 20:30:08 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/31 20:57:10 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/02 20:19:47 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Uint32			light_shade(Uint32 hexa, float distance)
 {
 	SDL_Color	color;
 	double		delta;
-	
+
 	delta = distance / 10;
 	delta > 0.9 ? delta = 0.9 : 0;
 	delta /= 1.50;
@@ -50,11 +50,11 @@ int				white_fog(t_wolf *d, Uint32 hexa, float distance)
 	return (rgb_to_hsv(d->rgb.r, d->rgb.g, d->rgb.b));
 }
 
-int			fog(t_wolf *d, Uint32 hexa, float distance)
+int				fog(t_wolf *d, Uint32 hexa, float distance)
 {
 	float		intensity;
 	SDL_Color	c;
-	
+
 	if (d->fog == 1)
 	{
 		c = (SDL_Color){hexa >> 24, hexa >> 16, hexa >> 8, hexa};
@@ -74,4 +74,3 @@ int			fog(t_wolf *d, Uint32 hexa, float distance)
 		return (light_shade(hexa, distance));
 	return (hexa);
 }
-

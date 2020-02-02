@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/20 16:07:10 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/30 20:30:51 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/02 20:41:50 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ uint32_t		get_pixel_floor(t_wolf *data, int si, float x, float y)
 	sy = y;
 	p = (uint8_t *)surface.img->pixels + sy * surface.img->pitch
 		+ sx * surface.img->format->BytesPerPixel;
-	pixel = (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24); 
-	//data->rgb = fill_rgb(pixel);
+	pixel = (p[2] | p[1] << 8 | p[0] << 16 | 255 << 24);
 	return (fog(data, pixel, data->ray.distcurrent));
 }
 

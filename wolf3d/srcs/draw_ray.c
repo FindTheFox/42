@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 01:04:10 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/28 22:04:27 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/02 20:20:10 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ uint32_t		get_pixel_ray(t_wolf *data, int si, float x, float y)
 	uint8_t			*p;
 	t_sprite		surface;
 	Uint32			pixel;
-	
+
 	surface = data->sprite[si];
 	p = (uint8_t *)surface.img->pixels + (int)y * surface.img->pitch
 		+ (int)x * surface.img->format->BytesPerPixel;

@@ -6,11 +6,21 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 17:52:38 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/31 20:42:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/02 20:18:09 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+static void		help_get_list(t_wolf *data, t_object *list)
+{
+	list->speed = 0.2f;
+	list->si = list->type;
+	list->i = list->x + data->map.width * list->y;
+	list->sprite = data->sprite[list->si];
+	list->x -= 0.5;
+	list->y += 0.5;
+}
 
 static void		get_list(t_wolf *data, t_object *list, int min, int max)
 {
@@ -30,12 +40,7 @@ static void		get_list(t_wolf *data, t_object *list, int min, int max)
 			list->type = data->map.map[i];
 			list->hp = get_objhp(data, list);
 			list->hp_max = list->hp;
-			list->speed = 0.2f;
-			list->si = list->type;
-			list->i = list->x + data->map.width * list->y;
-			list->sprite = data->sprite[list->si];
-			list->x -= 0.5;
-			list->y += 0.5;
+			help_get_list(data, list);
 			lst_pushback(list, (t_object *)ft_memalloc(sizeof(t_object)));
 			if (list == NULL)
 				clean_exit(data, "wolf3d: malloc error", 0);
@@ -47,7 +52,7 @@ static void		get_list(t_wolf *data, t_object *list, int min, int max)
 static void		weapons_data(t_wolf *data)
 {
 	data->player.wdata[0].damage = 60;
-	data->player.wdata[0].delay = 40;
+	data->player.wdata[0].delay = 10;
 	data->player.wdata[0].range = 2;
 	data->player.wdata[0].si = 20;
 	data->player.wdata[1].damage = 30;

@@ -66,7 +66,8 @@ SRC		=	astar_list.c \
 			texture.c \
 			fog.c \
 			color.c \
-			switch_event.c
+			switch_event.c \
+			exit.c
 
 INC		=	wolf3d.h
 

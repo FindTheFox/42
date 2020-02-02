@@ -6,47 +6,26 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/31 22:07:27 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/02 20:11:46 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-static int		in_wall(t_wolf *d)
+static int		in_wall(t_wolf *d, float sx, float sy)
 {
-/*
-	int	i;
-
-	i = -1;
-	while (++i < d->map.len)
-		if (d->pfdata.list[i].bobstacle == 1)
-		{
-			if (distance_calc(d->player.x,
-					d->player.y,
-					d->pfdata.list[i].x + 0.5f,
-					d->pfdata.list[i].y + 0.5f) < 0.50f)
-				return (0);
-		}
-	return (1);*/
-	
 	float x;
 	float y;
 
-	printf("pxf %f pyf %f\n", d->player.x, d->player.y);
-	printf("px %d py %d\n", (int)d->player.x, (int)d->player.y);
-	x = round(d->player.x - 0.5);
-	y = round(d->player.y - 0.5);
-	printf("map %d\n", d->map.map[(int)d->player.y * d->map.width + (int)d->player.x]);
-	printf("xf %f yf %f\n", x, y);
-	printf("x %d y %d\n", (int)x, (int)y);
-	printf("map %d\n\n", d->map.map[(int)y * d->map.width + (int)x]);
+	x = d->player.x + sx;
+	y = d->player.y + sy;
 	if (d->map.map[(int)y * d->map.width + (int)x] == 1)
 		return (1);
 	else
 		return (0);
 }
 
-static int		is_outrange(t_wolf *data)
+static int		is_outrange(t_wolf *data, float sx, float sy)
 {
 	t_object	*head;
 
@@ -54,13 +33,13 @@ static int		is_outrange(t_wolf *data)
 		return (1);
 	else if (data->player.x < 0 || data->player.x > data->map.width)
 		return (1);
-	if (in_wall(data) == 1)
+	if (in_wall(data, sx, sy) == 1)
 		return (1);
 	head = data->monster;
 	while (data->monster)
 	{
 		if (distance_calc(data->player.x, data->player.y,
-		data->monster->x, data->monster->y) < 0.25)
+		data->monster->x, data->monster->y) < 0.20)
 		{
 			data->monster = head;
 			return (1);
@@ -73,7 +52,7 @@ static int		is_outrange(t_wolf *data)
 
 static void		move_maker(t_wolf *data, double sx, double sy)
 {
-	if (is_outrange(data) == 0)
+	if (is_outrange(data, sx, sy) == 0)
 	{
 		data->player.x += sx;
 		data->player.y += sy;
@@ -93,7 +72,7 @@ static void		move_lateral(t_wolf *d, int lat)
 
 	dx = lat * d->player.diry * d->mv_speed / 2;
 	dy = -lat * d->player.dirx * d->mv_speed / 2;
-	if (is_outrange(d) == 0)
+	if (is_outrange(d, dx, dy) == 0)
 	{
 		d->player.x += dx;
 		d->player.y += dy;

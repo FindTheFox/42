@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 15:05:22 by saneveu           #+#    #+#             */
-/*   Updated: 2020/01/31 20:36:20 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/02 20:41:08 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,41 +84,19 @@ void			free_surfaces(t_wolf *data, int flag)
 	}
 }
 
-void			clean_exit(t_wolf *data, char *str, int token)
+void			free_ttf(t_wolf *data)
 {
-	if (data)
-	{
-		if (data->sdl_on)
-		{
-			free_surfaces(data, 0);
-			if (data->sound.token == 1)
-				free_sound(data);
-			Mix_CloseAudio();
-			TTF_CloseFont(data->police);
-			TTF_CloseFont(data->police2);
-			TTF_CloseFont(data->police3);
-			TTF_Quit();
-			/** SDL_DestroyRenderer(data->renderer); **/
-			if (data->pwindow)
-				SDL_DestroyWindow(data->pwindow);
-			SDL_Quit();
-		}
-		ft_strdel(&data->str);
-		ft_memdel((void **)&data->map.map);
-		lst_free(data->object);
-		lst_free(data->monster);
-		lst_free(data->end_flag);
-		ft_memdel((void **)&data->pfdata.list);
-	}
-	if (str)
-		ft_putendl_fd(str, 2);
-	exit(token ? EXIT_SUCCESS : EXIT_FAILURE);
+	TTF_CloseFont(data->police);
+	TTF_CloseFont(data->police2);
+	TTF_CloseFont(data->police3);
+	TTF_Quit();
 }
 
-/**
-void after_main() __attribute__((destructor));
-
-void after_main()
-{
-	while (1);
-}**/
+/*
+**void after_main() __attribute__((destructor));
+**
+**void after_main()
+**{
+**	while (1);
+**}
+*/

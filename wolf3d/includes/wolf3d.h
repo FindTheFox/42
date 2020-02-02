@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/27 16:48:08 by saneveu            #+#    #+#             */
-/*   Updated: 2020/01/16 18:33:01 by saneveu          ###   ########.fr       */
+/*   Created: 2019/08/27 16:48:08 by saneveu           #+#    #+#             */
+/*   Updated: 2020/02/02 20:51:00 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -332,7 +332,7 @@ void			draw_wall(t_wolf *d, int x);
 void			get_tex(t_wolf *d);
 
 void			minimap(t_wolf *data);
-void            free_minimap(t_wolf *d);
+void			free_minimap(t_wolf *d);
 
 float			distance(float x1, float y1, float x2, float y2);
 float			distance_calc(float x1, float y1, float x2, float y2);
@@ -385,8 +385,8 @@ void			help_pause(t_wolf *data);
 
 t_rgba			fill_rgb(int c);
 int				rgb_to_hsv(int r, int g, int b);
-int             fog(t_wolf *d, Uint32 pixel, float distance);
-void        	switch_fog(t_wolf *d);
+int				fog(t_wolf *d, Uint32 pixel, float distance);
+void			switch_fog(t_wolf *d);
 void			switch_texture(t_wolf *data);
 void			free_surfaces(t_wolf *data, int flag);
 void			choose_game(t_wolf *data, char *game);
@@ -394,5 +394,7 @@ void			set_end_pt(t_wolf *d, int i);
 void			end_screen(t_wolf *d, char *str);
 int				move_cursor(t_wolf *data, int *cursor);
 void			draw_cursor(t_wolf *data, int cursor);
+
+void			free_ttf(t_wolf *data);
 
 #endif
