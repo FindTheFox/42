@@ -1,5 +1,5 @@
 # Wolf3D
-	A Wolfenstein 3D gqme like. Project for [42 School Paris](https://www.42.fr/) project.
+	A Wolfenstein 3D game like. Project for [42 School Paris](https://www.42.fr/) project.
 
 ## Built with
 	C Language, Racasting method, SDL2 graphic library.
