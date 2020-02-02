@@ -26,3 +26,22 @@ $>make SDL2</br>
 <strong>after SDL2 installed</strong></br>
 $>make</br>
 $>./wolf3d map/name.wolf {wolf | asylum | maze}</br>
+
+## Map Block
+* 	1 : Wall
+* 	2 : Player
+* 	3 : Plante
+* 	4 : Cage
+* 	5 : Table
+* 	6 : Spawner
+* 	7 : Goal
+
+## Map Exemple
+1111111/n</br>
+1002001/n</br>
+1003001/n</br>
+1004001/n</br>
+1005001/n</br>
+1006001/n</br>
+1007001/n</br>
+1111111/n</br>
