@@ -17,12 +17,12 @@
 
 ## How to use
 
-<strong>Linux</strong>
-$>apt-get install libsdl2 libsdl2_ttf libsdl2_mixer
+<strong>Linux</strong></br>
+$>apt-get install libsdl2 libsdl2_ttf libsdl2_mixer</br>
 
-<strong>MacOS</strong>
-$>make SDL2
+<strong>MacOS</strong></br>
+$>make SDL2</br>
 
-<strong>after SDL2 installed</strong>
-$>make
-$>./wolf3d map/name.wolf {wolf | asylum | maze}
+<strong>after SDL2 installed</strong></br>
+$>make</br>
+$>./wolf3d map/name.wolf {wolf | asylum | maze}</br>
