@@ -122,7 +122,7 @@ SRC += $(S_PATH)ft_convert_base.c
 SRC += $(S_PATH)ft_lst_push_back.c
 SRC += $(S_PATH)ft_create_elem.c
 SRC += $(S_PATH)ft_strfjoin.c
-
+SRC += $(S_PATH)ft_swap.c
 # Objects and Headers
 
 OBJ = $(patsubst $(S_PATH)%.c, $(O_PATH)%.o, $(SRC))

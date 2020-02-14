@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 18:53:52 by saneveu           #+#    #+#              #
-#    Updated: 2020/02/13 02:36:12 by saneveu          ###   ########.fr        #
+#    Updated: 2020/02/14 02:57:10 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,11 @@ SRC		=	main.c \
 			exit.c \
 			init_matrice.c \
 			init_sdl.c \
-
+			fill_triangle.c \
+			vector_calc.c \
+			color.c \
+			cube3d.c
+	
 INC		=	cube3d.h
 
 OBJ		=	$(addprefix $(OBJDIR)/,$(SRC:.c=.o))
