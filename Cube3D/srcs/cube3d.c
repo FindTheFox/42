@@ -6,12 +6,13 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 01:18:31 by saneveu           #+#    #+#             */
-/*   Updated: 2020/02/14 01:21:39 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/14 20:42:05 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube3d.h"
 
+/*
 void        matrix_mult_vect(t_vec *i, t_vec *o, t_matrix *m)
 {
     float w;
@@ -28,46 +29,61 @@ void        matrix_mult_vect(t_vec *i, t_vec *o, t_matrix *m)
         o->z /= w;
     }
 }
+*/
 
 static t_vec    center(t_vec *out)
 {
-        out->x += 1.0f;
-        out->y += 1.0f;
-
         out->x *= 0.5f * W_W;
         out->y *= 0.5f * W_H;
         return(*out);
 }
 
-static void        ca_tourne(t_env *e, int i)
+t_matrix            init_matrix_world(t_env *e)
 {
     float           oldtime;
     static float    fTheta;
-    t_triangle      rotz;
+    t_matrix        matworld;
 
     oldtime = e->time;
     e->time = SDL_GetTicks();
     fTheta += (e->time - oldtime) / 1000;
-    init_matrix_rotz(e, fTheta);
-    init_matrix_rotx(e, fTheta);
-
-    matrix_mult_vect(&e->tris[i].p[0], &rotz.p[0], &e->matrotz);
-    matrix_mult_vect(&e->tris[i].p[1], &rotz.p[1], &e->matrotz);
-    matrix_mult_vect(&e->tris[i].p[2], &rotz.p[2], &e->matrotz);
-
-    matrix_mult_vect(&rotz.p[0], &e->tris[i].p[0], &e->matrotx);
-    matrix_mult_vect(&rotz.p[1], &e->tris[i].p[1], &e->matrotx);
-    matrix_mult_vect(&rotz.p[2], &e->tris[i].p[2], &e->matrotx);
+    e->matrotz = init_matrix_rotz(fTheta * 0.5f);
+    e->matrotx = init_matrix_rotx(fTheta);
+    e->mattranslate = init_matrix_translation(0.0f, 0.0f, 16.0f);
+    matworld = init_matrix_identity();
+    matworld = matrix_mult_matrix(e->matrotz, e->matrotx);
+    matworld = matrix_mult_matrix(e->matworld, e->mattranslate);
+    return (matworld);
 }
 
-void       lumiere(t_env *e, t_vec normal, int i)
+static void        ca_tourne(t_env *e, int i)
+{
+    e->tritransform.p[0] = matrix_mult_vector(e->matworld, e->tris[i].p[0]);
+    e->tritransform.p[1] = matrix_mult_vector(e->matworld, e->tris[i].p[1]);
+    e->tritransform.p[2] = matrix_mult_vector(e->matworld, e->tris[i].p[2]);
+    // e->tritransform.p[0] = vectordiv(e->tris[i].p[0], e->tris[i].p[0].w);
+    // e->tritransform.p[1] = vectordiv(e->tris[i].p[1], e->tris[i].p[1].w);
+    // e->tritransform.p[2] = vectordiv(e->tris[i].p[2], e->tris[i].p[2].w);
+
+    // e->tris[i].p[1] = matrix_mult_vector(e->matrotx, e->tris[i].p[1]);
+    // e->tris[i].p[2] = matrix_mult_vector(e->matrotx, e->tris[i].p[2]);
+    // e->tris[i].p[0] = matrix_mult_vector(e->matrotx, e->tris[i].p[0]);
+    // e->tris[i].p[0] = vectordiv(e->tris[i].p[0], e->tris[i].p[0].w);
+    // e->tris[i].p[1] = vectordiv(e->tris[i].p[1], e->tris[i].p[1].w);
+    // e->tris[i].p[2] = vectordiv(e->tris[i].p[2], e->tris[i].p[2].w);
+    // matrix_mult_vect(&rotz.p[0], &e->tris[i].p[0], &e->matrotx);
+    // matrix_mult_vect(&rotz.p[1], &e->tris[i].p[1], &e->matrotx);
+    // matrix_mult_vect(&rotz.p[2], &e->tris[i].p[2], &e->matrotx);
+}
+
+void       lumiere(t_env *e, t_vec normal)
 {
     float dp;
     
-    e->vlist.light_dir = (t_vec){ 0.0f, 0.0f, -1.0f };
+    e->vlist.light_dir = (t_vec){ 0.0f, 0.0f, -1.0f, 0.0f };
     e->vlist.light_dir = vectornormal(e->vlist.light_dir);
     dp = vectorproduct(normal, e->vlist.light_dir);
-    e->tris[i].color = color_shading(0x00ffff, dp);
+    e->triprojected.color = color_shading(0x00ffff, dp);
 }
 
 int        normalize(t_env *e, int i)
@@ -80,11 +96,10 @@ int        normalize(t_env *e, int i)
     line2 = vectorsub(e->tris[i].p[2], e->tris[i].p[0]);
     normal = vectorcrossprod(line1, line2);
     normal = vectornormal(normal);
-    if (normal.x * (e->tris[i].p[0].x - e->vlist.vcamera.x) +
-    normal.y * (e->tris[i].p[0].y - e->vlist.vcamera.y) +
-    normal.z * (e->tris[i].p[0].z - e->vlist.vcamera.z) < 0)
+    e->vlist.vcamera = vectorsub(e->tritransform.p[0], e->vlist.vcamera);
+    if (vectorproduct(normal, e->vlist.vcamera) < 0)
     {
-        lumiere(e, normal, i);
+        lumiere(e, normal);
         return (1);
     }
     return (0);
@@ -93,36 +108,43 @@ int        normalize(t_env *e, int i)
 void        cube3d(t_env *env)
 {
     int     i;
-    t_vec   out[3];
-    t_vec   *transl;
 
-    init_matrix(env);
+    env->matworld = init_matrix_world(env);
+    env->matproj = init_matrix_proj(env);
     i = -1;
     while (++i < 12)
     {
         ca_tourne(env, i);
         
         //Offset on z axis
-        transl = env->tris[i].p;
-        transl[0].z += 3.0f;
-        transl[1].z += 3.0f;
-        transl[2].z += 3.0f;
+        // transl = env->tris[i].p;
+        // transl[0].z += 3.0f;
+        // transl[1].z += 3.0f;
+        // transl[2].z += 3.0f;
         
         //normalize
         if (normalize(env, i))
         {
             //projection
-            matrix_mult_vect(&env->tris[i].p[0], &out[0], &env->matproj);
-            matrix_mult_vect(&env->tris[i].p[1], &out[1], &env->matproj); 
-            matrix_mult_vect(&env->tris[i].p[2], &out[2], &env->matproj);
+            env->triprojected.p[0] = matrix_mult_vector(env->matproj, env->tritransform.p[0]);
+            env->triprojected.p[1] = matrix_mult_vector(env->matproj, env->tritransform.p[1]); 
+            env->triprojected.p[2] = matrix_mult_vector(env->matproj, env->tritransform.p[2]);
+
+            env->triprojected.p[0] = vectordiv(env->triprojected.p[0], env->triprojected.p[0].w);
+            env->triprojected.p[1] = vectordiv(env->triprojected.p[1], env->triprojected.p[1].w);
+            env->triprojected.p[2] = vectordiv(env->triprojected.p[2], env->triprojected.p[2].w); 
 
             //Scale
-            env->tris[i].p[0] = center(&out[0]);
-            env->tris[i].p[1] = center(&out[1]);
-            env->tris[i].p[2] = center(&out[2]);
+            env->triprojected.p[0] = vectoradd(env->triprojected.p[0], env->vlist.voff_set);
+            env->triprojected.p[1] = vectoradd(env->triprojected.p[1], env->vlist.voff_set);
+            env->triprojected.p[2] = vectoradd(env->triprojected.p[2], env->vlist.voff_set);
+
+            env->triprojected.p[0] = center(&env->triprojected.p[0]);
+            env->triprojected.p[1] = center(&env->triprojected.p[1]);
+            env->triprojected.p[2] = center(&env->triprojected.p[2]);
 
             //***draw and rasterize
-            fill_triangle(env, env->tris[i], env->tris[i].color);
+            fill_triangle(env, env->triprojected, env->triprojected.color);
             //draw_triangle(env, env->tris[i].p);
             SDL_SetRenderDrawColor(env->rend, 0x00, 0x00, 0x00, 0x00);
         }

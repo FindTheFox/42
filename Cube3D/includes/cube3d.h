@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 20:57:46 by saneveu           #+#    #+#             */
-/*   Updated: 2020/02/14 02:56:20 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/14 20:27:12 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct      s_vec
     float   x;
     float   y;
     float   z;
+    float   w;
 }                   t_vec;
 
 typedef struct      s_triangle
@@ -68,20 +69,30 @@ typedef struct      s_vlist
 {
     t_vec           vcamera;
     t_vec           light_dir;
+    t_vec           voff_set;
 }                   t_vlist;
 
 typedef struct      s_env
 {
+    float           fNear;
+    float           fFar;
+    float           fFov;
+    float           fAspectRatio;
+    float           fFovRad;
     float           fps;
     float           time;
     float           frametime;
     t_vlist         vlist;
     t_fill          fill;
+    t_matrix        matworld;
     t_matrix        matproj;
     t_matrix        matrotz;
     t_matrix        matrotx;
     t_matrix        matroty;
+    t_matrix        mattranslate;
     t_triangle      tris[12];
+    t_triangle      tritransform;
+    t_triangle      triprojected;
     t_mesh          mesh;
     t_rgba          rgba;
     SDL_Window      *window;
@@ -99,22 +110,26 @@ void        cube3d(t_env *env);
 void        ft_exit(t_env *env, char *s, int flag);
 void        init_cube(t_env *env);
 void        init_sdl(t_env *env);
-
+void        init_data(t_env *e);
 void        sdl_render(t_env *e);
 
 /*
 **Matrice calcul and init
 */
 
-void        matrix_mult_vect(t_vec *i, t_vec *o, t_matrix *m);
-void        init_matrix(t_env *e);
-void        init_matrix_rotx(t_env *e, float theta);
-void        init_matrix_rotz(t_env *e, float theta);
+t_matrix        init_matrix_proj(t_env *e);
+t_matrix        init_matrix_rotx(float theta);
+t_matrix        init_matrix_rotz(float theta);
+t_matrix        init_matrix_roty(float theta);
+t_matrix        matrix_mult_matrix(t_matrix m1, t_matrix m2);
+t_matrix        init_matrix_translation(float x, float y, float z);
+t_matrix        init_matrix_identity(void);
 
 /*
 **Vector calcul
 */
 
+t_vec           matrix_mult_vector(t_matrix m, t_vec i);
 t_vec           vectoradd(t_vec v1, t_vec v2);
 t_vec           vectorsub(t_vec v1, t_vec v2);
 float           vectorproduct(t_vec v1, t_vec v2);

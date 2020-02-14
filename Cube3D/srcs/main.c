@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 20:59:44 by saneveu           #+#    #+#             */
-/*   Updated: 2020/02/14 02:59:43 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/14 19:35:28 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int         main(int ac, char **av)
             return (0);
     }*/
     init_sdl(&env);
+    init_data(&env);
     while (1)
     {
         init_cube(&env);

@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 18:53:52 by saneveu           #+#    #+#              #
-#    Updated: 2020/02/14 02:57:10 by saneveu          ###   ########.fr        #
+#    Updated: 2020/02/14 20:40:21 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRC		=	main.c \
 			fill_triangle.c \
 			vector_calc.c \
 			color.c \
-			cube3d.c
+			cube3d.c \
+			init_data.c
 	
 INC		=	cube3d.h
 
