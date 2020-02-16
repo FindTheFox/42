@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 17:53:59 by saneveu           #+#    #+#             */
-/*   Updated: 2020/02/13 21:25:57 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/15 23:17:43 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 
 # define BUFF_SIZE 8
 
@@ -24,6 +25,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+char			*ft_readfile(char *file);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
 int				ft_isalnum(int c);

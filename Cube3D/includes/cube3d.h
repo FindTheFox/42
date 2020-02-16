@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 20:57:46 by saneveu           #+#    #+#             */
-/*   Updated: 2020/02/14 20:27:12 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/16 04:24:27 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 
 # define W_W 800
 # define W_H 800
+
+typedef struct      s_line
+{
+    int             coef;
+    int             i;
+}                   t_line;
 
 typedef struct      s_rgba
 {
@@ -70,10 +76,30 @@ typedef struct      s_vlist
     t_vec           vcamera;
     t_vec           light_dir;
     t_vec           voff_set;
+    t_vec           up;
+    t_vec           lookdir;
+    t_vec           target;
+    t_vec           right;
 }                   t_vlist;
+
+typedef struct      s_parser
+{
+    char            *str;
+    int             vi;
+    int             ti;
+    t_triangle      *tri;
+    t_vec           *vertex;
+    int             vnb;
+    int             fnb;
+    int             mi;
+}                   t_parser;
 
 typedef struct      s_env
 {
+    float           ytheta;
+    float           xtheta;
+    float           ztheta;
+    float           zoom;
     float           fNear;
     float           fFar;
     float           fFov;
@@ -90,11 +116,16 @@ typedef struct      s_env
     t_matrix        matrotx;
     t_matrix        matroty;
     t_matrix        mattranslate;
+    t_matrix        matview;
     t_triangle      tris[12];
+    //t_triangle      *buffer;
     t_triangle      tritransform;
     t_triangle      triprojected;
-    t_mesh          mesh;
+    t_mesh          *mesh;
+    int             nbmesh;
+    t_parser        parse;
     t_rgba          rgba;
+    t_line          line;
     SDL_Window      *window;
     SDL_Event       event;
     SDL_Renderer    *rend;
@@ -112,19 +143,20 @@ void        init_cube(t_env *env);
 void        init_sdl(t_env *env);
 void        init_data(t_env *e);
 void        sdl_render(t_env *e);
-
+void        draw_line(t_env *e, t_vec v1, t_vec v2, int color);
 /*
 **Matrice calcul and init
 */
 
-t_matrix        init_matrix_proj(t_env *e);
-t_matrix        init_matrix_rotx(float theta);
-t_matrix        init_matrix_rotz(float theta);
-t_matrix        init_matrix_roty(float theta);
+void        init_matrix_proj(t_env *e);
+void        init_matrix_rotx(t_matrix *m, float theta);
+void        init_matrix_rotz(t_matrix *m, float theta);
+void        init_matrix_roty(t_matrix *m, float theta);
 t_matrix        matrix_mult_matrix(t_matrix m1, t_matrix m2);
-t_matrix        init_matrix_translation(float x, float y, float z);
-t_matrix        init_matrix_identity(void);
-
+void        init_matrix_translation(t_matrix *m, float x, float y, float z);
+void        init_matrix_identity(t_matrix *m);
+void			quickinversematrix(t_matrix *mat, t_matrix mat_pointat);
+void			pointatmatrix(t_matrix *matrix, t_vec pos, t_vec target, t_vec up);
 /*
 **Vector calcul
 */
@@ -144,7 +176,7 @@ float           vectorlen(t_vec v);
 */
 
 void        fill_triangle(t_env *e, t_triangle tri, int color);
-void        draw_triangle(t_env *e, t_vec p[3]);
+void        draw_triangle(t_env *e, t_triangle t);
 
 void        put_pixel(t_env *e, int x, int y, int color);
 

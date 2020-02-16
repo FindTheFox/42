@@ -6,7 +6,7 @@
 #    By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/04 18:53:52 by saneveu           #+#    #+#              #
-#    Updated: 2020/02/14 20:40:21 by saneveu          ###   ########.fr        #
+#    Updated: 2020/02/16 02:19:26 by saneveu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ SRC		=	main.c \
 			vector_calc.c \
 			color.c \
 			cube3d.c \
-			init_data.c
+			init_data.c \
+			line.c
 	
 INC		=	cube3d.h
 
@@ -53,7 +54,7 @@ HEADER	=	$(addprefix $(INCDIR)/,$(INC))
 
 # compiler
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror -Ofast -march=native
+CFLAGS	=	#-Wall -Wextra -Werror -Ofast -march=native
 
 ifeq ($(OS), Linux)
 	SDL		=	-lSDL2-2.0
