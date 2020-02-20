@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 01:18:31 by saneveu           #+#    #+#             */
-/*   Updated: 2020/02/19 22:59:22 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/20 18:25:41 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,34 +28,38 @@ int       lumiere(t_env *e, t_vec normal)
     return (color_shading(0xffff00, dp));
 }
 
-void            init_matrix_world(t_env *e)
+void            matrix_world(t_env *e)
+{
+    init_matrix_rotz(&e->mlist.matrotz, e->ztheta * 0.5f);
+    init_matrix_rotx(&e->mlist.matrotx, e->xtheta);
+    init_matrix_roty(&e->mlist.matroty, e->ytheta * 0.8);
+    init_matrix_translation(&e->mlist.mattranslate, 0.0f, 0.0f, e->zoom);
+    e->mlist.matworld = matrix_mult_matrix(e->mlist.matroty, e->mlist.matrotx);
+    e->mlist.matworld = matrix_mult_matrix(e->mlist.matworld, e->mlist.matrotz);
+    e->mlist.matworld = matrix_mult_matrix(e->mlist.matworld, e->mlist.mattranslate);
+}
+
+void            matrix_view(t_env *e)
 {
     t_matrix        matcam;
     t_matrix        camrot;
     t_vec           up;
     t_vec           target;
-    
-    init_matrix_rotz(&e->mlist.matrotz, e->theta * 0.5f);
-    init_matrix_rotx(&e->mlist.matrotx, e->theta);
-    init_matrix_roty(&e->mlist.matroty, e->theta * 0.8);
-    init_matrix_translation(&e->mlist.mattranslate, 0.0f, 0.0f, e->zoom);
-    e->mlist.matworld = matrix_mult_matrix(e->mlist.matroty, e->mlist.matrotx);
-    e->mlist.matworld = matrix_mult_matrix(e->mlist.matworld, e->mlist.matrotz);
-    e->mlist.matworld = matrix_mult_matrix(e->mlist.matworld, e->mlist.mattranslate);
 
     e->vlist.lookdir = (t_vec){ 0,0,1,0 };
     up = (t_vec){ 0,-1,0,0 };
     target = (t_vec){ 0,0,1,0 };
-    //camrot = matrix_mult_matrix(e->mlist.camroty, e->mlist.camrotx);
-    //e->vlist.lookdir = matrix_mult_vector(e->mlist.camroty, e->vlist.target);
-    //printf("yaw = %f\n", e->yaw);
+    
     init_matrix_identity(&camrot);
-    init_matrix_roty(&camrot, ft_to_radian(e->yaw));
+    camrot = matrix_mult_matrix(e->mlist.camrotx, e->mlist.camroty);
     //printf("Lx = %f Ly = %f Lz = %f\n", e->vlist.lookdir.x, e->vlist.lookdir.x, e->vlist.lookdir.z);
+    
     e->vlist.lookdir = matrix_mult_vector(camrot, target);
     target = vectoradd(e->vlist.vcamera, e->vlist.lookdir);
+    
     //printf("tx = %f ty = %f tz = %f\n", e->vlist.target.x, e->vlist.target.x, e->vlist.target.z);
     up = matrix_mult_vector(camrot, up);
+    
     pointatmatrix(&matcam, e->vlist.vcamera, target, up);
     quickinversematrix(&e->mlist.matview, matcam);
 }
@@ -88,7 +92,6 @@ void        projection(t_env *env, t_triangle triprojected, int color)
 {
     t_triangle tview;
 
-    //int j;
     //printf("x1 = %f y1 = %f z1 = %f\n", triprojected.p[0].x, triprojected.p[0].y, triprojected.p[0].z);
     tview = matrix_mult_triangle(env->mlist.matview, triprojected);
     //printf("x = %f y = %f z = %f\n", tview.p[0].x, tview.p[0].y, tview.p[0].z);
@@ -121,10 +124,11 @@ void        engine_3d(t_env *env)
     int         color;
     
     //do_camera_rot
-    init_matrix_world(env);
+    matrix_view(env);
     i = -1;
     while (++i < env->nbmesh)
     {
+        matrix_world(env);
         j = -1;
         while (++j < env->mesh[i].size)
         {

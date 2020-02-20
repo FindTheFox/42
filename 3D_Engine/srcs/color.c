@@ -6,7 +6,7 @@
 /*   By: saneveu <saneveu@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 00:45:42 by saneveu           #+#    #+#             */
-/*   Updated: 2020/02/19 20:22:16 by saneveu          ###   ########.fr       */
+/*   Updated: 2020/02/20 17:22:14 by saneveu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int         color_shading(int color, float shade)
     t_rgba c;
 
     c = hex_to_rgba(color);
-    c.r *= shade - 0.1;
-    c.g *= shade - 0.1;
-    c.b *= shade - 0.1;
+    c.r *= shade;
+    c.g *= shade;
+    c.b *= shade;
     return (rgba_to_hex(c));
 }

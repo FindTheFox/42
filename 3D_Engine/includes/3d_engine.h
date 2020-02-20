@@ -20,7 +20,7 @@
 # define W_W 800
 # define W_H 800
 
-# define KEY_NB 10
+# define KEY_NB 16
 # define W 0
 # define A 1
 # define S 2
@@ -29,6 +29,14 @@
 # define Q 5
 # define UP 6
 # define DOWN 7
+# define R 8
+# define F 9
+# define NUM8 10
+# define NUM2 11
+# define NUM4 12
+# define NUM6 13
+# define NUM1 14
+# define NUM3 15
 
 typedef struct      s_line
 {
